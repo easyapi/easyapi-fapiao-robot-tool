@@ -5,7 +5,7 @@
         <div class="font-black inline text-xl cursor-pointer" @click="gotoHome">
           <img src="/logo-black.png" class="logo-img w-8 h-8" alt="" srcset="" />
         </div>
-        <span class="ml-2 text-xl">发票开票机器人</span>
+        <span class="ml-2 text-xl">发票开票机器人接口测试工具</span>
         <div class="menu ml-4 items-center md:inline custom-font-16 pl-4">
           <li class="inline-block cursor-pointer select-none">
             <NuxtLink to="/">管理首页</NuxtLink>
