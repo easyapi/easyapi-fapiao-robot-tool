@@ -9,19 +9,19 @@
     "pm2": "pm2 delete easyapi-fapiao-biz \n pm2 start npm --name 'easyapi-fapiao-biz' -- run start"
   },
   "devDependencies": {
-    "nuxt": "^3.0.0-rc.10",
+    "nuxt": "^3.0.0-rc.11",
     "element-plus": "^2.2.17"
   },
   "dependencies": {
     "@bytemd/vue-next": "^1.17.2",
     "@meforma/vue-toaster": "^1.3.0",
-    "@nuxt/webpack-builder": "^3.0.0-rc.10",
-    "@nuxt/kit": "^3.0.0-rc.10",
+    "@nuxt/webpack-builder": "^3.0.0-rc.11",
+    "@nuxt/kit": "^3.0.0-rc.11",
     "@nuxtjs/tailwindcss": "^5.3.3",
     "@pinia/nuxt": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
     "@types/lodash": "^4.14.185",
-    "eslint": "^8.23.1",
+    "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1",
