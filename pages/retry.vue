@@ -1,78 +1,75 @@
 <template>
-  <div class="page mt-8 justify-center">
-    <div class="w-full test">
-      <div v-for="(item, index) in menuList" :key="index" class="mb-4 list">
-        <div class="header-style_other flex cursor-pointer" @click="gotoOrderList(item.shop.platform)">
-          <div class="w-full relative tool-border">
-            <div class="tool-box_other px-4 absolute">
-              <div>
-                <img class="tool-img" :src="item.shop.imgUrl" />
-                <div class="tool-title">{{ item.shop.name }}</div>
-              </div>
-              <div class="flex-col">
-                <div class="order-number text-center">{{ item.shop.waitCount }}</div>
-                <div class="tool-title">待开票订单</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="page flex red">
+    <div class="form-info bg-white">
+      <el-form :model="formData" ref="form" :rules="formRules" label-width="110px">
+        <el-form-item label="商户订单号：" prop="outOrderNo">
+          <el-input v-model="formData.outOrderNo" placeholder="商户订单号" />
+        </el-form-item>
+        <el-form-item label="发票代码：" prop="code">
+          <el-input v-model="formData.code" placeholder="发票代码" />
+        </el-form-item>
+        <el-form-item label="发票号码：" prop="number">
+          <el-input v-model="formData.number" placeholder="发票号码" />
+        </el-form-item>
+        <el-form-item label="回调地址：" prop="callbackUrl">
+          <el-input v-model="formData.callbackUrl" placeholder="回调地址" />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit">发送</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <div class="orther-info bg-white">
+      <div class="title">WebSocket地址：</div>
+      <el-input v-model="formData.webSocket" placeholder="WebSocket地址" />
+      <div class="title">Subscribe订阅主题：</div>
+      <el-input v-model="formData.topic" placeholder="Subscribe订阅主题" />
+      <div class="title">下发内容：</div>
+      <el-input type="textarea" v-model="formData.message" :autosize="{ minRows: 9, maxRows: 8 }" placeholder="下发内容" />
     </div>
   </div>
 </template>
 
 <script>
-import { shop } from '../api/shop'
+import { ElMessage } from 'element-plus'
+import { test } from '../api/test'
 export default {
   data() {
     return {
-      menuList: []
+      menuList: [],
+      formData: {},
+      formRules: {
+        outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
+        code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
+        number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
+        reason: [{ required: true, message: '红冲原因不能为空', trigger: 'change' }],
+        callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
+      }
     }
   },
-
-  mounted() {
-    document.title = '管理首页'
-    this.getUserShops()
+  head: {
+    title: '重试开票 - EasyAPI开票机器人'
   },
+
+  mounted() {},
   methods: {
-    gotoOrderList(row) {
-      localStorage.setItem('type', row.name)
-      this.$router.push('/order/list')
-    },
-    getUserShops() {
-      shop.getUserShops({}).then(res => {
-        if (res.code == 1) {
-          res.content.content.forEach(item => {
-            if (item.shop.platform === 'youzan') {
-              item.shop.imgUrl = '/img/youzan.png'
-            }
-            if (item.shop.platform === 'taobao') {
-              item.shop.imgUrl = '/img/taobao.png'
-            }
-            if (item.shop.platform === 'kuaishou') {
-              item.shop.imgUrl = '/img/kuaishou.png'
-            }
-            if (item.shop.platform === 'douyin') {
-              item.shop.imgUrl = '/img/douyin.png'
-            }
-            if (item.shop.platform === 'jingdong') {
-              item.shop.imgUrl = '/img/jingdong.png'
-            }
-            if (item.shop.platform === 'pingduoduo') {
-              item.shop.imgUrl = '/img/pingduoduo.png'
-            }
-            if (item.shop.platform === 'suning') {
-              item.shop.imgUrl = '/img/suning.png'
-            }
-            if (item.shop.platform === 'weimeng') {
-              item.shop.imgUrl = '/img/weimeng.png'
-            }
-            if (item.shop.platform === 'ali') {
-              item.shop.imgUrl = '/img/ali.png'
-            }
-          })
-          this.menuList = res.content.content
+    // 发送
+    onSubmit() {
+      this.$refs.form.validate(valid => {
+        if (!valid) {
+          return
         }
+        test.redInvoice(this.formData).then(res => {
+          if (res.code == 1) {
+            this.formData.message = res.content.message
+            this.formData.topic = res.content.topic
+            this.formData.webSocket = res.content.webSocket
+            ElMessage({
+              type: 'success',
+              message: res.message
+            })
+          }
+        })
       })
     }
   }
@@ -80,53 +77,25 @@ export default {
 </script>
 
 <style>
-.RightFixedContainer-absolute {
-  @apply absolute;
+.red .form-info {
+  width: 49%;
+  padding: 20px;
 }
-
-.RightFixedContainer-fixed {
-  @apply fixed top-2;
-}
-
-.test {
-  display: grid;
-  justify-content: space-between;
-  grid-template-columns: repeat(auto-fill, 260px);
-}
-
-.header-style_other {
-  padding: 0 5px;
-  width: 260px;
-  height: 160px;
-}
-
-.el-badge__content {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+.red .form-info .tips {
   font-size: 12px;
-  top: 1px !important;
-  right: 16px !important;
+  color: #a2a2a2;
 }
-
-.order-number {
-  font-size: 40px;
-  font-weight: 550;
-}
-
-.paging {
-  margin-top: 20px;
+.red .orther-info {
+  padding: 20px;
+  width: 50%;
+  margin-left: 20px;
   display: flex;
-  justify-content: right;
+  flex-direction: column;
 }
-
-.paging .el-pagination .el-icon {
-  display: flex;
-}
-
-.tool-img {
-  width: 60px;
-  height: 60px;
-  padding: 8px;
+.red .title {
+  font-size: 12px;
+  color: #606266;
+  font-weight: 500;
+  margin: 8px 0;
 }
 </style>
