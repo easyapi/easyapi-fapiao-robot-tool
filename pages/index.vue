@@ -155,12 +155,15 @@
         <el-table-column label="优惠政策">
           <template #default="scope">
             <el-select v-model="scope.row.preferentialPolicyFlag" placeholder="选择优惠政策">
-              <el-option v-for="item in preferentialPolicyFlagList" :key="item.value" :label="item.label" :value="item.value" />
+              <el-option v-for="item in preferentialPolicyFlagList" :key="item.value" :label="item.label"
+                :value="item.value" />
             </el-select>
-            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.zeroRateFlag" placeholder="选择优惠政策">
+            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.zeroRateFlag"
+              placeholder="选择优惠政策">
               <el-option v-for="item in zeroRateFlagList" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <el-input v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.preferentialPolicyName" placeholder="增值税特殊管理" />
+            <el-input v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.preferentialPolicyName"
+              placeholder="增值税特殊管理" />
           </template>
         </el-table-column>
         <el-table-column label="操作" width="100">
@@ -243,7 +246,7 @@ const categoryList = [
 
 const preferentialPolicyFlagList = [
   { value: '', label: '不使用优惠政策' },
-  { value: '1', label: '使用优惠政策' }
+  { value: 1, label: '使用优惠政策' }
 ]
 
 const zeroRateFlagList = [
@@ -417,15 +420,18 @@ useHead: ({
   flex-direction: column;
   margin-left: 20px;
 }
+
 .invoicing .title {
   font-size: 12px;
   color: #606266;
   font-weight: 500;
   margin: 8px 0;
 }
+
 .invoicing .el-table .el-input {
   margin: 5px 0;
 }
+
 .invoicing .invoicing-btn {
   margin-top: 15px;
 }

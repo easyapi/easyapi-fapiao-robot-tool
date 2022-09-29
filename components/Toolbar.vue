@@ -9,7 +9,13 @@
       </div>
       <div class="flex items-center">
         <div class="login-group flex mx-2 lg:mx-4 custom-font-14 items-center leading-8">
-          <p @click="login()" v-show="!loginStatus" class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">登录</p>
+          <a
+            href="https://fapiao-robot.easyapi.com/login?from=https://fapiao-robot-tool.easyapi.com"
+            target="_blank"
+            v-show="!loginStatus"
+            class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">
+            登录
+          </a>
           <p @click="logout()" v-show="loginStatus" class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">退出</p>
         </div>
       </div>
@@ -62,11 +68,6 @@ function gotoHome() {
   router.push('/')
 }
 
-function login() {
-  store.$patch({
-    showLogin: !store.showLogin
-  })
-}
 function logout() {
   store.$patch({
     showLogin: false
@@ -90,9 +91,9 @@ li {
   @apply inline-block mx-2;
 }
 
-a {
+/* a {
   @apply inline-block py-4 px-2;
-}
+} */
 
 .router-link-exact-active {
   @apply inline-block px-2 py-4;
