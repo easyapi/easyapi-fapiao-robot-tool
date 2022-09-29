@@ -9,10 +9,10 @@
           <el-input v-model="formData.outOrderNo" placeholder="商户订单号" />
         </el-form-item>
         <el-form-item label="发票代码：" prop="code">
-          <el-input v-model="formData.code" placeholder="发票代码" />
+          <el-input v-model="formData.code" placeholder="12位数字是发票代码" />
         </el-form-item>
         <el-form-item label="发票号码：" prop="number">
-          <el-input v-model="formData.number" placeholder="发票号码" />
+          <el-input v-model="formData.number" placeholder="8位数字是发票代码" />
         </el-form-item>
         <el-form-item label="红冲原因：" prop="reason">
           <el-input v-model="formData.reason" placeholder="红冲原因" />
