@@ -2,7 +2,7 @@
   <div class="page flex red">
     <div class="form-info bg-white">
       <el-form :model="formData" ref="form" :rules="formRules" label-width="110px">
-        <el-form-item label="企业税号：" prop="outOrderNo">
+        <el-form-item label="企业税号：" prop="taxNumber">
           <el-input v-model="formData.taxNumber" placeholder="企业税号" />
         </el-form-item>
         <el-form-item label="商户订单号：" prop="outOrderNo">
@@ -43,7 +43,6 @@ export default {
         taxNumber: '91320211MA1WML8X6T'
       },
       formRules: {
-        outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
         code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
         number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
         callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
