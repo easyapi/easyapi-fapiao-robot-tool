@@ -162,10 +162,10 @@
             <el-select v-model="scope.row.preferentialPolicyFlag" placeholder="选择优惠政策">
               <el-option v-for="item in preferentialPolicyFlagList" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <el-select v-if="scope.row.preferentialPolicyFlag == 1" v-model="scope.row.zeroRateFlag" placeholder="选择优惠政策">
+            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.zeroRateFlag" placeholder="选择优惠政策">
               <el-option v-for="item in zeroRateFlagList" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <el-input v-if="scope.row.preferentialPolicyFlag == 1" v-model="scope.row.preferentialPolicyName" placeholder="增值税特殊管理" />
+            <el-input v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.preferentialPolicyName" placeholder="增值税特殊管理" />
           </template>
         </el-table-column>
         <el-table-column label="操作" width="100">
@@ -196,6 +196,9 @@ export default {
     return {
       menuList: [],
       formData: {
+        sellerName: '无锡帮趣数据服务有限公司',
+        sellerTaxpayerNumber: '91320211MA1WML8X6T',
+        category: '增值税电子普通发票',
         items: [
           {
             no: '',
@@ -351,24 +354,24 @@ export default {
         }
         this.formData.items.forEach((item, index) => {
           if (
-            item.name == '' &&
-            item.model == '' &&
-            item.unit == '' &&
-            item.number == '' &&
-            item.price == '' &&
-            item.sum == '' &&
-            item.discount == '' &&
-            item.taxRate == '' &&
-            item.tax == '' &&
-            item.preferentialPolicyFlag == '' &&
-            item.zeroRateFlag == '' &&
-            item.preferentialPolicyName == ''
+            item.name === '' &&
+            item.model === '' &&
+            item.unit === '' &&
+            item.number === '' &&
+            item.price === '' &&
+            item.sum === '' &&
+            item.discount === '' &&
+            item.taxRate === '' &&
+            item.tax === '' &&
+            item.preferentialPolicyFlag === '' &&
+            item.zeroRateFlag === '' &&
+            item.preferentialPolicyName === ''
           ) {
             this.formData.items.splice(index, 1)
           }
         })
         test.makeInvoice(this.formData).then(res => {
-          if (res.code == 1) {
+          if (res.code === 1) {
             this.formData.message = res.content.message
             this.formData.topic = res.content.topic
             this.formData.webSocket = res.content.webSocket

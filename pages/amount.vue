@@ -28,7 +28,9 @@ export default {
   data() {
     return {
       menuList: [],
-      formData: {},
+      formData: {
+        taxNumber: '91320211MA1WML8X6T'
+      },
       formRules: {
         taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }]
       }
@@ -38,16 +40,17 @@ export default {
     title: '发票库存查询 - EasyAPI开票机器人'
   },
 
-  mounted() {},
   methods: {
-    // 发送
+    /**
+     * 发送
+     */
     onSubmit() {
       this.$refs.form.validate(valid => {
         if (!valid) {
           return
         }
         test.amountShop(this.formData).then(res => {
-          if (res.code == 1) {
+          if (res.code === 1) {
             this.formData.message = res.content.message
             this.formData.topic = res.content.topic
             this.formData.webSocket = res.content.webSocket

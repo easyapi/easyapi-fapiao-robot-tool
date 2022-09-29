@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted() {
-    this.selectMenu = this.$route.name == 'index' ? '' : this.$route.name
+    this.selectMenu = this.$route.name === 'index' ? '' : this.$route.name
   },
   methods: {
     selectMenuItem(row) {

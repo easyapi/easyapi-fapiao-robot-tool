@@ -2,6 +2,9 @@
   <div class="page flex red">
     <div class="form-info bg-white">
       <el-form :model="formData" ref="form" :rules="formRules" label-width="110px">
+        <el-form-item label="企业税号：" prop="outOrderNo">
+          <el-input v-model="formData.taxNumber" placeholder="企业税号" />
+        </el-form-item>
         <el-form-item label="商户订单号：" prop="outOrderNo">
           <el-input v-model="formData.outOrderNo" placeholder="商户订单号" />
         </el-form-item>
@@ -44,7 +47,9 @@ export default {
   data() {
     return {
       menuList: [],
-      formData: {},
+      formData: {
+        taxNumber: '91320211MA1WML8X6T'
+      },
       formRules: {
         outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
         code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
@@ -67,7 +72,7 @@ export default {
           return
         }
         test.redInvoice(this.formData).then(res => {
-          if (res.code == 1) {
+          if (res.code === 1) {
             this.formData.message = res.content.message
             this.formData.topic = res.content.topic
             this.formData.webSocket = res.content.webSocket

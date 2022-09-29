@@ -24,11 +24,14 @@
 <script>
 import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
+
 export default {
   data() {
     return {
       menuList: [],
-      formData: {},
+      formData: {
+        taxNumber: '91320211MA1WML8X6T'
+      },
       formRules: {
         taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }]
       }
@@ -40,14 +43,16 @@ export default {
 
   mounted() {},
   methods: {
-    // 发送
+    /**
+     * 发送
+     */
     onSubmit() {
       this.$refs.form.validate(valid => {
         if (!valid) {
           return
         }
         test.stateShop(this.formData).then(res => {
-          if (res.code == 1) {
+          if (res.code === 1) {
             this.formData.message = res.content.message
             this.formData.topic = res.content.topic
             this.formData.webSocket = res.content.webSocket
@@ -68,10 +73,12 @@ export default {
   width: 49%;
   padding: 20px;
 }
+
 .red .form-info .tips {
   font-size: 12px;
   color: #a2a2a2;
 }
+
 .red .orther-info {
   padding: 20px;
   width: 50%;
@@ -79,6 +86,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
 .red .title {
   font-size: 12px;
   color: #606266;
