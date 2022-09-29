@@ -21,8 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from 'element-plus'
-import { api } from '../api/api'
 import { nanoid } from 'nanoid'
 import { userStore } from '~/stores/user'
 const store = userStore()
