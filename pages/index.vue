@@ -101,7 +101,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="发票右下角备注：" prop="remark">
+            <el-form-item label="备注：" prop="remark">
               <el-input v-model="formData.remark" />
             </el-form-item>
           </el-col>
@@ -260,23 +260,9 @@ const zeroRateFlagList = [
 const formRules = reactive<FormRules>({
   outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
   purchaserName: [{ required: true, message: '购买方名称不能为空', trigger: 'change' }],
-  purchaserTaxpayerNumber: [{ required: true, message: '纳税人识别号不能为空', trigger: 'change' }],
-  purchaserAddress: [{ required: true, message: '购买方地址不能为空', trigger: 'change' }],
-  purchaserPhone: [{ required: true, message: '购买方电话不能为空', trigger: 'change' }],
-  purchaserBank: [{ required: true, message: '购买方开户行不能为空', trigger: 'change' }],
-  purchaserBankAccount: [{ required: true, message: '购买方开户行账号不能为空', trigger: 'change' }],
   sellerName: [{ required: true, message: '销售方名称不能为空', trigger: 'change' }],
   sellerTaxpayerNumber: [{ required: true, message: '销售方纳税人识别号不能为空', trigger: 'change' }],
-  sellerAddress: [{ required: true, message: '销售方地址不能为空', trigger: 'change' }],
-  sellerPhone: [{ required: true, message: '销售方电话不能为空', trigger: 'change' }],
-  sellerBank: [{ required: true, message: '销售方银行不能为空', trigger: 'change' }],
-  sellerBankAccount: [{ required: true, message: '销售方银行账号不能为空', trigger: 'change' }],
-  receiverName: [{ required: true, message: '收款人名称不能为空', trigger: 'change' }],
-  checkerName: [{ required: true, message: '复核名称不能为空', trigger: 'change' }],
-  drawerName: [{ required: true, message: '收票人手机号码不能为空', trigger: 'change' }],
-  mobile: [{ required: true, message: '收款人名称不能为空', trigger: 'change' }],
   email: [{ required: true, message: '电子发票接收邮箱不能为空', trigger: 'change' }],
-  remark: [{ required: true, message: '发票右下角备注不能为空', trigger: 'change' }],
   callbackUrl: [{ required: true, message: '回调客户地址URL不能为空', trigger: 'change' }]
 })
 
@@ -366,6 +352,9 @@ function deleteItem(index) {
  * 发送
  */
 const onSubmit = async (formEl: FormInstance | undefined) => {
+  if(formData.category.indexOf("专用")){
+
+  }
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
