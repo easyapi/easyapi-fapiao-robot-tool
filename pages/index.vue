@@ -170,7 +170,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-button class="invoicing-btn" type="primary" @click="onSubmit">发送</el-button>
+      <el-button class="invoicing-btn" type="primary" @click="onSubmit(ruleFormRef)">发送</el-button>
     </div>
     <div class="result-info bg-white">
       <div class="title">WebSocket地址：</div>
@@ -282,35 +282,35 @@ const formRules = reactive<FormRules>({
  */
 function changeNumber(index) {
   if (!formData.items[index].number) {
-    this.formData.items[index].sum = null
+    formData.items[index].sum = null
     return
   }
-  if (this.formData.items[index].price) {
+  if (formData.items[index].price) {
     //计算小计（保留2位小数）
-    this.formData.items[index].sum = Number(this.formData.items[index].number) * Number(this.formData.items[index].price)
+    formData.items[index].sum = Number(formData.items[index].number) * Number(formData.items[index].price)
     return
   }
-  if (this.formData.items[index].sum) {
+  if (formData.items[index].sum) {
     //并且数量有值，计算单价（保留8为小数）
-    this.formData.items[index].price = Number(this.formData.items[index].sum) / Number(this.formData.items[index].number)
+    formData.items[index].price = Number(formData.items[index].sum) / Number(formData.items[index].number)
   }
 }
 /**
  * 修改商品明细单价
  */
 function changePrice(index) {
-  if (!this.formData.items[index].price) {
-    this.formData.items[index].sum = null
+  if (!formData.items[index].price) {
+    formData.items[index].sum = null
     return
   }
-  if (this.formData.items[index].number) {
+  if (formData.items[index].number) {
     //计算小计（保留2位小数）
-    this.formData.items[index].sum = Number(this.formData.items[index].number) * Number(this.formData.items[index].price)
+    formData.items[index].sum = Number(formData.items[index].number) * Number(formData.items[index].price)
     return
   }
-  if (this.formData.items[index].sum) {
+  if (formData.items[index].sum) {
     //计算数量
-    this.formData.items[index].number = Number(this.formData.items[index].sum) / Number(this.formData.items[index].price)
+    formData.items[index].number = Number(formData.items[index].sum) / Number(formData.items[index].price)
   }
 }
 
@@ -319,16 +319,16 @@ function changePrice(index) {
  */
 function changeSum(index) {
   if (formData.items[index].sum) {
-    this.formData.items[index].price = null
+    formData.items[index].price = null
     return
   }
-  if (this.formData.items[index].number) {
+  if (formData.items[index].number) {
     //并且数量有值，计算单价（保留8为小数）
-    this.formData.items[index].price = Number(this.formData.items[index].sum) / Number(this.formData.items[index].number)
+    formData.items[index].price = Number(formData.items[index].sum) / Number(formData.items[index].number)
     return
   }
-  if (this.formData.items[index].price) {
-    this.formData.items[index].number = 1
+  if (formData.items[index].price) {
+    formData.items[index].number = 1
   }
 }
 
@@ -336,7 +336,7 @@ function changeSum(index) {
  *添加
  */
 function addItem() {
-  this.formData.items.push({
+  formData.items.push({
     no: '',
     name: '',
     model: '',
@@ -356,46 +356,45 @@ function addItem() {
  * 删除
  */
 function deleteItem(index) {
-  this.formData.items.splice(index, 1)
+  formData.items.splice(index, 1)
 }
 
 /**
  * 发送
  */
-function onSubmit() {
-  this.$refs.form.validate(valid => {
-    if (!valid) {
-      return
+const onSubmit = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      formData.items.forEach((item, index) => {
+        if (
+          item.no == '' &&
+          item.name === '' &&
+          item.model === '' &&
+          item.unit === '' &&
+          item.number === '' &&
+          item.price === '' &&
+          item.sum === '' &&
+          item.taxRate === '' &&
+          item.preferentialPolicyFlag === '' &&
+          item.zeroRateFlag === '' &&
+          item.preferentialPolicyName === ''
+        ) {
+          formData.items.splice(index, 1)
+        }
+      })
+      test.makeInvoice(formData).then(res => {
+        if (res.code === 1) {
+          formData.message = res.content.message
+          formData.topic = res.content.topic
+          formData.webSocket = res.content.webSocket
+          ElMessage({
+            type: 'success',
+            message: res.message
+          })
+        }
+      })
     }
-    this.formData.items.forEach((item, index) => {
-      if (
-        item.name === '' &&
-        item.model === '' &&
-        item.unit === '' &&
-        item.number === '' &&
-        item.price === '' &&
-        item.sum === '' &&
-        item.discount === '' &&
-        item.taxRate === '' &&
-        item.tax === '' &&
-        item.preferentialPolicyFlag === '' &&
-        item.zeroRateFlag === '' &&
-        item.preferentialPolicyName === ''
-      ) {
-        this.formData.items.splice(index, 1)
-      }
-    })
-    test.makeInvoice(this.formData).then(res => {
-      if (res.code === 1) {
-        this.formData.message = res.content.message
-        this.formData.topic = res.content.topic
-        this.formData.webSocket = res.content.webSocket
-        ElMessage({
-          type: 'success',
-          message: res.message
-        })
-      }
-    })
   })
 }
 

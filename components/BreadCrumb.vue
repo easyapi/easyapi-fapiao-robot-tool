@@ -2,7 +2,7 @@
   <div class="breadcrumb bg-white p-3">
     <el-breadcrumb :separator-icon="ArrowRight">
       <el-breadcrumb-item>接口调试</el-breadcrumb-item>
-      <el-breadcrumb-item :to="path">{{ name }}</el-breadcrumb-item>
+      <el-breadcrumb-item>{{ name }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
@@ -11,7 +11,6 @@
 import { ref } from 'vue'
 import { ArrowRight } from '@element-plus/icons-vue'
 const route = useRouter()
-const path = ref('')
 const name = ref('')
 
 watch(
@@ -43,7 +42,6 @@ watch(
         name.value = '助手状态'
         break
     }
-    path.value = newPath
   }
 )
 
@@ -75,7 +73,6 @@ onMounted(() => {
       name.value = '助手状态'
       break
   }
-  path.value = newPath
 })
 </script>
 
