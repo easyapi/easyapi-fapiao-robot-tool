@@ -155,18 +155,14 @@
         <el-table-column label="优惠政策">
           <template #default="scope">
             <el-select v-model="scope.row.preferentialPolicyFlag" placeholder="选择优惠政策">
-              <el-option v-for="item in preferentialPolicyFlagList" :key="item.value" :label="item.label"
-                :value="item.value" />
+              <el-option v-for="item in preferentialPolicyFlagList" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.zeroRateFlag"
-              placeholder="选择优惠政策">
+            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.zeroRateFlag" placeholder="选择优惠政策">
               <el-option v-for="item in zeroRateFlagList" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.preferentialPolicyName"
-              placeholder="增值税特殊管理">
+            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.preferentialPolicyName" placeholder="增值税特殊管理">
               <el-option v-for="item in specials" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-
           </template>
         </el-table-column>
         <el-table-column label="操作" width="100">
@@ -198,20 +194,20 @@ import { test } from '../api/test'
 const ruleFormRef = ref<FormInstance>()
 
 const formData = reactive({
-  sellerName: '无锡帮趣数据服务有限公司',
-  sellerTaxpayerNumber: '91320211MA1WML8X6T',
   category: '增值税电子普通发票',
-  outOrderNo: '',
-  purchaserName: '',
-  purchaserTaxpayerNumber: '',
+  outOrderNo: 'TOOL' + new Date().getTime(),
+  purchaserName: '深圳市腾讯计算机系统有限公司',
+  purchaserTaxpayerNumber: '91440300708461136T',
   purchaserAddress: '',
   purchaserPhone: '',
   purchaserBank: '',
   purchaserBankAccount: '',
-  sellerAddress: '',
-  sellerPhone: '',
-  sellerBank: '',
-  sellerBankAccount: '',
+  sellerName: '无锡帮趣数据服务有限公司',
+  sellerTaxpayerNumber: '91320211MA1WML8X6T',
+  sellerAddress: '地址电话：无锡市滨湖区吟白路1号超级计算无锡中心6楼',
+  sellerPhone: '0510-85180020',
+  sellerBank: '建设银行无锡滨湖支行',
+  sellerBankAccount: '32050161483600001096',
   receiverName: '',
   checkerName: '',
   drawerName: '',
@@ -375,8 +371,7 @@ function deleteItem(index) {
  * 发送
  */
 const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (formData.category.indexOf("专用")) {
-
+  if (formData.category.indexOf('专用')) {
   }
   if (!formEl) return
   await formEl.validate((valid, fields) => {
