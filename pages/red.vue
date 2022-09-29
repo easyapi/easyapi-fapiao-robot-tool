@@ -46,7 +46,6 @@ import { test } from '../api/test'
 export default {
   data() {
     return {
-      menuList: [],
       formData: {
         taxNumber: '91320211MA1WML8X6T'
       },
@@ -63,9 +62,10 @@ export default {
     title: '发票红冲 - EasyAPI开票机器人'
   },
 
-  mounted() {},
   methods: {
-    // 发送
+    /**
+     * 发送
+     */
     onSubmit() {
       this.$refs.form.validate(valid => {
         if (!valid) {

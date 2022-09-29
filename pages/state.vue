@@ -28,7 +28,6 @@ import { test } from '../api/test'
 export default {
   data() {
     return {
-      menuList: [],
       formData: {
         taxNumber: '91320211MA1WML8X6T'
       },
@@ -41,7 +40,6 @@ export default {
     title: '助手状态 - EasyAPI开票机器人'
   },
 
-  mounted() {},
   methods: {
     /**
      * 发送
@@ -68,7 +66,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .red .form-info {
   width: 49%;
   padding: 20px;

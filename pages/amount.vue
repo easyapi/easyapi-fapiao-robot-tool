@@ -27,7 +27,6 @@ import { test } from '../api/test'
 export default {
   data() {
     return {
-      menuList: [],
       formData: {
         taxNumber: '91320211MA1WML8X6T'
       },

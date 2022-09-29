@@ -10,7 +10,7 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="发票类别：" prop="category">
-              <el-select v-model="formData.category">
+              <el-select v-model="formData.category" placeholder="请选择发票类别" filterable size="default">
                 <el-option v-for="item in categoryList" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
             </el-form-item>
@@ -144,17 +144,12 @@
         </el-table-column>
         <el-table-column label="含税折扣金额">
           <template #default="scope">
-            <el-input v-model="scope.row.discount" placeholder="含税折扣金额" />
+            <el-input v-model="scope.row.discount" placeholder="表示是否有折扣（默认为0）" />
           </template>
         </el-table-column>
         <el-table-column label="税率">
           <template #default="scope">
-            <el-input v-model="scope.row.taxRate" placeholder="税率" />
-          </template>
-        </el-table-column>
-        <el-table-column label="税额">
-          <template #default="scope">
-            <el-input v-model="scope.row.tax" placeholder="税额" />
+            <el-input v-model="scope.row.taxRate" placeholder="例如0.06" />
           </template>
         </el-table-column>
         <el-table-column label="优惠政策">
@@ -188,203 +183,198 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
-export default {
-  data() {
-    return {
-      menuList: [],
-      formData: {
-        sellerName: '无锡帮趣数据服务有限公司',
-        sellerTaxpayerNumber: '91320211MA1WML8X6T',
-        category: '增值税电子普通发票',
-        items: [
-          {
-            no: '',
-            name: '',
-            model: '',
-            unit: '',
-            number: '',
-            price: '',
-            sum: '',
-            discount: '',
-            taxRate: '',
-            tax: '',
-            preferentialPolicyFlag: '',
-            zeroRateFlag: '',
-            preferentialPolicyName: ''
-          }
-        ]
-      },
-      categoryList: [
-        { value: '增值税电子普通发票', label: '增值税电子普通发票' },
-        { value: '增值税普通发票', label: '增值税普通发票' },
-        { value: '增值税电子专用发票', label: '增值税电子专用发票' },
-        { value: '增值税专用发票', label: '增值税专用发票' }
-      ],
-      preferentialPolicyFlagList: [
-        { value: '', label: '不使用优惠政策' },
-        { value: '1', label: '使用优惠政策' }
-      ],
-      zeroRateFlagList: [
-        { value: '', label: '非零税率' },
-        { value: '0', label: '出口零税' },
-        { value: '1', label: '免税' },
-        { value: '2', label: '不征税' },
-        { value: '3', label: '普通零税率' }
-      ],
-      formRules: {
-        outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
-        category: [{ required: true, message: '发票类别不能为空', trigger: 'change' }],
-        purchaserName: [{ required: true, message: '购买方名称不能为空', trigger: 'change' }],
-        purchaserTaxpayerNumber: [{ required: true, message: '纳税人识别号不能为空', trigger: 'change' }],
-        purchaserAddress: [{ required: true, message: '购买方地址不能为空', trigger: 'change' }],
-        purchaserPhone: [{ required: true, message: '购买方电话不能为空', trigger: 'change' }],
-        purchaserBank: [{ required: true, message: '购买方开户行不能为空', trigger: 'change' }],
-        purchaserBankAccount: [{ required: true, message: '购买方开户行账号不能为空', trigger: 'change' }],
-        sellerName: [{ required: true, message: '销售方名称不能为空', trigger: 'change' }],
-        sellerTaxpayerNumber: [{ required: true, message: '销售方纳税人识别号不能为空', trigger: 'change' }],
-        sellerAddress: [{ required: true, message: '销售方地址不能为空', trigger: 'change' }],
-        sellerPhone: [{ required: true, message: '销售方电话不能为空', trigger: 'change' }],
-        sellerBank: [{ required: true, message: '销售方银行不能为空', trigger: 'change' }],
-        sellerBankAccount: [{ required: true, message: '销售方银行账号不能为空', trigger: 'change' }],
-        receiverName: [{ required: true, message: '收款人名称不能为空', trigger: 'change' }],
-        checkerName: [{ required: true, message: '复核名称不能为空', trigger: 'change' }],
-        drawerName: [{ required: true, message: '收票人手机号码不能为空', trigger: 'change' }],
-        mobile: [{ required: true, message: '收款人名称不能为空', trigger: 'change' }],
-        email: [{ required: true, message: '电子发票接收邮箱不能为空', trigger: 'change' }],
-        remark: [{ required: true, message: '发票右下角备注不能为空', trigger: 'change' }],
-        callbackUrl: [{ required: true, message: '回调客户地址URL不能为空', trigger: 'change' }]
-      }
-    }
-  },
-  head: {
-    title: '开具发票 - EasyAPI开票机器人'
-  },
 
-  mounted() {},
-  methods: {
-    /**
-     * 修改商品明细数量
-     */
-    changeNumber(index) {
-      if (!this.formData.items[index].number) {
-        this.formData.items[index].sum = null
-        return
-      }
-      if (this.formData.items[index].price) {
-        //计算小计（保留2位小数）
-        this.formData.items[index].sum = Number(this.formData.items[index].number) * Number(this.formData.items[index].price)
-        return
-      }
-      if (this.formData.items[index].sum) {
-        //并且数量有值，计算单价（保留8为小数）
-        this.formData.items[index].price = Number(this.formData.items[index].sum) / Number(this.formData.items[index].number)
-      }
-    },
-    /**
-     * 修改商品明细单价
-     */
-    changePrice(index) {
-      if (!this.formData.items[index].price) {
-        this.formData.items[index].sum = null
-        return
-      }
-      if (this.formData.items[index].number) {
-        //计算小计（保留2位小数）
-        this.formData.items[index].sum = Number(this.formData.items[index].number) * Number(this.formData.items[index].price)
-        return
-      }
-      if (this.formData.items[index].sum) {
-        //计算数量
-        this.formData.items[index].number = Number(this.formData.items[index].sum) / Number(this.formData.items[index].price)
-      }
-    },
-    /**
-     * 修改商品明细小计
-     */
-    changeSum(index) {
-      if (!this.formData.items[index].sum) {
-        this.formData.items[index].price = null
-        return
-      }
-      if (this.formData.items[index].number) {
-        //并且数量有值，计算单价（保留8为小数）
-        this.formData.items[index].price = Number(this.formData.items[index].sum) / Number(this.formData.items[index].number)
-        return
-      }
-      if (this.formData.items[index].price) {
-        this.formData.items[index].number = 1
-      }
-    },
-    /**
-     *添加
-     */
-    addItem() {
-      this.formData.items.push({
-        no: '',
-        name: '',
-        model: '',
-        unit: '',
-        number: '',
-        price: '',
-        sum: '',
-        discount: '',
-        taxRate: '',
-        tax: '',
-        preferentialPolicyFlag: '',
-        zeroRateFlag: '',
-        preferentialPolicyName: ''
-      })
-    },
-    /**
-     * 删除
-     */
-    deleteItem(index) {
-      this.formData.items.splice(index, 1)
-    },
-    /**
-     * 发送
-     */
-    onSubmit() {
-      this.$refs.form.validate(valid => {
-        if (!valid) {
-          return
-        }
-        this.formData.items.forEach((item, index) => {
-          if (
-            item.name === '' &&
-            item.model === '' &&
-            item.unit === '' &&
-            item.number === '' &&
-            item.price === '' &&
-            item.sum === '' &&
-            item.discount === '' &&
-            item.taxRate === '' &&
-            item.tax === '' &&
-            item.preferentialPolicyFlag === '' &&
-            item.zeroRateFlag === '' &&
-            item.preferentialPolicyName === ''
-          ) {
-            this.formData.items.splice(index, 1)
-          }
-        })
-        test.makeInvoice(this.formData).then(res => {
-          if (res.code === 1) {
-            this.formData.message = res.content.message
-            this.formData.topic = res.content.topic
-            this.formData.webSocket = res.content.webSocket
-            ElMessage({
-              type: 'success',
-              message: res.message
-            })
-          }
-        })
-      })
+const formData = {
+  sellerName: '无锡帮趣数据服务有限公司',
+  sellerTaxpayerNumber: '91320211MA1WML8X6T',
+  category: '增值税电子普通发票',
+  items: [
+    {
+      no: '',
+      name: '',
+      model: '',
+      unit: '',
+      number: null,
+      price: null,
+      sum: null,
+      discount: 0,
+      taxRate: null,
+      preferentialPolicyFlag: '',
+      zeroRateFlag: '',
+      preferentialPolicyName: ''
     }
+  ]
+}
+const categoryList = [
+  { value: '增值税电子普通发票', label: '增值税电子普通发票' },
+  { value: '增值税普通发票', label: '增值税普通发票' },
+  { value: '增值税电子专用发票', label: '增值税电子专用发票' },
+  { value: '增值税专用发票', label: '增值税专用发票' }
+]
+const preferentialPolicyFlagList = [
+  { value: '', label: '不使用优惠政策' },
+  { value: '1', label: '使用优惠政策' }
+]
+const zeroRateFlagList = [
+  { value: '', label: '非零税率' },
+  { value: '0', label: '出口零税' },
+  { value: '1', label: '免税' },
+  { value: '2', label: '不征税' },
+  { value: '3', label: '普通零税率' }
+]
+
+const formRules = {
+  outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
+  purchaserName: [{ required: true, message: '购买方名称不能为空', trigger: 'change' }],
+  purchaserTaxpayerNumber: [{ required: true, message: '纳税人识别号不能为空', trigger: 'change' }],
+  purchaserAddress: [{ required: true, message: '购买方地址不能为空', trigger: 'change' }],
+  purchaserPhone: [{ required: true, message: '购买方电话不能为空', trigger: 'change' }],
+  purchaserBank: [{ required: true, message: '购买方开户行不能为空', trigger: 'change' }],
+  purchaserBankAccount: [{ required: true, message: '购买方开户行账号不能为空', trigger: 'change' }],
+  sellerName: [{ required: true, message: '销售方名称不能为空', trigger: 'change' }],
+  sellerTaxpayerNumber: [{ required: true, message: '销售方纳税人识别号不能为空', trigger: 'change' }],
+  sellerAddress: [{ required: true, message: '销售方地址不能为空', trigger: 'change' }],
+  sellerPhone: [{ required: true, message: '销售方电话不能为空', trigger: 'change' }],
+  sellerBank: [{ required: true, message: '销售方银行不能为空', trigger: 'change' }],
+  sellerBankAccount: [{ required: true, message: '销售方银行账号不能为空', trigger: 'change' }],
+  receiverName: [{ required: true, message: '收款人名称不能为空', trigger: 'change' }],
+  checkerName: [{ required: true, message: '复核名称不能为空', trigger: 'change' }],
+  drawerName: [{ required: true, message: '收票人手机号码不能为空', trigger: 'change' }],
+  mobile: [{ required: true, message: '收款人名称不能为空', trigger: 'change' }],
+  email: [{ required: true, message: '电子发票接收邮箱不能为空', trigger: 'change' }],
+  remark: [{ required: true, message: '发票右下角备注不能为空', trigger: 'change' }],
+  callbackUrl: [{ required: true, message: '回调客户地址URL不能为空', trigger: 'change' }]
+}
+
+/**
+ * 修改商品明细数量
+ */
+function changeNumber(index) {
+  if (!formData.items[index].number) {
+    this.formData.items[index].sum = null
+    return
+  }
+  if (this.formData.items[index].price) {
+    //计算小计（保留2位小数）
+    this.formData.items[index].sum = Number(this.formData.items[index].number) * Number(this.formData.items[index].price)
+    return
+  }
+  if (this.formData.items[index].sum) {
+    //并且数量有值，计算单价（保留8为小数）
+    this.formData.items[index].price = Number(this.formData.items[index].sum) / Number(this.formData.items[index].number)
   }
 }
+/**
+ * 修改商品明细单价
+ */
+function changePrice(index) {
+  if (!this.formData.items[index].price) {
+    this.formData.items[index].sum = null
+    return
+  }
+  if (this.formData.items[index].number) {
+    //计算小计（保留2位小数）
+    this.formData.items[index].sum = Number(this.formData.items[index].number) * Number(this.formData.items[index].price)
+    return
+  }
+  if (this.formData.items[index].sum) {
+    //计算数量
+    this.formData.items[index].number = Number(this.formData.items[index].sum) / Number(this.formData.items[index].price)
+  }
+}
+
+/**
+ * 修改商品明细小计
+ */
+function changeSum(index) {
+  if (!this.formData.items[index].sum) {
+    this.formData.items[index].price = null
+    return
+  }
+  if (this.formData.items[index].number) {
+    //并且数量有值，计算单价（保留8为小数）
+    this.formData.items[index].price = Number(this.formData.items[index].sum) / Number(this.formData.items[index].number)
+    return
+  }
+  if (this.formData.items[index].price) {
+    this.formData.items[index].number = 1
+  }
+}
+
+/**
+ *添加
+ */
+function addItem() {
+  this.formData.items.push({
+    no: '',
+    name: '',
+    model: '',
+    unit: '',
+    number: null,
+    price: null,
+    sum: null,
+    discount: 0,
+    taxRate: null,
+    preferentialPolicyFlag: '',
+    zeroRateFlag: '',
+    preferentialPolicyName: ''
+  })
+}
+
+/**
+ * 删除
+ */
+function deleteItem(index) {
+  this.formData.items.splice(index, 1)
+}
+
+/**
+ * 发送
+ */
+function onSubmit() {
+  this.$refs.form.validate(valid => {
+    if (!valid) {
+      return
+    }
+    this.formData.items.forEach((item, index) => {
+      if (
+        item.name === '' &&
+        item.model === '' &&
+        item.unit === '' &&
+        item.number === '' &&
+        item.price === '' &&
+        item.sum === '' &&
+        item.discount === '' &&
+        item.taxRate === '' &&
+        item.tax === '' &&
+        item.preferentialPolicyFlag === '' &&
+        item.zeroRateFlag === '' &&
+        item.preferentialPolicyName === ''
+      ) {
+        this.formData.items.splice(index, 1)
+      }
+    })
+    test.makeInvoice(this.formData).then(res => {
+      if (res.code === 1) {
+        this.formData.message = res.content.message
+        this.formData.topic = res.content.topic
+        this.formData.webSocket = res.content.webSocket
+        ElMessage({
+          type: 'success',
+          message: res.message
+        })
+      }
+    })
+  })
+}
+
+useHead: ({
+  title: '开具发票 - EasyAPI开票机器人'
+})
 </script>
 
 <style>
