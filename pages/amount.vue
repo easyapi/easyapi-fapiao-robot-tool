@@ -5,6 +5,10 @@
         <el-form-item label="企业税号：" prop="taxNumber">
           <el-input v-model="formData.taxNumber" placeholder="企业税号" />
         </el-form-item>
+        <el-form-item label="回调地址：" prop="callbackUrl">
+          <el-input v-model="formData.callbackUrl" placeholder="回调地址" />
+          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">发送</el-button>
         </el-form-item>
@@ -86,5 +90,10 @@ export default {
   color: #606266;
   font-weight: 500;
   margin: 8px 0;
+}
+a {
+  font-size: 12px;
+  color: #409eff;
+  cursor: pointer;
 }
 </style>

@@ -16,7 +16,7 @@
         </el-form-item>
         <el-form-item label="回调地址：" prop="callbackUrl">
           <el-input v-model="formData.callbackUrl" placeholder="回调地址" />
-          <a href="http://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
+          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">发送</el-button>
