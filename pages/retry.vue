@@ -22,7 +22,7 @@
         </el-form-item>
       </el-form>
     </div>
-    <div class="orther-info bg-white">
+    <div class="result-info bg-white">
       <div class="title">WebSocket地址：</div>
       <el-input v-model="formData.webSocket" placeholder="WebSocket地址" />
       <div class="title">Subscribe订阅主题：</div>
@@ -90,7 +90,7 @@ export default {
   font-size: 12px;
   color: #a2a2a2;
 }
-.red .orther-info {
+.red .result-info {
   padding: 20px;
   width: 50%;
   margin-left: 20px;

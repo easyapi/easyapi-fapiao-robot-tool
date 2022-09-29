@@ -170,14 +170,14 @@
         </el-table-column>
         <el-table-column label="操作" width="100">
           <template #default="scope">
-            <el-button type="text" @click="addObj">添加</el-button>
-            <el-button type="danger" v-if="scope.$index != 0" link @click="deleteObj(scope.$index)">删除</el-button>
+            <el-button type="text" @click="addItem">添加</el-button>
+            <el-button type="danger" v-if="scope.$index != 0" link @click="deleteItem(scope.$index)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
       <el-button class="invoicing-btn" type="primary" @click="onSubmit">发送</el-button>
     </div>
-    <div class="orther-info bg-white">
+    <div class="result-info bg-white">
       <div class="title">WebSocket地址：</div>
       <el-input v-model="formData.webSocket" />
       <div class="title">Subscribe订阅主题：</div>
@@ -321,7 +321,7 @@ export default {
     /**
      *添加
      */
-    addObj() {
+    addItem() {
       this.formData.items.push({
         no: '',
         name: '',
@@ -341,7 +341,7 @@ export default {
     /**
      * 删除
      */
-    deleteObj(index) {
+    deleteItem(index) {
       this.formData.items.splice(index, 1)
     },
     /**
@@ -394,7 +394,7 @@ export default {
   overflow: auto;
 }
 
-.invoicing .orther-info {
+.invoicing .result-info {
   padding: 20px;
   width: 25%;
   display: flex;

@@ -5,7 +5,7 @@
         <div class="font-black inline text-xl cursor-pointer" @click="gotoHome">
           <img src="/logo-black.png" class="logo-img w-8 h-8" alt="" srcset="" />
         </div>
-        <span class="ml-2 text-xl">发票开票机器人接口测试工具</span>
+        <span class="ml-2 text-xl">EasyAPI开票机器人 接口测试工具</span>
       </div>
       <!-- <div class="flex items-center">
         <div class="login-group flex mx-2 lg:mx-4 custom-font-14 items-center leading-8">
