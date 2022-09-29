@@ -1,7 +1,7 @@
 <template>
   <div class="page flex invoicing">
     <div class="form-info bg-white">
-      <el-form :model="formData" ref="form" :rules="formRules" label-width="150px">
+      <el-form :model="formData" ref="ruleFormRef" :rules="formRules" label-width="150px">
         <el-row>
           <el-col :span="8">
             <el-form-item label="商户流水号：" prop="outOrderNo">
@@ -184,14 +184,38 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 import { test } from '../api/test'
 
-const formData = {
+const ruleFormRef = ref<FormInstance>()
+
+const formData = reactive({
   sellerName: '无锡帮趣数据服务有限公司',
   sellerTaxpayerNumber: '91320211MA1WML8X6T',
   category: '增值税电子普通发票',
+  outOrderNo: '',
+  purchaserName: '',
+  purchaserTaxpayerNumber: '',
+  purchaserAddress: '',
+  purchaserPhone: '',
+  purchaserBank: '',
+  purchaserBankAccount: '',
+  sellerAddress: '',
+  sellerPhone: '',
+  sellerBank: '',
+  sellerBankAccount: '',
+  receiverName: '',
+  checkerName: '',
+  drawerName: '',
+  mobile: '',
+  email: '',
+  remark: '',
+  callbackUrl: '',
+  webSocket: '',
+  topic: '',
+  message: '',
   items: [
     {
       no: '',
@@ -208,17 +232,20 @@ const formData = {
       preferentialPolicyName: ''
     }
   ]
-}
+})
+
 const categoryList = [
   { value: '增值税电子普通发票', label: '增值税电子普通发票' },
   { value: '增值税普通发票', label: '增值税普通发票' },
   { value: '增值税电子专用发票', label: '增值税电子专用发票' },
   { value: '增值税专用发票', label: '增值税专用发票' }
 ]
+
 const preferentialPolicyFlagList = [
   { value: '', label: '不使用优惠政策' },
   { value: '1', label: '使用优惠政策' }
 ]
+
 const zeroRateFlagList = [
   { value: '', label: '非零税率' },
   { value: '0', label: '出口零税' },
@@ -227,7 +254,7 @@ const zeroRateFlagList = [
   { value: '3', label: '普通零税率' }
 ]
 
-const formRules = {
+const formRules = reactive<FormRules>({
   outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
   purchaserName: [{ required: true, message: '购买方名称不能为空', trigger: 'change' }],
   purchaserTaxpayerNumber: [{ required: true, message: '纳税人识别号不能为空', trigger: 'change' }],
@@ -248,7 +275,7 @@ const formRules = {
   email: [{ required: true, message: '电子发票接收邮箱不能为空', trigger: 'change' }],
   remark: [{ required: true, message: '发票右下角备注不能为空', trigger: 'change' }],
   callbackUrl: [{ required: true, message: '回调客户地址URL不能为空', trigger: 'change' }]
-}
+})
 
 /**
  * 修改商品明细数量
