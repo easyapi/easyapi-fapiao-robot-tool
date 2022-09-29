@@ -108,6 +108,7 @@
           <el-col :span="8">
             <el-form-item label="回调客户地址URL：" prop="callbackUrl">
               <el-input v-model="formData.callbackUrl" />
+              <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
             </el-form-item>
           </el-col>
         </el-row>
@@ -116,18 +117,20 @@
         <el-table-column label="税收分类编码">
           <template #default="scope">
             <el-input v-model="scope.row.no" placeholder="税收分类编码" />
+            <a href="https://fapiao.easyapi.com/taxcode.html" target="_blank">查找税收分类编码</a>
           </template>
         </el-table-column>
         <el-table-column label="商品名称">
           <template #default="scope">
-            <el-input v-model="scope.row.name" placeholder="商品名称" />
+            <el-input v-model="scope.row.name" placeholder="强输入商品名称" />
+            <div class="tips">例如：*信息技术服务*技术服务费，其中技术服务费是商品名称</div>
           </template>
         </el-table-column>
         <el-table-column label="型号">
           <el-table-column label="单位">
             <template #default="scope">
-              <el-input v-model="scope.row.model" placeholder="型号" />
-              <el-input v-model="scope.row.unit" placeholder="单位" />
+              <el-input v-model="scope.row.model" placeholder="型号，例如红色" />
+              <el-input v-model="scope.row.unit" placeholder="单位，例如次" />
             </template>
           </el-table-column>
         </el-table-column>
@@ -420,6 +423,11 @@ useHead: ({
   overflow: auto;
 }
 
+.invoicing .form-info .tips {
+  font-size: 12px;
+  color: #a2a2a2;
+}
+
 .invoicing .result-info {
   padding: 20px;
   width: 25%;
@@ -441,5 +449,10 @@ useHead: ({
 
 .invoicing .invoicing-btn {
   margin-top: 15px;
+}
+a {
+  font-size: 12px;
+  color: #409eff;
+  cursor: pointer;
 }
 </style>
