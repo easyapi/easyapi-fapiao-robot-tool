@@ -162,8 +162,11 @@
               placeholder="选择优惠政策">
               <el-option v-for="item in zeroRateFlagList" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <el-input v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.preferentialPolicyName"
-              placeholder="增值税特殊管理" />
+            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.preferentialPolicyName"
+              placeholder="增值税特殊管理">
+              <el-option v-for="item in specials" :key="item.value" :label="item.label" :value="item.value" />
+            </el-select>
+
           </template>
         </el-table-column>
         <el-table-column label="操作" width="100">
@@ -255,6 +258,26 @@ const zeroRateFlagList = [
   { value: '1', label: '免税' },
   { value: '2', label: '不征税' },
   { value: '3', label: '普通零税率' }
+]
+const specials = [
+  { value: '100%先征后退', label: '100%先征后退' },
+  { value: '50%先征后退', label: '50%先征后退' },
+  { value: '不征税', label: '不征税' },
+  { value: '先征后退', label: '先征后退' },
+  { value: '免税', label: '免税' },
+  { value: '即征即退100%', label: '即征即退100%' },
+  { value: '即征即退30%', label: '即征即退30%' },
+  { value: '即征即退50%', label: '即征即退50%' },
+  { value: '即征即退70%', label: '即征即退70%' },
+  { value: '按3%简易征收', label: '按3%简易征收' },
+  { value: '按5%简易征收', label: '按5%简易征收' },
+  { value: '按5%简易征收减按1.5%计征', label: '按5%简易征收减按1.5%计征' },
+  { value: '按5%简易征收减按3%计征', label: '按5%简易征收减按3%计征' },
+  { value: '稀土产品', label: '稀土产品' },
+  { value: '简易征收', label: '简易征收' },
+  { value: '超税负12%即征即退', label: '超税负12%即征即退' },
+  { value: '超税负3%即征即退', label: '超税负3%即征即退' },
+  { value: '超税负8%即征即退', label: '超税负8%即征即退' }
 ]
 
 const formRules = reactive<FormRules>({
@@ -352,7 +375,7 @@ function deleteItem(index) {
  * 发送
  */
 const onSubmit = async (formEl: FormInstance | undefined) => {
-  if(formData.category.indexOf("专用")){
+  if (formData.category.indexOf("专用")) {
 
   }
   if (!formEl) return
