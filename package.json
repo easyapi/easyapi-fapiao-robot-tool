@@ -5,8 +5,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "start": "cross-env NODE_ENV=production PORT=8989 nuxt start ",
-    "pm2": "pm2 delete easyapi-fapiao-biz \n pm2 start npm --name 'easyapi-fapiao-biz' -- run start"
+    "start": "cross-env NODE_ENV=production PORT=7001 nuxt start ",
+    "pm2": "pm2 delete easyapi-fapiao-robot-tool \n pm2 start npm --name 'easyapi-fapiao-robot-tool' -- run start"
   },
   "devDependencies": {
     "nuxt": "^3.0.0-rc.11",
@@ -20,7 +20,7 @@
     "@nuxtjs/tailwindcss": "^5.3.3",
     "@pinia/nuxt": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
-    "@types/lodash": "^4.14.185",
+    "@types/lodash": "^4.14.186",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
