@@ -318,7 +318,7 @@ function changePrice(index) {
  * 修改商品明细小计
  */
 function changeSum(index) {
-  if (!this.formData.items[index].sum) {
+  if (formData.items[index].sum) {
     this.formData.items[index].price = null
     return
   }
