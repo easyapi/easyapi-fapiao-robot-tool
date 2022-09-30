@@ -3,6 +3,9 @@
     <div class="menu-title">接口调试</div>
     <el-menu active-text-color="#409EFF" class="el-menu-vertical-demo" :default-active="selectMenu" @select="selectMenuItem">
       <el-menu-item index="">
+        <span>首页</span>
+      </el-menu-item>
+      <el-menu-item index="make">
         <span>开具发票</span>
       </el-menu-item>
       <el-menu-item index="red">
@@ -46,7 +49,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .menu {
   height: calc(100% - 40px);
   margin: 20px 0 0 20px;

@@ -24,19 +24,7 @@ module.exports = {
     function ({ addComponents }) {
       addComponents({
         '.container': {
-          maxWidth: '100%' //tailwind是mobile优先，所以首先定义缺省宽度为mobile端的宽度
-          // '@screen sm': {
-          //   maxWidth: '1600px', //其他屏幕大小的情况根据需求定义
-          // },
-          // '@screen md': {
-          //   maxWidth: '1600px',
-          // },
-          // '@screen lg': {
-          //   maxWidth: '1600px',
-          // },
-          // '@screen xl': {
-          //   width: '1600px',
-          // },
+          maxWidth: '100%'
         }
       })
     }

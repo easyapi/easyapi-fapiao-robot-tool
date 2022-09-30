@@ -18,6 +18,9 @@ watch(
   newPath => {
     switch (newPath) {
       case '/':
+        name.value = '首页'
+        break
+      case '/make':
         name.value = '开具发票'
         break
       case '/red':
@@ -49,6 +52,9 @@ onMounted(() => {
   let newPath = route.currentRoute.value.path
   switch (newPath) {
     case '/':
+      name.value = '首页'
+      break
+    case '/make':
       name.value = '开具发票'
       break
     case '/red':

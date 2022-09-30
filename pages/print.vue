@@ -78,7 +78,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .red .form-info {
   width: 49%;
   padding: 20px;
