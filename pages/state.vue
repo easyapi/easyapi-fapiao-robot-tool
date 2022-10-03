@@ -33,7 +33,8 @@ export default {
   data() {
     return {
       formData: {
-        taxNumber: '91320211MA1WML8X6T'
+        taxNumber: '91320211MA1WML8X6T',
+        callbackUrl: ''
       },
       formRules: {
         taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }]
