@@ -9,14 +9,13 @@
       </div>
       <div class="flex items-center">
         <div class="login-group flex mx-2 lg:mx-4 custom-font-14 items-center leading-8">
-          <a
-            href="https://fapiao-robot.easyapi.com/login?from=https://fapiao-robot-tool.easyapi.com"
-            target="_blank"
+          <a href="https://fapiao-robot.easyapi.com/login?from=https://fapiao-robot-tool.easyapi.com"
             v-show="!loginStatus"
             class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">
             登录
           </a>
-          <p @click="logout()" v-show="loginStatus" class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">退出</p>
+          <p @click="logout()" v-show="loginStatus"
+            class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">退出</p>
         </div>
       </div>
     </div>
@@ -74,7 +73,6 @@ function logout() {
   })
   token.value = null
   navigateTo('/')
-  location.reload()
 }
 </script>
 

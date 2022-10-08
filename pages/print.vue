@@ -83,10 +83,12 @@ export default {
   width: 49%;
   padding: 20px;
 }
+
 .red .form-info .tips {
   font-size: 12px;
   color: #a2a2a2;
 }
+
 .red .result-info {
   padding: 20px;
   width: 50%;
@@ -94,12 +96,14 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
 .red .title {
   font-size: 12px;
   color: #606266;
   font-weight: 500;
   margin: 8px 0;
 }
+
 a {
   font-size: 12px;
   color: #409eff;
