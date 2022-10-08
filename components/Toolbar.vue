@@ -27,6 +27,7 @@
 import { ref } from 'vue'
 import { userStore } from '~/stores/user'
 import request from '~/api/request'
+import Cookies from 'js-cookie'
 
 const token = useCookie('robotToken')
 const store = userStore()
@@ -34,7 +35,6 @@ const router = useRouter()
 const loginStatus = ref(false)
 
 if (typeof token.value != 'undefined') {
-  console.log(token.value, 7788999)
   loginStatus.value = true
 }
 
@@ -72,8 +72,11 @@ function logout() {
   store.$patch({
     showLogin: false
   })
-  token.value = null
-  navigateTo('/')
+  Cookies.remove('robotToken')
+  Cookies.remove('token')
+  Cookies.remove('robotToken', { path: '/', domain: '.easyapi.com' })
+  Cookies.remove('authenticationToken', { path: '/', domain: '.easyapi.com' })
+  router.push('/')
 }
 </script>
 
