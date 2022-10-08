@@ -34,7 +34,7 @@ const router = useRouter()
 const loginStatus = ref(false)
 
 if (typeof token.value != 'undefined') {
-  console.log(token.value, 778899)
+  console.log(token.value, 7788999)
   loginStatus.value = true
 }
 
