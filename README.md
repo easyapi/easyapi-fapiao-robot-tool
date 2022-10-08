@@ -4,6 +4,10 @@
 
 基于 Nuxt3 框架开发的测试工具，EasyAPI开发了一款开票机器人产品，无需经过第三方，直接在网页上面开票。 本测试工具，主要帮助用户快速体验开票和如何对接发票机器人扩展程序。
 
+示意图：
+![发票红冲](https://qiniu.easyapi.com/fapiao-tool-red.png)
+
+
 - 左侧输入参数
 - 右侧是实际发送到开票机器人浏览器插件的WebSocket数据
 - [下载开票机器人](https://robot.easyapi.com/)
