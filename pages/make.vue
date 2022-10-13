@@ -242,11 +242,11 @@ const formData = reactive({
   ]
 })
 
-const result = {
+const result = reactive({
   message: '',
   topic: '',
   webSocket: ''
-}
+})
 
 const categoryList = [
   { value: '增值税电子普通发票', label: '增值税电子普通发票' },
