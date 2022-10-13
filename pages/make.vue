@@ -5,109 +5,109 @@
         <el-row>
           <el-col :span="8">
             <el-form-item label="商户流水号：" prop="outOrderNo">
-              <el-input v-model="formData.outOrderNo" />
+              <el-input @input="saveChange" v-model="formData.outOrderNo" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="发票类别：" prop="category">
-              <el-select v-model="formData.category" placeholder="请选择发票类别" filterable size="default">
+              <el-select v-model="formData.category" placeholder="请选择发票类别" filterable size="default" @change="saveChange">
                 <el-option v-for="item in categoryList" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="购买方名称：" prop="purchaserName">
-              <el-input v-model="formData.purchaserName" />
+              <el-input @input="saveChange" v-model="formData.purchaserName" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="纳税人识别号：" prop="purchaserTaxpayerNumber">
-              <el-input v-model="formData.purchaserTaxpayerNumber" />
+              <el-input @input="saveChange" v-model="formData.purchaserTaxpayerNumber" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="购买方地址：" prop="purchaserAddress">
-              <el-input v-model="formData.purchaserAddress" />
+              <el-input @input="saveChange" v-model="formData.purchaserAddress" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="购买方电话：" prop="purchaserPhone">
-              <el-input v-model="formData.purchaserPhone" />
+              <el-input @input="saveChange" v-model="formData.purchaserPhone" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="购买方开户行：" prop="purchaserBank">
-              <el-input v-model="formData.purchaserBank" />
+              <el-input @input="saveChange" v-model="formData.purchaserBank" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="购买方开户行账号：" prop="purchaserBankAccount">
-              <el-input v-model="formData.purchaserBankAccount" />
+              <el-input @input="saveChange" v-model="formData.purchaserBankAccount" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方名称：" prop="sellerName">
-              <el-input v-model="formData.sellerName" />
+              <el-input @input="saveChange" v-model="formData.sellerName" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方纳税人识别号：" prop="sellerTaxpayerNumber">
-              <el-input v-model="formData.sellerTaxpayerNumber" />
+              <el-input @input="saveChange" v-model="formData.sellerTaxpayerNumber" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方地址：" prop="sellerAddress">
-              <el-input v-model="formData.sellerAddress" />
+              <el-input @input="saveChange" v-model="formData.sellerAddress" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方电话：" prop="sellerPhone">
-              <el-input v-model="formData.sellerPhone" />
+              <el-input @input="saveChange" v-model="formData.sellerPhone" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方银行：" prop="sellerBank">
-              <el-input v-model="formData.sellerBank" />
+              <el-input @input="saveChange" v-model="formData.sellerBank" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方银行账号：" prop="sellerBankAccount">
-              <el-input v-model="formData.sellerBankAccount" />
+              <el-input @input="saveChange" v-model="formData.sellerBankAccount" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="收款人名称：" prop="receiverName">
-              <el-input v-model="formData.receiverName" />
+              <el-input @input="saveChange" v-model="formData.receiverName" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="复核名称：" prop="checkerName">
-              <el-input v-model="formData.checkerName" />
+              <el-input @input="saveChange" v-model="formData.checkerName" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="收票人手机号码：" prop="drawerName">
-              <el-input v-model="formData.drawerName" />
+              <el-input @input="saveChange" v-model="formData.drawerName" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="收款人名称：" prop="mobile">
-              <el-input v-model="formData.mobile" />
+              <el-input @input="saveChange" v-model="formData.mobile" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="电子发票接收邮箱：" prop="email">
-              <el-input v-model="formData.email" />
+              <el-input @input="saveChange" v-model="formData.email" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="备注：" prop="remark">
-              <el-input v-model="formData.remark" />
+              <el-input @input="saveChange" v-model="formData.remark" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="回调客户地址URL：" prop="callbackUrl">
-              <el-input v-model="formData.callbackUrl" />
+              <el-input @input="saveChange" v-model="formData.callbackUrl" />
               <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
             </el-form-item>
           </el-col>
@@ -116,21 +116,21 @@
       <el-table :data="formData.items">
         <el-table-column label="税收分类编码">
           <template #default="scope">
-            <el-input v-model="scope.row.no" placeholder="税收分类编码" />
+            <el-input @input="saveChange" v-model="scope.row.no" placeholder="税收分类编码" />
             <a href="https://fapiao.easyapi.com/taxcode.html" target="_blank">查找税收分类编码</a>
           </template>
         </el-table-column>
         <el-table-column label="商品名称">
           <template #default="scope">
-            <el-input v-model="scope.row.name" placeholder="强输入商品名称" />
+            <el-input @input="saveChange" v-model="scope.row.name" placeholder="强输入商品名称" />
             <div class="tips">例如：*信息技术服务*技术服务费，其中技术服务费是商品名称</div>
           </template>
         </el-table-column>
         <el-table-column label="型号">
           <el-table-column label="单位">
             <template #default="scope">
-              <el-input v-model="scope.row.model" placeholder="型号，例如红色" />
-              <el-input v-model="scope.row.unit" placeholder="单位，例如次" />
+              <el-input @input="saveChange" v-model="scope.row.model" placeholder="型号，例如红色" />
+              <el-input @input="saveChange" v-model="scope.row.unit" placeholder="单位，例如次" />
             </template>
           </el-table-column>
         </el-table-column>
@@ -147,23 +147,27 @@
         </el-table-column>
         <el-table-column label="含税折扣金额">
           <template #default="scope">
-            <el-input v-model="scope.row.discount" placeholder="表示是否有折扣（默认为0）" />
+            <el-input @input="saveChange" v-model="scope.row.discount" placeholder="表示是否有折扣（默认为0）" />
           </template>
         </el-table-column>
         <el-table-column label="税率">
           <template #default="scope">
-            <el-input v-model="scope.row.taxRate" placeholder="例如0.06" />
+            <el-input @input="saveChange" v-model="scope.row.taxRate" placeholder="例如0.06" />
           </template>
         </el-table-column>
         <el-table-column label="优惠政策">
           <template #default="scope">
-            <el-select v-model="scope.row.preferentialPolicyFlag" placeholder="选择优惠政策">
+            <el-select v-model="scope.row.preferentialPolicyFlag" placeholder="选择优惠政策" @change="saveChange">
               <el-option v-for="item in preferentialPolicyFlagList" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.zeroRateFlag" placeholder="选择优惠政策">
+            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.zeroRateFlag" placeholder="选择优惠政策" @change="saveChange">
               <el-option v-for="item in zeroRateFlagList" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.preferentialPolicyName" placeholder="增值税特殊管理">
+            <el-select
+              v-if="scope.row.preferentialPolicyFlag === 1"
+              v-model="scope.row.preferentialPolicyName"
+              placeholder="增值税特殊管理"
+              @change="saveChange">
               <el-option v-for="item in specials" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
           </template>
@@ -192,8 +196,10 @@
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
-import { test } from '@/api/test'
+import { setCacheData, getCacheData } from '../utils/cacheData'
 import Cookies from 'js-cookie'
+
+const route = useRoute()
 
 const ruleFormRef = ref<FormInstance>()
 
@@ -315,6 +321,7 @@ function changeNumber(index) {
     //并且数量有值，计算单价（保留8为小数）
     formData.items[index].price = Number(formData.items[index].sum) / Number(formData.items[index].number)
   }
+  setCacheData(route.name, formData)
 }
 
 /**
@@ -334,6 +341,7 @@ function changePrice(index) {
     //计算数量
     formData.items[index].number = Number(formData.items[index].sum) / Number(formData.items[index].price)
   }
+  setCacheData(route.name, formData)
 }
 
 /**
@@ -352,6 +360,7 @@ function changeSum(index) {
   if (formData.items[index].price) {
     formData.items[index].number = 1
   }
+  setCacheData(route.name, formData)
 }
 
 /**
@@ -379,6 +388,42 @@ function addItem() {
  */
 function deleteItem(index) {
   formData.items.splice(index, 1)
+}
+
+/**
+ * 缓存记录数据
+ */
+function saveChange() {
+  setCacheData(route.name, formData)
+}
+
+/**
+ * 更新formData
+ */
+function updateFormData() {
+  let data = getCacheData(route.name)
+  formData.items = data.items
+  formData.category = data.category
+  formData.outOrderNo = data.outOrderNo
+  formData.purchaserName = data.purchaserName
+  formData.purchaserTaxpayerNumber = data.purchaserTaxpayerNumber
+  formData.purchaserAddress = data.purchaserAddress
+  formData.purchaserPhone = data.purchaserPhone
+  formData.purchaserBank = data.purchaserBank
+  formData.purchaserBankAccount = data.purchaserBankAccount
+  formData.sellerName = data.sellerName
+  formData.sellerTaxpayerNumber = data.sellerTaxpayerNumber
+  formData.sellerAddress = data.sellerAddress
+  formData.sellerPhone = data.sellerPhone
+  formData.sellerBank = data.sellerBank
+  formData.sellerBankAccount = data.sellerBankAccount
+  formData.receiverName = data.receiverName
+  formData.checkerName = data.checkerName
+  formData.drawerName = data.drawerName
+  formData.mobile = data.mobile
+  formData.email = data.email
+  formData.remark = data.remark
+  formData.callbackUrl = data.callbackUrl
 }
 
 /**
@@ -421,6 +466,10 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     }
   })
 }
+
+onMounted(() => {
+  updateFormData()
+})
 
 useHead: ({
   title: '开具发票 - EasyAPI开票机器人'

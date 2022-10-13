@@ -17,7 +17,7 @@ export function setCacheData(path, data) {
   localStorage.setItem('cacheData', JSON.stringify(arr))
 }
 
-export function getCacheData(path, data) {
+export function getCacheData(path) {
   let obj = {
     taxNumber: '91320211MA1WML8X6T'
   }
