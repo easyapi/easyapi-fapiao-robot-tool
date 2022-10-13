@@ -14,7 +14,6 @@ export default defineNuxtPlugin(nuxtApp => {
         current: 0
       })
       .use(ElementPlus, {
-        size: 'small',
         locale: zhCn
       })
 
