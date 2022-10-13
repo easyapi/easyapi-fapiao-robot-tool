@@ -13,13 +13,12 @@
 export default {
   props: {
     formData: Object,
-    default: {}
+    default: () => ({})
   }
 }
 </script>
 
 <style scoped>
-
 .title {
   font-size: 12px;
   color: #606266;
