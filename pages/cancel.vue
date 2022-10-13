@@ -37,7 +37,7 @@ import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import ResultInfo from '../components/resultInfo.vue'
-import Cookies from 'js-cookie'
+
 export default {
   data() {
     return {
