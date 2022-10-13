@@ -19,13 +19,7 @@ export default {
 </script>
 
 <style scoped>
-.result-info {
-  padding: 20px;
-  width: 50%;
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-}
+
 .title {
   font-size: 12px;
   color: #606266;

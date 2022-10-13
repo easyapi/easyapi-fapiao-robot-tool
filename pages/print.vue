@@ -19,7 +19,7 @@
           <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">发送</el-button>
+          <el-button type="primary" :disabled="!disable" @click="onSubmit">发送</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -34,6 +34,7 @@ import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import ResultInfo from '../components/resultInfo.vue'
+import Cookies from 'js-cookie'
 export default {
   data() {
     return {
@@ -45,7 +46,8 @@ export default {
         code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
         number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
         callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
-      }
+      },
+      disable: false
     }
   },
   head: {
@@ -55,6 +57,7 @@ export default {
     ResultInfo
   },
   mounted() {
+    this.disable = Cookies.get('robotToken') ? true : false
     this.formData = getCacheData(this.$route.name)
   },
   methods: {

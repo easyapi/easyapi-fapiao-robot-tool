@@ -175,7 +175,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-button class="invoicing-btn" type="primary" @click="onSubmit(ruleFormRef)">发送</el-button>
+      <el-button class="invoicing-btn" type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
     </div>
     <div class="result-info bg-white">
       <div class="title">WebSocket地址：</div>
@@ -193,8 +193,11 @@ import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { test } from '@/api/test'
+import Cookies from 'js-cookie'
 
 const ruleFormRef = ref<FormInstance>()
+
+const disable = Cookies.get('robotToken') ? true : false
 
 const formData = reactive({
   category: '增值税电子普通发票',
