@@ -18,7 +18,9 @@ export function setCacheData(path, data) {
 }
 
 export function getCacheData(path, data) {
-  let obj = {}
+  let obj = {
+    taxNumber: '91320211MA1WML8X6T'
+  }
   let arr = localStorage.getItem('cacheData') ? JSON.parse(localStorage.getItem('cacheData')) : []
   arr.forEach(item => {
     if (item.path == path) {
