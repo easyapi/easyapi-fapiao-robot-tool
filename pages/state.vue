@@ -3,10 +3,10 @@
     <div class="form-info bg-white">
       <el-form :model="formData" ref="form" :rules="formRules" label-width="110px">
         <el-form-item label="企业税号：" prop="taxNumber">
-          <el-input v-model="formData.taxNumber" placeholder="企业税号" />
+          <el-input v-model="formData.taxNumber" placeholder="企业税号" @input="saveChange" />
         </el-form-item>
         <el-form-item label="回调地址：" prop="callbackUrl">
-          <el-input v-model="formData.callbackUrl" placeholder="回调地址" />
+          <el-input v-model="formData.callbackUrl" placeholder="回调地址" @input="saveChange" />
           <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item>
@@ -15,12 +15,7 @@
       </el-form>
     </div>
     <div class="result-info bg-white">
-      <div class="title">WebSocket地址：</div>
-      <el-input v-model="formData.webSocket" placeholder="WebSocket地址" />
-      <div class="title">Subscribe订阅主题：</div>
-      <el-input v-model="formData.topic" placeholder="Subscribe订阅主题" />
-      <div class="title">下发内容：</div>
-      <el-input type="textarea" v-model="formData.message" :autosize="{ minRows: 9, maxRows: 8 }" placeholder="下发内容" />
+      <ResultInfo :formData="result" />
     </div>
   </div>
 </template>
@@ -28,7 +23,8 @@
 <script>
 import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
-
+import { setCacheData, getCacheData } from '../utils/cacheData'
+import ResultInfo from '../components/resultInfo.vue'
 export default {
   data() {
     return {
@@ -36,6 +32,7 @@ export default {
         taxNumber: '91320211MA1WML8X6T',
         callbackUrl: ''
       },
+      result: {},
       formRules: {
         taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }]
       }
@@ -43,6 +40,12 @@ export default {
   },
   head: {
     title: '助手状态 - EasyAPI开票机器人'
+  },
+  components: {
+    ResultInfo
+  },
+  mounted() {
+    this.formData = getCacheData(this.$route.name)
   },
 
   methods: {
@@ -56,9 +59,7 @@ export default {
         }
         test.stateShop(this.formData).then(res => {
           if (res.code === 1) {
-            this.formData.message = res.content.message
-            this.formData.topic = res.content.topic
-            this.formData.webSocket = res.content.webSocket
+            this.result = res.content
             ElMessage({
               type: 'success',
               message: res.message
@@ -66,6 +67,12 @@ export default {
           }
         })
       })
+    },
+    /**
+     * 缓存记录数据
+     */
+    saveChange() {
+      setCacheData(this.$route.name, this.formData)
     }
   }
 }
