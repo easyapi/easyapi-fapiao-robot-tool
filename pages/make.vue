@@ -179,7 +179,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-tooltip class="box-item" effect="dark" content="请先行登录" placement="top">
+      <el-tooltip class="box-item" effect="dark" content="请先行登录" placement="top" :disabled="disable">
         <div class="outer-frame">
           <el-button class="invoicing-btn" type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
         </div>

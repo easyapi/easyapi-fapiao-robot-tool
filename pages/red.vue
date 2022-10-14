@@ -26,7 +26,7 @@
           <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item>
-          <el-tooltip effect="dark" content="请先行登录" placement="top">
+          <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
             <div>
               <el-button type="primary" :disabled="!disable" @click="onSubmit">发送</el-button>
             </div>
