@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   },
   buildModules: ['@pinia/nuxt'],
 
-  css: ['~/assets/css/tailwind.css', 'element-plus/dist/index.css'],
+  css: ['~/assets/css/tailwind.css', 'element-plus/dist/index.css', '~/assets/css/page.css'],
   build: {
     postcss: {
       postcssOptions: {

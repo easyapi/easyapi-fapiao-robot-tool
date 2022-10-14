@@ -1,5 +1,5 @@
 <template>
-  <div class="page flex red">
+  <div class="page flex form-page">
     <div class="form-info bg-white">
       <el-form :model="formData" ref="form" :rules="formRules" label-width="110px">
         <el-form-item label="企业税号：" prop="taxNumber">
@@ -10,7 +10,11 @@
           <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" :disabled="!disable" @click="onSubmit">发送</el-button>
+          <el-tooltip effect="dark" content="请先行登录" placement="top">
+            <div>
+              <el-button type="primary" :disabled="!disable" @click="onSubmit">发送</el-button>
+            </div>
+          </el-tooltip>
         </el-form-item>
       </el-form>
     </div>
@@ -82,32 +86,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.red .form-info {
-  width: 49%;
-  padding: 20px;
-}
-.red .form-info .tips {
-  font-size: 12px;
-  color: #a2a2a2;
-}
-.red .result-info {
-  padding: 20px;
-  width: 50%;
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-}
-.red .title {
-  font-size: 12px;
-  color: #606266;
-  font-weight: 500;
-  margin: 8px 0;
-}
-a {
-  font-size: 12px;
-  color: #409eff;
-  cursor: pointer;
-}
-</style>

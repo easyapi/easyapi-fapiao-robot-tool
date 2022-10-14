@@ -179,7 +179,11 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-button class="invoicing-btn" type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
+      <el-tooltip class="box-item" effect="dark" content="请先行登录" placement="top">
+        <div class="outer-frame">
+          <el-button class="invoicing-btn" type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
+        </div>
+      </el-tooltip>
     </div>
     <div class="result-info bg-white">
       <div class="title">WebSocket地址：</div>
@@ -506,10 +510,6 @@ useHead: ({
 
 .invoicing .el-table .el-input {
   margin: 5px 0;
-}
-
-.invoicing .invoicing-btn {
-  margin-top: 15px;
 }
 
 a {
