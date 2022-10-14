@@ -27,8 +27,9 @@
         </el-form-item>
       </el-form>
     </div>
-    <view class="result-info bg-white">
+    <view class="result-info">
       <ResultInfo :formData="result" />
+      <CallbackResult :formData="result" />
     </view>
   </div>
 </template>
@@ -37,7 +38,8 @@
 import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
-import ResultInfo from '../components/resultInfo.vue'
+import ResultInfo from '../components/ResultInfo.vue'
+import CallbackResult from '../components/CallbackResult.vue'
 import Cookies from 'js-cookie'
 export default {
   data() {

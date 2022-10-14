@@ -18,8 +18,9 @@
         </el-form-item>
       </el-form>
     </div>
-    <div class="result-info bg-white">
+    <div class="result-info">
       <ResultInfo :formData="result" />
+      <CallbackResult :formData="result" />
     </div>
   </div>
 </template>
@@ -30,12 +31,20 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
-import ResultInfo from '../components/resultInfo.vue'
+import http from '~/api/request'
+import ResultInfo from '../components/ResultInfo.vue'
+import CallbackResult from '../components/CallbackResult.vue'
 import Cookies from 'js-cookie'
+import SockJS from 'sockjs-client/dist/sockjs.min.js'
+import Stomp from 'stompjs'
 
 const route = useRoute()
 
 const ruleFormRef = ref<FormInstance>()
+
+const socketUrl = ref('')
+
+let stompClient: any
 
 const formData = reactive({
   taxNumber: '91320211MA1WML8X6T',
@@ -70,6 +79,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
             type: 'success',
             message: res.message
           })
+          webSocket()
         }
       })
     }
@@ -90,6 +100,23 @@ function updateFormData() {
   let data = getCacheData(route.name)
   formData.taxNumber = data.taxNumber
   formData.callbackUrl = data.callbackUrl
+}
+
+/**
+ * 订阅消息
+ */
+function webSocket() {
+  socketUrl.value = `${http.baseUrl}/easyapi-socket`
+  let socket = new SockJS(socketUrl.value)
+  stompClient = Stomp.over(socket)
+  stompClient.debug = null
+  stompClient.connect({}, subscribe)
+}
+
+function subscribe() {
+  stompClient.subscribe(`/topic/${formData.taxNumber}/tool/callback`, message => {
+    console.log(message, 789)
+  })
 }
 
 onMounted(() => {

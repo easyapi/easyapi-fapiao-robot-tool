@@ -185,13 +185,9 @@
         </div>
       </el-tooltip>
     </div>
-    <div class="result-info bg-white">
-      <div class="title">WebSocket地址：</div>
-      <el-input v-model="result.webSocket" />
-      <div class="title">Subscribe订阅主题：</div>
-      <el-input v-model="result.topic" />
-      <div class="title">下发内容：</div>
-      <el-input type="textarea" v-model="result.message" :autosize="{ minRows: 9, maxRows: 8 }" />
+    <div class="result-info">
+      <ResultInfo :formData="result" />
+      <CallbackResult :formData="result" />
     </div>
   </div>
 </template>
@@ -203,6 +199,8 @@ import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import Cookies from 'js-cookie'
+import ResultInfo from '../components/ResultInfo.vue'
+import CallbackResult from '../components/CallbackResult.vue'
 
 const route = useRoute()
 
@@ -494,7 +492,6 @@ useHead: ({
 }
 
 .invoicing .result-info {
-  padding: 20px;
   width: 25%;
   display: flex;
   flex-direction: column;
@@ -510,11 +507,5 @@ useHead: ({
 
 .invoicing .el-table .el-input {
   margin: 5px 0;
-}
-
-a {
-  font-size: 12px;
-  color: #409eff;
-  cursor: pointer;
 }
 </style>
