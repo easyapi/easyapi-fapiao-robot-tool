@@ -9,12 +9,21 @@
       </div>
       <div class="flex items-center">
         <div class="login-group flex mx-2 lg:mx-4 custom-font-14 items-center leading-8">
-          <a href="https://fapiao-robot.easyapi.com/login?from=https://fapiao-robot-tool.easyapi.com"
-            v-if="!loginStatus" class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">
+          <a
+            href="https://fapiao-robot.easyapi.com/login?from=https://fapiao-robot-tool.easyapi.com"
+            v-if="!loginStatus"
+            class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">
             登录
           </a>
-          <p @click="logout()" v-if="loginStatus"
-            class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">退出</p>
+          <el-popover trigger="click" v-else>
+            <p class="chose-style" @click="logout()">退出登录</p>
+            <template #reference>
+              <div class="flex cursor-pointer">
+                <img v-show="loginStatus" class="w-8 h-8 mr-2" src="/img/header.png" />
+                <span>{{ userInfo.username }}</span>
+              </div>
+            </template>
+          </el-popover>
         </div>
       </div>
     </div>
@@ -29,6 +38,7 @@ import request from '~/api/request'
 import Cookies from 'js-cookie'
 
 const token = useCookie('robotToken')
+const userInfo = useCookie('userInfo')
 const store = userStore()
 const router = useRouter()
 const loginStatus = ref(false)
@@ -64,18 +74,20 @@ function exportConfigure() {
 }
 
 function gotoHome() {
-  router.push('/')
+  router.push('')
 }
 
 function logout() {
   store.$patch({
     showLogin: false
   })
+  token.value = null
   Cookies.remove('robotToken')
   Cookies.remove('token')
   Cookies.remove('robotToken', { path: '/', domain: '.easyapi.com' })
   Cookies.remove('authenticationToken', { path: '/', domain: '.easyapi.com' })
-  router.push('/')
+  router.push('')
+  location.reload()
 }
 </script>
 
@@ -106,5 +118,23 @@ li {
 
 .logo-img {
   border-radius: 8px;
+}
+
+.chose-style {
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.chose-style:hover {
+  @apply bg-gray-100;
+}
+</style>
+
+<style>
+.el-popover.el-popper {
+  padding: 5px 10px !important;
 }
 </style>
