@@ -19,7 +19,7 @@
       </el-form>
     </div>
     <div class="result-info">
-      <ResultInfo :formData="result" />
+      <Result :formData="result" />
       <CallbackResult :formData="result" />
     </div>
   </div>
@@ -29,7 +29,7 @@
 import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
-import ResultInfo from '../components/ResultInfo.vue'
+import Result from '../components/Result.vue'
 import CallbackResult from '../components/CallbackResult.vue'
 import Cookies from 'js-cookie'
 export default {
@@ -51,7 +51,7 @@ export default {
   },
 
   components: {
-    ResultInfo
+    Result
   },
 
   mounted() {

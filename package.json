@@ -10,13 +10,13 @@
   },
   "devDependencies": {
     "nuxt": "^3.0.0-rc.11",
-    "element-plus": "^2.2.17",
+    "element-plus": "^2.2.18",
     "js-cookie": "^3.0.1",
     "sockjs-client": "1.6.1",
     "stompjs": "2.3.3"
   },
   "dependencies": {
-    "@bytemd/vue-next": "^1.17.2",
+    "@bytemd/vue-next": "^1.17.4",
     "@meforma/vue-toaster": "^1.3.0",
     "@nuxt/webpack-builder": "^3.0.0-rc.11",
     "@nuxt/kit": "^3.0.0-rc.11",

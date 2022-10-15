@@ -20,7 +20,7 @@
             <template #reference>
               <div class="flex cursor-pointer">
                 <img v-show="loginStatus" class="w-8 h-8 mr-2" src="/img/header.png" />
-                <span>{{ userInfo.username }}</span>
+                <span>{{ robotUser.username }}</span>
               </div>
             </template>
           </el-popover>
@@ -38,7 +38,7 @@ import request from '~/api/request'
 import Cookies from 'js-cookie'
 
 const token = useCookie('robotToken')
-const userInfo = useCookie('userInfo')
+const robotUser = useCookie('robotUser')
 const store = userStore()
 const router = useRouter()
 const loginStatus = ref(false)
@@ -68,11 +68,6 @@ const dataList = ref([
   }
 ])
 
-function exportConfigure() {
-  let path = request.baseUrl + '/api/export/profile/' + token.value
-  window.open(path, '_blank')
-}
-
 function gotoHome() {
   router.push('')
 }
@@ -83,9 +78,7 @@ function logout() {
   })
   token.value = null
   Cookies.remove('robotToken')
-  Cookies.remove('token')
   Cookies.remove('robotToken', { path: '/', domain: '.easyapi.com' })
-  Cookies.remove('authenticationToken', { path: '/', domain: '.easyapi.com' })
   router.push('')
   location.reload()
 }

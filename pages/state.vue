@@ -19,7 +19,7 @@
       </el-form>
     </div>
     <div class="result-info">
-      <ResultInfo :formData="result" />
+      <Result :formData="result" />
       <CallbackResult :formData="result" />
     </div>
   </div>
@@ -32,7 +32,7 @@ import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import http from '~/api/request'
-import ResultInfo from '../components/ResultInfo.vue'
+import Result from '../components/Result.vue'
 import CallbackResult from '../components/CallbackResult.vue'
 import Cookies from 'js-cookie'
 import SockJS from 'sockjs-client/dist/sockjs.min.js'
@@ -61,7 +61,7 @@ const formRules = reactive<FormRules>({
   taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }]
 })
 
-const disable = Cookies.get('robotToken') ? true : false
+const disable = Cookies.get('robotToken')
 
 /**
  * 发送
