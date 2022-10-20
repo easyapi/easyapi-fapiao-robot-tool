@@ -10,7 +10,7 @@
       <div class="flex items-center">
         <div class="login-group flex mx-2 lg:mx-4 custom-font-14 items-center leading-8">
           <a
-            href="https://fapiao-robot.easyapi.com/login?from=https://fapiao-robot-tool.easyapi.com"
+            href="https://robot.easyapi.com/login?from=https://robot.easyapi.com/tool/"
             v-if="!loginStatus"
             class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">
             登录

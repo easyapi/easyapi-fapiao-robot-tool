@@ -6,6 +6,7 @@ const errorResponse: ApiResponse = {
   success: false,
   code: 0,
   message: '',
+  content: null,
   data: null,
   result: ''
 }

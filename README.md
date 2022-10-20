@@ -12,7 +12,7 @@
 - 右侧是实际发送到开票机器人浏览器插件的WebSocket数据
 - [下载开票机器人](https://robot.easyapi.com/)
 
-开票机器人支持电商平台：(https://fapiao-robot.easyapi.com/)
+开票机器人支持电商平台：(https://robot.easyapi.com/)
 
 - 有赞
 - 快手
