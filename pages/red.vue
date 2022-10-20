@@ -36,7 +36,7 @@
     </div>
     <div class="result-info">
       <Result :formData="result" />
-      <CallbackResult :formData="result" />
+      <Callback :formData="callback" />
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import Result from '../components/Result.vue'
-import CallbackResult from '../components/CallbackResult.vue'
+import Callback from '../components/Callback.vue'
 import Cookies from 'js-cookie'
 export default {
   data() {
@@ -55,6 +55,7 @@ export default {
         taxNumber: '91320211MA1WML8X6T'
       },
       result: {},
+      callback: {},
       formRules: {
         code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
         number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
@@ -71,7 +72,7 @@ export default {
     Result
   },
   mounted() {
-    this.disable = Cookies.get('robotToken') ? true : false
+    this.disable = Cookies.get('robotToken')
     this.formData = getCacheData(this.$route.name)
   },
 

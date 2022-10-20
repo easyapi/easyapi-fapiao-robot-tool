@@ -20,7 +20,7 @@
     </div>
     <div class="result-info">
       <Result :formData="result" />
-      <CallbackResult :formData="result" />
+      <Callback :formData="callback" />
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@ import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import http from '~/api/request'
 import Result from '../components/Result.vue'
-import CallbackResult from '../components/CallbackResult.vue'
+import Callback from '../components/Callback.vue'
 import Cookies from 'js-cookie'
 import SockJS from 'sockjs-client/dist/sockjs.min.js'
 import Stomp from 'stompjs'
@@ -55,6 +55,10 @@ const result = reactive({
   message: '',
   topic: '',
   webSocket: ''
+})
+
+const callback = reactive({
+  content: '',
 })
 
 const formRules = reactive<FormRules>({

@@ -2,48 +2,47 @@
  * 发送按钮样式
  */
 .outer-frame {
-    width: 60px;
-    margin-top: 15px;
+  width: 60px;
+  margin-top: 15px;
 }
 
 /**
  * 表单页面样式
  */
 .form-page .form-info {
-    width: 49%;
-    padding: 20px;
+  width: 49%;
+  padding: 20px;
 }
 
 .form-page .form-info .tips {
-    font-size: 12px;
-    color: #a2a2a2;
+  font-size: 12px;
+  color: #a2a2a2;
 }
 
 .form-page .result-info {
-    width: 50%;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
+  width: 50%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
-    font-size: 12px;
-    color: #409eff;
-    cursor: pointer;
+  font-size: 12px;
+  color: #409eff;
+  cursor: pointer;
 }
 
 /**
  *右侧工具样式
  */
-
 .form-style {
-    padding: 10px 20px 20px 20px;
-    margin-bottom: 20px;
+  padding: 10px 20px 20px 20px;
+  margin-bottom: 20px;
 }
 
 .form-style .title {
-    font-size: 12px;
-    color: #606266;
-    font-weight: 500;
-    margin: 8px 0;
+  font-size: 12px;
+  color: #606266;
+  font-weight: 500;
+  margin: 8px 0;
 }

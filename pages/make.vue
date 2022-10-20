@@ -187,7 +187,7 @@
     </div>
     <div class="result-info">
       <Result :formData="result" />
-      <CallbackResult :formData="result" />
+      <Callback :formData="callback" />
     </div>
   </div>
 </template>
@@ -200,13 +200,13 @@ import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import Cookies from 'js-cookie'
 import Result from '../components/Result.vue'
-import CallbackResult from '../components/CallbackResult.vue'
+import Callback from '../components/Callback.vue'
 
 const route = useRoute()
 
 const ruleFormRef = ref<FormInstance>()
 
-const disable = Cookies.get('robotToken') ? true : false
+const disable = Cookies.get('robotToken')
 
 const formData = reactive({
   category: '增值税电子普通发票',
@@ -255,6 +255,10 @@ const result = reactive({
   message: '',
   topic: '',
   webSocket: ''
+})
+
+const callback = reactive({
+  content: '',
 })
 
 const categoryList = [
