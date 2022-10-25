@@ -18,13 +18,13 @@ export function setCacheData(path, data) {
 }
 
 export function getCacheData(path) {
-  let obj = {}
+  let data = {}
   if (path != 'make') {
-    obj = {
+    data = {
       taxNumber: '91320211MA1WML8X6T'
     }
   } else if (path == 'make') {
-    obj = {
+    data = {
       category: '增值税电子普通发票',
       outOrderNo: 'TOOL' + new Date().getTime(),
       purchaserName: '深圳市腾讯计算机系统有限公司',
@@ -71,8 +71,8 @@ export function getCacheData(path) {
   let arr = localStorage.getItem('cacheData') ? JSON.parse(localStorage.getItem('cacheData')) : []
   arr.forEach(item => {
     if (item.path == path) {
-      obj = item.formData
+      data = item.formData
     }
   })
-  return obj
+  return data
 }

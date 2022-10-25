@@ -174,7 +174,7 @@
         </el-table-column>
         <el-table-column label="操作" width="100">
           <template #default="scope">
-            <el-button type="text" @click="addItem">添加</el-button>
+            <el-button text type="primary" @click="addItem">添加</el-button>
             <el-button type="danger" v-if="scope.$index !== 0" link @click="deleteItem(scope.$index)">删除</el-button>
           </template>
         </el-table-column>
@@ -195,9 +195,9 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
-import ElMessage from 'element-plus'
-import { test } from '../api/test'
-import { setCacheData, getCacheData } from '../utils/cacheData'
+import { ElMessage } from 'element-plus'
+import { test } from '@/api/test'
+import { setCacheData, getCacheData } from '@/utils/cacheData'
 import Cookies from 'js-cookie'
 import Result from '../components/Result.vue'
 import Callback from '../components/Callback.vue'
