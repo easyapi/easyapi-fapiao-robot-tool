@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { ElMessage } from 'element-plus'
+import ElMessage from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import Result from '../components/Result.vue'

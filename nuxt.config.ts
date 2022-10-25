@@ -12,6 +12,9 @@ export default defineNuxtConfig({
   router: {
     base: '/'
   },
+  modules: [
+    'nuxt-element-plus-module'
+  ],
   buildModules: ['@pinia/nuxt'],
 
   css: ['~/assets/css/tailwind.css', 'element-plus/dist/index.css', '~/assets/css/page.css'],

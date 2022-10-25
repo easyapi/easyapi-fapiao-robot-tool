@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
-import { ElMessage } from 'element-plus'
+import ElMessage from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import http from '~/api/request'

@@ -5,7 +5,7 @@
       <Menu />
       <div class="body-content-items">
         <BreadCrumb />
-        <NuxtChild />
+        <slot />
       </div>
     </div>
   </div>
