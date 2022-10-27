@@ -198,15 +198,15 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { test } from '@/api/test'
 import { setCacheData, getCacheData } from '@/utils/cacheData'
-import Cookies from 'js-cookie'
 import Result from '../components/Result.vue'
 import Callback from '../components/Callback.vue'
+const token = useCookie('robotToken')
 
 const route = useRoute()
 
 const ruleFormRef = ref<FormInstance>()
 
-const disable = Cookies.get('robotToken')
+const disable = token.value
 
 const formData = reactive({
   category: '增值税电子普通发票',

@@ -34,9 +34,9 @@ import { setCacheData, getCacheData } from '../utils/cacheData'
 import http from '~/api/request'
 import Result from '../components/Result.vue'
 import Callback from '../components/Callback.vue'
-import Cookies from 'js-cookie'
 import SockJS from 'sockjs-client/dist/sockjs.min.js'
 import Stomp from 'stompjs'
+const token = useCookie('robotToken')
 
 const route = useRoute()
 

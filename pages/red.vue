@@ -41,13 +41,14 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import Result from '../components/Result.vue'
 import Callback from '../components/Callback.vue'
-import Cookies from 'js-cookie'
+const token = useCookie('robotToken')
+
 export default {
   data() {
     return {
@@ -72,7 +73,7 @@ export default {
     Result
   },
   mounted() {
-    this.disable = Cookies.get('robotToken')
+    this.disable = token.value
     this.formData = getCacheData(this.$route.name)
   },
 

@@ -2,81 +2,87 @@ const apiUrl = 'https://api.easyapi.com'
 const baseUrl = 'https://fapiao-robot-api.easyapi.com'
 const accountUrl = 'https://account-api.easyapi.com'
 
-const errorResponse: ApiResponse = {
-  success: false,
-  code: 0,
-  message: '',
-  content: null,
-  data: null,
-  result: ''
-}
+import { ElMessage } from 'element-plus'
 
 const get = async (url: string, params = {}): Promise<ApiResponse> => {
   try {
     const token = useCookie('robotToken')
     const res = await $fetch<ApiResponse>(url, {
       headers: {
-        Authorization: `Bearer ${token.value}`
+        Authorization: token.value ? `Bearer ${token.value}` : ''
       },
       method: 'GET',
       params: params
     })
     return res
   } catch (error) {
-    errorResponse.message = error
-    return errorResponse
+    ElMessage({
+      type: 'error',
+      message: error.data.message
+    })
+    return error.data
   }
 }
 
-const post = async (url: string, params = {}): Promise<ApiResponse> => {
+const post = async (url: string, data = {}): Promise<ApiResponse> => {
   try {
     const token = useCookie('robotToken')
     const res = await $fetch<ApiResponse>(url, {
       headers: {
-        Authorization: `Bearer ${token.value}`
+        Authorization: token.value ? `Bearer ${token.value}` : ''
       },
       method: 'POST',
-      body: params
+      body: data
     })
     return res
   } catch (error) {
-    errorResponse.message = error
-    return errorResponse
+    ElMessage({
+      type: 'error',
+      message: error.data.message
+    })
+    return error.data
   }
 }
 
-const put = async (url: string, params = {}): Promise<ApiResponse> => {
+const put = async (url: string, data = {}): Promise<ApiResponse> => {
+  const router = useRouter()
   try {
     const token = useCookie('robotToken')
     const res = await $fetch<ApiResponse>(url, {
       headers: {
-        Authorization: `Bearer ${token.value}`
+        Authorization: token.value ? `Bearer ${token.value}` : ''
       },
       method: 'PUT',
-      body: params
+      body: data
     })
     return res
   } catch (error) {
-    errorResponse.message = error
-    return errorResponse
+    ElMessage({
+      type: 'error',
+      message: error.data.message
+    })
+    return error.data
   }
 }
 
-const del = async (url: string, params = {}): Promise<ApiResponse> => {
+const del = async (url: string, data = {}): Promise<ApiResponse> => {
   try {
     const token = useCookie('robotToken')
     const res = await $fetch<ApiResponse>(url, {
       headers: {
-        Authorization: `Bearer ${token.value}`
+        Authorization: token.value ? `Bearer ${token.value}` : ''
       },
       method: 'DELETE',
-      body: params
+      body: data
     })
     return res
   } catch (error) {
-    errorResponse.message = error
-    return errorResponse
+    ElMessage({
+      type: 'error',
+      message: error.data.message
+    })
+    return error.data
   }
 }
 
-export default { get, post, put, del, baseUrl, apiUrl, accountUrl }
+export default { get, post, put, del, apiUrl, baseUrl, accountUrl }

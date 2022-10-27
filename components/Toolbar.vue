@@ -33,8 +33,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { userStore } from '~/stores/user'
-import request from '~/api/request'
-import Cookies from 'js-cookie'
 
 const token = useCookie('robotToken')
 const robotUser = useCookie('robotUser')
@@ -76,8 +74,6 @@ function logout() {
     showLogin: false
   })
   token.value = null
-  Cookies.remove('robotToken')
-  Cookies.remove('robotToken', { path: '/', domain: '.easyapi.com' })
   router.push('')
   location.reload()
 }
