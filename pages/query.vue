@@ -38,10 +38,10 @@
 import { reactive, ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
-import { test } from '../api/test'
-import { setCacheData, getCacheData } from '../utils/cacheData'
-import Result from '../components/Result.vue'
-import Callback from '../components/Callback.vue'
+import { test } from '@/api/test'
+import { setCacheData, getCacheData } from '@/utils/cacheData'
+import Result from '@/components/Result.vue'
+import Callback from '@/components/Callback.vue'
 
 const token = useCookie('robotToken')
 const route = useRoute()
@@ -110,7 +110,7 @@ function updateFormData() {
 
 onMounted(() => {})
 
-useHead: {
+useHead({
   title: '同步查询 - EasyAPI开票机器人'
-}
+})
 </script>

@@ -21,7 +21,7 @@ export function getCacheData(path) {
   let data = {}
   if (path != 'make') {
     data = {
-      taxNumber: '91320211MA1WML8X6T'
+      callbackUrl: ''
     }
   } else if (path == 'make') {
     data = {

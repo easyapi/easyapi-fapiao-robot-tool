@@ -5,8 +5,9 @@
 </template>
 
 <script setup lang="ts">
-useHead: ({
-  title: '开具发票 - EasyAPI开票机器人'
+useHead({
+  title: '首页 - EasyAPI开票机器人',
+  meta: [{ name: 'description', content: 'EasyAPI开票机器人测试工具' }]
 })
 </script>
 

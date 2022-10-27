@@ -42,8 +42,8 @@ import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { test } from '@/api/test'
 import { setCacheData, getCacheData } from '@/utils/cacheData'
-import Result from '../components/Result.vue'
-import Callback from '../components/Callback.vue'
+import Result from '@/components/Result.vue'
+import Callback from '@/components/Callback.vue'
 
 const token = useCookie('robotToken')
 const route = useRoute()
@@ -114,7 +114,7 @@ function saveChange() {
 
 onMounted(() => {})
 
-useHead: {
+useHead({
   title: '发票作废 - EasyAPI开票机器人'
-}
+})
 </script>

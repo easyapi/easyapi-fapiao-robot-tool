@@ -10,14 +10,13 @@
     "start": "cross-env NODE_ENV=production PORT=7001 nuxt start ",
     "pm2": "pm2 delete easyapi-fapiao-robot-tool \n pm2 start npm --name 'easyapi-fapiao-robot-tool' -- run start"
   },
-  "devDependencies": {
+  "dependencies": {
     "nuxt": "^3.0.0-rc.12",
     "nuxt-element-plus-module": "^0.1.3",
     "sockjs-client": "1.6.1",
     "stompjs": "2.3.3"
   },
-  "dependencies": {
-    "@bytemd/vue-next": "^1.17.4",
+  "devDependencies": {
     "@meforma/vue-toaster": "^1.3.0",
     "@nuxt/webpack-builder": "^3.0.0-rc.12",
     "@nuxt/kit": "^3.0.0-rc.12",

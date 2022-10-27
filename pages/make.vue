@@ -198,8 +198,8 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { test } from '@/api/test'
 import { setCacheData, getCacheData } from '@/utils/cacheData'
-import Result from '../components/Result.vue'
-import Callback from '../components/Callback.vue'
+import Result from '@/components/Result.vue'
+import Callback from '@/components/Callback.vue'
 const token = useCookie('robotToken')
 
 const route = useRoute()
@@ -478,7 +478,7 @@ onMounted(() => {
   updateFormData()
 })
 
-useHead: ({
+useHead({
   title: '开具发票 - EasyAPI开票机器人'
 })
 </script>

@@ -5,11 +5,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    formData: Object,
-    default: () => ({})
-  }
+<script setup lang="ts">
+const formData = {
+  content: ''
 }
 </script>

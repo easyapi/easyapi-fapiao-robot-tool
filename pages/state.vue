@@ -29,11 +29,11 @@
 import { reactive, ref, onMounted } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
-import { test } from '../api/test'
-import { setCacheData, getCacheData } from '../utils/cacheData'
+import { test } from '@/api/test'
+import { setCacheData, getCacheData } from '@/utils/cacheData'
 import http from '~/api/request'
-import Result from '../components/Result.vue'
-import Callback from '../components/Callback.vue'
+import Result from '@/components/Result.vue'
+import Callback from '@/components/Callback.vue'
 import SockJS from 'sockjs-client/dist/sockjs.min.js'
 import Stomp from 'stompjs'
 const token = useCookie('robotToken')
@@ -127,7 +127,7 @@ onMounted(() => {
   updateFormData()
 })
 
-useHead: ({
+useHead({
   title: '助手状态 - EasyAPI开票机器人'
 })
 </script>

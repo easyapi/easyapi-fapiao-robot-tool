@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { userStore } from '../stores/user'
+import { userStore } from '@/stores/user'
 
 const token = useCookie('robotToken')
 const robotUser = useCookie('robotUser')
