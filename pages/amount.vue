@@ -31,7 +31,6 @@ import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import Result from '../components/Result.vue'
 import Callback from '../components/Callback.vue'
-import Cookies from 'js-cookie'
 export default {
   data() {
     return {
@@ -56,7 +55,7 @@ export default {
   },
 
   mounted() {
-    this.disable = Cookies.get('robotToken')
+    this.disable = token.value
     this.formData = getCacheData(this.$route.name)
   },
 

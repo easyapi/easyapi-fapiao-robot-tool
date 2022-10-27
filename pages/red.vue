@@ -41,13 +41,13 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script>
 import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import Result from '../components/Result.vue'
 import Callback from '../components/Callback.vue'
-const token = useCookie('robotToken')
+// const token = useCookie('robotToken')
 
 export default {
   data() {
