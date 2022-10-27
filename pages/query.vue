@@ -1,7 +1,7 @@
 <template>
   <div class="page flex form-page">
     <div class="form-info bg-white">
-      <el-form :model="formData" ref="form" :rules="formRules" label-width="110px">
+      <el-form :model="formData" ref="ruleFormRef" :rules="formRules" label-width="110px">
         <el-form-item label="企业税号：" prop="taxNumber">
           <el-input v-model="formData.taxNumber" placeholder="企业税号" @input="saveChange" />
         </el-form-item>
@@ -34,66 +34,83 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { reactive, ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import Result from '../components/Result.vue'
 import Callback from '../components/Callback.vue'
-// const token = useCookie('robotToken')
 
-export default {
-  data() {
-    return {
-      formData: {
-        taxNumber: '91320211MA1WML8X6T'
-      },
-      result: {},
-      callback: {},
-      formRules: {
-        code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
-        number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
-        callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
-      },
-      disable: false
-    }
-  },
-  head: {
-    title: '同步查询 - EasyAPI开票机器人'
-  },
-  components: {
-    Result
-  },
-  mounted() {
-    this.disable = token.value
-    this.formData = getCacheData(this.$route.name)
-  },
-  methods: {
-    /**
-     * 发送
-     */
-    onSubmit() {
-      this.$refs.form.validate(valid => {
-        if (!valid) {
-          return
+const token = useCookie('robotToken')
+const route = useRoute()
+
+const formData = reactive({
+  taxNumber: '91320211MA1WML8X6T',
+  outOrderNo: '',
+  code: '',
+  number: '',
+  callbackUrl: ''
+})
+
+const result = reactive({
+  message: '',
+  topic: '',
+  webSocket: ''
+})
+
+const callback = reactive({})
+
+const formRules = reactive<FormRules>({
+  code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
+  number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
+  callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
+})
+
+const disable = ref(false)
+
+/**
+ * 发送
+ */
+const onSubmit = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      test.queryInvoice(formData).then(res => {
+        if (res.code === 1) {
+          result.message = res.content.message
+          result.topic = res.content.topic
+          result.webSocket = res.content.webSocket
+          ElMessage({
+            type: 'success',
+            message: res.message
+          })
         }
-        test.queryInvoice(this.formData).then(res => {
-          if (res.code === 1) {
-            this.result = res.content
-            ElMessage({
-              type: 'success',
-              message: res.message
-            })
-          }
-        })
       })
-    },
-    /**
-     * 缓存记录数据
-     */
-    saveChange() {
-      setCacheData(this.$route.name, this.formData)
     }
-  }
+  })
+}
+
+/**
+ * 缓存记录数据
+ */
+function saveChange() {
+  setCacheData(route.name, formData)
+}
+
+/**
+ * 更新formData
+ */
+function updateFormData() {
+  let data = getCacheData(route.name)
+  formData.taxNumber = data.taxNumber
+  formData.callbackUrl = data.callbackUrl
+}
+
+onMounted(() => {})
+
+useHead: {
+  title: '同步查询 - EasyAPI开票机器人'
 }
 </script>

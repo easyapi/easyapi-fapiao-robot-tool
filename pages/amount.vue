@@ -25,66 +25,76 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { reactive, ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 import { test } from '../api/test'
 import { setCacheData, getCacheData } from '../utils/cacheData'
 import Result from '../components/Result.vue'
 import Callback from '../components/Callback.vue'
-export default {
-  data() {
-    return {
-      formData: {
-        taxNumber: '91320211MA1WML8X6T',
-        callbackUrl: ''
-      },
-      result: {},
-      callback: {},
-      formRules: {
-        taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }]
-      },
-      disable: false
-    }
-  },
-  head: {
-    title: '发票库存查询 - EasyAPI开票机器人'
-  },
 
-  components: {
-    Result
-  },
+const token = useCookie('robotToken')
+const route = useRoute()
 
-  mounted() {
-    this.disable = token.value
-    this.formData = getCacheData(this.$route.name)
-  },
+const formData = reactive({
+  taxNumber: '91320211MA1WML8X6T',
+  callbackUrl: ''
+})
 
-  methods: {
-    /**
-     * 发送
-     */
-    onSubmit() {
-      this.$refs.form.validate(valid => {
-        if (!valid) {
-          return
+const result = reactive({
+  message: '',
+  topic: '',
+  webSocket: ''
+})
+
+const callback = reactive({})
+
+const formRules = reactive<FormRules>({
+  taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }]
+})
+
+const disable = ref(false)
+
+/**
+ * 发送
+ */
+const onSubmit = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      test.amountShop(formData).then(res => {
+        if (res.code === 1) {
+          result.message = res.content.message
+          result.topic = res.content.topic
+          result.webSocket = res.content.webSocket
+          ElMessage({
+            type: 'success',
+            message: res.message
+          })
         }
-        test.amountShop(this.formData).then(res => {
-          if (res.code === 1) {
-            this.result = res.content
-            ElMessage({
-              type: 'success',
-              message: res.message
-            })
-          }
-        })
       })
-    },
-    /**
-     * 缓存记录数据
-     */
-    saveChange() {
-      setCacheData(this.$route.name, this.formData)
     }
-  }
+  })
+}
+
+/**
+ * 更新formData
+ */
+function updateFormData() {
+  let data = getCacheData(route.name)
+  formData.taxNumber = data.taxNumber
+  formData.callbackUrl = data.callbackUrl
+}
+
+/**
+ * 缓存记录数据
+ */
+function saveChange() {
+  setCacheData(route.name, formData)
+}
+
+useHead: {
+  title: '发票库存查询 - EasyAPI开票机器人'
 }
 </script>

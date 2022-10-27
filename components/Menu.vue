@@ -32,21 +32,20 @@
     </el-menu>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      selectMenu: ''
-    }
-  },
-  mounted() {
-    this.selectMenu = this.$route.name === 'index' ? '' : this.$route.name
-  },
-  methods: {
-    selectMenuItem(row) {
-      this.$router.push(`/${row}`)
-    }
-  }
+<script setup lang="ts">
+import { reactive, ref, onMounted } from 'vue'
+
+const route = useRoute()
+const router = useRouter()
+
+const selectMenu = ref()
+
+onMounted(() => {
+  selectMenu.value = route.name === 'index' ? '' : String(route.name)
+})
+
+function selectMenuItem(row) {
+  router.push(`/${row}`)
 }
 </script>
 <style scoped>

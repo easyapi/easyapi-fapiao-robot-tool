@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { test } from '../api/test'
@@ -58,7 +58,7 @@ const result = reactive({
 })
 
 const callback = reactive({
-  content: '',
+  content: ''
 })
 
 const formRules = reactive<FormRules>({

@@ -20,7 +20,7 @@
             <template #reference>
               <div class="flex cursor-pointer">
                 <img v-show="loginStatus" class="w-8 h-8 mr-2" src="/img/header.png" />
-                <span>{{ robotUser.username }}</span>
+                <!-- <span>{{ robotUser.username }}</span> -->
               </div>
             </template>
           </el-popover>
@@ -31,8 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { userStore } from '~/stores/user'
+import { ref, watch } from 'vue'
+import { userStore } from '../stores/user'
 
 const token = useCookie('robotToken')
 const robotUser = useCookie('robotUser')
