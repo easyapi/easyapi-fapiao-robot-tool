@@ -11,7 +11,7 @@
           <el-col :span="8">
             <el-form-item label="发票类别：" prop="category">
               <el-select v-model="formData.category" placeholder="请选择发票类别" filterable size="default" @change="saveChange">
-                <el-option v-for="item in categoryList" :key="item.value" :label="item.label" :value="item.value" />
+                <el-option v-for="item in invoiceCategoryList" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
             </el-form-item>
           </el-col>
@@ -200,13 +200,14 @@ import { test } from '@/api/test'
 import { setCacheData, getCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
+import { invoiceCategoryList } from '~/utils/invoice-category'
 const token = useCookie('robotToken')
 
 const route = useRoute()
 
 const ruleFormRef = ref<FormInstance>()
 
-const disable = token.value
+const disable = !!token.value
 
 const formData = reactive({
   category: '增值税电子普通发票',
@@ -260,13 +261,6 @@ const result = reactive({
 const callback = reactive({
   content: ''
 })
-
-const categoryList = [
-  { value: '增值税电子普通发票', label: '增值税电子普通发票' },
-  { value: '增值税普通发票', label: '增值税普通发票' },
-  { value: '增值税电子专用发票', label: '增值税电子专用发票' },
-  { value: '增值税专用发票', label: '增值税专用发票' }
-]
 
 const preferentialPolicyFlagList = [
   { value: '', label: '不使用优惠政策' },

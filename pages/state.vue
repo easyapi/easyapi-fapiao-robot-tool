@@ -65,7 +65,7 @@ const formRules = reactive<FormRules>({
   taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }]
 })
 
-const disable = Cookies.get('robotToken')
+const disable = token.value
 
 /**
  * 发送
