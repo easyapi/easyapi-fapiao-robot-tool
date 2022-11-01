@@ -21,7 +21,7 @@
         <el-form-item>
           <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
             <div>
-              <el-button type="primary" :disabled="!disable" @click="onSubmit">发送</el-button>
+              <el-button type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
             </div>
           </el-tooltip>
         </el-form-item>
@@ -45,6 +45,7 @@ import Callback from '@/components/Callback.vue'
 
 const token = useCookie('robotToken')
 const route = useRoute()
+const ruleFormRef = ref<FormInstance>()
 
 const formData = reactive({
   taxNumber: '91320211MA1WML8X6T',
@@ -68,7 +69,7 @@ const formRules = reactive<FormRules>({
   callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
 })
 
-const disable = ref(false)
+const disable = !!token.value
 
 /**
  * 发送

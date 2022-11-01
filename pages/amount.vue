@@ -1,7 +1,7 @@
 <template>
   <div class="page flex form-page">
     <div class="form-info bg-white">
-      <el-form :model="formData" ref="form" :rules="formRules" label-width="110px">
+      <el-form :model="formData" ref="ruleFormRef" :rules="formRules" label-width="110px">
         <el-form-item label="企业税号：" prop="taxNumber">
           <el-input v-model="formData.taxNumber" placeholder="企业税号" @input="saveChange" />
         </el-form-item>
@@ -12,7 +12,7 @@
         <el-form-item>
           <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
             <div>
-              <el-button type="primary" :disabled="!disable" @click="onSubmit">发送</el-button>
+              <el-button type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
             </div>
           </el-tooltip>
         </el-form-item>
@@ -36,6 +36,7 @@ import Callback from '@/components/Callback.vue'
 
 const token = useCookie('robotToken')
 const route = useRoute()
+const ruleFormRef = ref<FormInstance>()
 
 const formData = reactive({
   taxNumber: '91320211MA1WML8X6T',
@@ -54,7 +55,7 @@ const formRules = reactive<FormRules>({
   taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }]
 })
 
-const disable = ref(false)
+const disable = !!token.value
 
 /**
  * 发送

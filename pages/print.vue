@@ -68,7 +68,7 @@ const formRules = reactive<FormRules>({
   callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
 })
 
-const disable = ref(false)
+const disable = !!token.value
 
 /**
  * 发送
