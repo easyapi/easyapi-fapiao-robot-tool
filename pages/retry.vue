@@ -8,12 +8,6 @@
         <el-form-item label="商户订单号：" prop="outOrderNo">
           <el-input v-model="formData.outOrderNo" placeholder="商户订单号" @input="saveChange" />
         </el-form-item>
-        <el-form-item label="发票代码：" prop="code">
-          <el-input v-model="formData.code" placeholder="12位数字是发票代码" @input="saveChange" />
-        </el-form-item>
-        <el-form-item label="发票号码：" prop="number">
-          <el-input v-model="formData.number" placeholder="8位数字是发票代码" @input="saveChange" />
-        </el-form-item>
         <el-form-item label="回调地址：" prop="callbackUrl">
           <el-input v-model="formData.callbackUrl" placeholder="回调地址" @input="saveChange" />
           <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
@@ -49,8 +43,6 @@ const route = useRoute()
 const formData = reactive({
   taxNumber: '91320211MA1WML8X6T',
   outOrderNo: '',
-  code: '',
-  number: '',
   callbackUrl: ''
 })
 
@@ -63,8 +55,7 @@ const result = reactive({
 const callback = reactive({})
 
 const formRules = reactive<FormRules>({
-  code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
-  number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
+  outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
   callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
 })
 
@@ -98,6 +89,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
 function updateFormData() {
   let data = getCacheData(route.name)
   formData.taxNumber = data.taxNumber
+  formData.outOrderNo = data.outOrderNo
   formData.callbackUrl = data.callbackUrl
 }
 
