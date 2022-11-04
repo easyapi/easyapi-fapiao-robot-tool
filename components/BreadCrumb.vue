@@ -42,7 +42,10 @@ watch(
         name.value = '发票库存查询'
         break
       case '/state':
-        name.value = '助手状态'
+        name.value = '税盘状态'
+        break
+      case '/robot':
+        name.value = '发票机器人状态'
         break
     }
   }
@@ -76,7 +79,10 @@ onMounted(() => {
       name.value = '发票库存查询'
       break
     case '/state':
-      name.value = '助手状态'
+      name.value = '税盘状态'
+      break
+    case '/robot':
+      name.value = '发票机器人状态'
       break
   }
 })

@@ -74,7 +74,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      test.stateShop(formData).then(res => {
+      test.robotShop(formData).then(res => {
         if (res.code === 1) {
           result.message = res.content.message
           result.topic = res.content.topic
@@ -128,6 +128,6 @@ onMounted(() => {
 })
 
 useHead({
-  title: '税盘状态 - EasyAPI开票机器人'
+  title: '发票机器人状态 - EasyAPI开票机器人'
 })
 </script>

@@ -27,7 +27,10 @@
         <span>发票库存查询</span>
       </el-menu-item>
       <el-menu-item index="state">
-        <span>助手状态</span>
+        <span>税盘状态</span>
+      </el-menu-item>
+      <el-menu-item index="robot">
+        <span>发票机器人状态</span>
       </el-menu-item>
     </el-menu>
   </div>
