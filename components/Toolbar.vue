@@ -9,6 +9,12 @@
       </div>
       <div class="flex items-center">
         <div class="login-group flex mx-2 lg:mx-4 custom-font-14 items-center leading-8">
+          <div class="mr-6">
+            <SuccessFilled v-if="state.isMakeInvoice" class="w-6 h-6 mr-2" color="#67C23A" />
+            <CircleCloseFilled v-else class="w-6 h-6 mr-2" color="#F56C6C" />
+            <span v-if="state.isMakeInvoice">可开发票</span>
+            <span v-else>开票异常</span>
+          </div>
           <a
             href="https://robot.easyapi.com/login?from=https://robot.easyapi.com/tool/"
             v-if="!loginStatus"
@@ -31,14 +37,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, reactive, onMounted } from 'vue'
 import { userStore } from '@/stores/user'
+import { CircleCloseFilled, SuccessFilled } from '@element-plus/icons-vue'
+import { setTaxNumber, connect } from '@/utils/webSocketUtil'
 
 const token = useCookie('robotToken')
 const robotUser = useCookie('robotUser')
 const store = userStore()
 const router = useRouter()
 const loginStatus = ref(false)
+
+const state = reactive({
+  timer: null,
+  isMakeInvoice: false
+})
 
 if (typeof token.value != 'undefined') {
   loginStatus.value = true
@@ -77,6 +90,24 @@ function logout() {
   router.push('')
   location.reload()
 }
+
+function getRobotState() {
+  if (state.timer) clearInterval(state.timer)
+  state.timer = setInterval(() => {
+    let robotState = localStorage.getItem('robotState')
+    if (robotState && robotState.code == 1 && robotState.content.make == 1) {
+      state.isMakeInvoice = true
+    } else {
+      state.isMakeInvoice = false
+    }
+  }, 1000)
+}
+
+onMounted(() => {
+  setTaxNumber('91320211MA1WML8X6T')
+  connect()
+  getRobotState()
+})
 </script>
 
 <style scoped>
