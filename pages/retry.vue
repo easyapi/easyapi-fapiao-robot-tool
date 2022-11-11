@@ -13,11 +13,11 @@
           <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item>
-          <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
-            <div>
-              <el-button type="primary" :disabled="!disable" @click="onSubmit">发送</el-button>
-            </div>
-          </el-tooltip>
+          <client-only>
+            <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
+              <el-button type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
+            </el-tooltip>
+          </client-only>
         </el-form-item>
       </el-form>
     </div>
@@ -39,6 +39,8 @@ import Callback from '@/components/Callback.vue'
 
 const token = useCookie('robotToken')
 const route = useRoute()
+
+const ruleFormRef = ref<FormInstance>()
 
 const formData = reactive({
   taxNumber: '91320211MA1WML8X6T',
@@ -87,7 +89,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
  * 更新formData
  */
 function updateFormData() {
-  let data = getCacheData(route.name)
+  let data = getCacheData(route.name as string)
   formData.taxNumber = data.taxNumber
   formData.outOrderNo = data.outOrderNo
   formData.callbackUrl = data.callbackUrl
@@ -97,7 +99,7 @@ function updateFormData() {
  * 缓存记录数据
  */
 function saveChange() {
-  setCacheData(route.name, formData)
+  setCacheData(route.name as string, formData)
 }
 
 onMounted(() => {})

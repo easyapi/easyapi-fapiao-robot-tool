@@ -10,11 +10,11 @@
           <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item>
-          <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
-            <div>
+          <client-only>
+            <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
               <el-button type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
-            </div>
-          </el-tooltip>
+            </el-tooltip>
+          </client-only>
         </el-form-item>
       </el-form>
     </div>
@@ -62,7 +62,8 @@ const callback = reactive({
 })
 
 const formRules = reactive<FormRules>({
-  taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }]
+  taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }],
+  callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
 })
 
 const disable = !!token.value
@@ -94,14 +95,14 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
  * 缓存记录数据
  */
 function saveChange() {
-  setCacheData(route.name, formData)
+  setCacheData(route.name as string, formData)
 }
 
 /**
  * 更新formData
  */
 function updateFormData() {
-  let data = getCacheData(route.name)
+  let data = getCacheData(route.name as string)
   formData.taxNumber = data.taxNumber
   formData.callbackUrl = data.callbackUrl
 }
@@ -118,8 +119,8 @@ function webSocket() {
 }
 
 function subscribe() {
-  stompClient.subscribe(`/topic/${formData.taxNumber}/tool/callback`, message => {
-    console.log(message, 789)
+  stompClient.subscribe(`/topic/${formData.taxNumber}/tool/callback`, (message: string) => {
+    console.log(message)
   })
 }
 

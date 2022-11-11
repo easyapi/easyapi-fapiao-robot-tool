@@ -17,38 +17,4 @@ useHead({
   padding: 20px;
   overflow: auto;
 }
-
-.invoicing .form-info .tips {
-  font-size: 12px;
-  color: #a2a2a2;
-}
-
-.invoicing .result-info {
-  padding: 20px;
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-}
-
-.invoicing .title {
-  font-size: 12px;
-  color: #606266;
-  font-weight: 500;
-  margin: 8px 0;
-}
-
-.invoicing .el-table .el-input {
-  margin: 5px 0;
-}
-
-.invoicing .invoicing-btn {
-  margin-top: 15px;
-}
-
-a {
-  font-size: 12px;
-  color: #409eff;
-  cursor: pointer;
-}
 </style>

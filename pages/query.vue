@@ -19,11 +19,11 @@
           <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item>
-          <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
-            <div>
+          <client-only>
+            <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
               <el-button type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
-            </div>
-          </el-tooltip>
+            </el-tooltip>
+          </client-only>
         </el-form-item>
       </el-form>
     </div>
@@ -97,7 +97,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
  * 缓存记录数据
  */
 function saveChange() {
-  setCacheData(route.name, formData)
+  setCacheData(route.name as string, formData)
 }
 
 /**

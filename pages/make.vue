@@ -10,9 +10,11 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="发票类别：" prop="category">
-              <el-select v-model="formData.category" placeholder="请选择发票类别" filterable size="default" @change="saveChange">
-                <el-option v-for="item in invoiceCategoryList" :key="item.value" :label="item.label" :value="item.value" />
-              </el-select>
+              <client-only>
+                <el-select v-model="formData.category" placeholder="请选择发票类别" filterable size="default" @change="saveChange">
+                  <el-option v-for="item in invoiceCategoryList" :key="item.value" :label="item.label" :value="item.value" />
+                </el-select>
+              </client-only>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -179,11 +181,13 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-tooltip class="box-item" effect="dark" content="请先行登录" placement="top" :disabled="disable">
-        <div class="outer-frame">
-          <el-button class="invoicing-btn" type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
-        </div>
-      </el-tooltip>
+      <client-only>
+        <el-tooltip class="box-item" effect="dark" content="请先行登录" placement="top" :disabled="disable">
+          <div class="outer-frame">
+            <el-button type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
+          </div>
+        </el-tooltip>
+      </client-only>
     </div>
     <div class="result-info">
       <result :formData="result" />
@@ -322,7 +326,7 @@ function changeNumber(index) {
     //并且数量有值，计算单价（保留8为小数）
     formData.items[index].price = Number(formData.items[index].sum) / Number(formData.items[index].number)
   }
-  setCacheData(route.name, formData)
+  setCacheData(route.name as string, formData)
 }
 
 /**
@@ -342,7 +346,7 @@ function changePrice(index) {
     //计算数量
     formData.items[index].number = Number(formData.items[index].sum) / Number(formData.items[index].price)
   }
-  setCacheData(route.name, formData)
+  setCacheData(route.name as string, formData)
 }
 
 /**
@@ -361,7 +365,7 @@ function changeSum(index) {
   if (formData.items[index].price) {
     formData.items[index].number = 1
   }
-  setCacheData(route.name, formData)
+  setCacheData(route.name as string, formData)
 }
 
 /**
@@ -395,7 +399,7 @@ function deleteItem(index) {
  * 缓存记录数据
  */
 function saveChange() {
-  setCacheData(route.name, formData)
+  setCacheData(route.name as string, formData)
 }
 
 /**

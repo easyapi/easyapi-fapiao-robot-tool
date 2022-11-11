@@ -1,7 +1,7 @@
-export function setCacheData(path, data) {
+export function setCacheData(path: string, data: any) {
   let repeat = false
-  let arr = localStorage.getItem('cacheData') ? JSON.parse(localStorage.getItem('cacheData')) : []
-  arr.forEach(item => {
+  let arr = localStorage.getItem('cacheData') ? JSON.parse(localStorage.getItem('cacheData') as any) : []
+  arr.forEach((item: any) => {
     if (item.path == path) {
       repeat = true
       item.formData = data
@@ -17,8 +17,8 @@ export function setCacheData(path, data) {
   localStorage.setItem('cacheData', JSON.stringify(arr))
 }
 
-export function getCacheData(path) {
-  let data = {}
+export function getCacheData(path: string) {
+  let data: any
   if (path != 'make') {
     data = {
       callbackUrl: ''
@@ -68,8 +68,8 @@ export function getCacheData(path) {
     }
   }
 
-  let arr = localStorage.getItem('cacheData') ? JSON.parse(localStorage.getItem('cacheData')) : []
-  arr.forEach(item => {
+  let arr = localStorage.getItem('cacheData') ? JSON.parse(localStorage.getItem('cacheData') as any) : []
+  arr.forEach((item: any) => {
     if (item.path == path) {
       data = item.formData
     }
