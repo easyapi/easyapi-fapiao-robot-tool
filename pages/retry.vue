@@ -103,6 +103,6 @@ function saveChange() {
 onMounted(() => {})
 
 useHead({
-  title: '重试开票 - EasyAPI开票机器人'
+  title: '重试开票 - EasyAPI发票机器人'
 })
 </script>

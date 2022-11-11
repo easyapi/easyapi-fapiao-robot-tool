@@ -1,18 +1,18 @@
-# EasyAPI开票机器人 接口测试工具
+# EasyAPI发票机器人 接口测试工具
 
 ## 项目介绍
 
-基于 Nuxt3 框架开发的测试工具，EasyAPI开发了一款开票机器人产品，无需经过第三方，直接在网页上面开票。 本测试工具，主要帮助用户快速体验开票和如何对接发票机器人扩展程序。
+基于 Nuxt3 框架开发的测试工具，EasyAPI开发了一款发票机器人产品，无需经过第三方，直接在网页上面开票。 本测试工具，主要帮助用户快速体验开票和如何对接发票机器人扩展程序。
 
 示意图：
 ![发票红冲](https://qiniu.easyapi.com/fapiao-tool-red.png)
 
 
 - 左侧输入参数
-- 右侧是实际发送到开票机器人浏览器插件的WebSocket数据
-- [下载开票机器人](https://robot.easyapi.com/)
+- 右侧是实际发送到发票机器人浏览器插件的WebSocket数据
+- [下载发票机器人](https://robot.easyapi.com/)
 
-开票机器人支持电商平台：(https://robot.easyapi.com/)
+发票机器人支持电商平台：(https://robot.easyapi.com/)
 
 - 有赞
 - 快手
@@ -22,7 +22,7 @@
 - 抖音
 - 自有平台（电商、非电商都支持）
 
-> 访问官网了解EasyAPI开票机器人功能。(https://robot.easyapi.com/)
+> 访问官网了解EasyAPI发票机器人功能。(https://robot.easyapi.com/)
 
 ## 相关技术和第三方库
 

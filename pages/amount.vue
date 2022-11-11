@@ -95,5 +95,5 @@ function saveChange() {
   setCacheData(route.name, formData)
 }
 
-useHead({ title: '发票库存查询 - EasyAPI开票机器人' })
+useHead({ title: '发票库存查询 - EasyAPI发票机器人' })
 </script>

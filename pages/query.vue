@@ -112,6 +112,6 @@ function updateFormData() {
 onMounted(() => {})
 
 useHead({
-  title: '同步查询 - EasyAPI开票机器人'
+  title: '同步查询 - EasyAPI发票机器人'
 })
 </script>
