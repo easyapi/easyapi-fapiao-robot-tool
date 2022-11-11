@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <Toolbar />
+    <Header />
     <div class="body-content w-full flex">
       <Menu />
       <div class="body-content-items">

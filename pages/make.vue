@@ -126,7 +126,7 @@
             <div class="tips">例如：*信息技术服务*技术服务费，其中技术服务费是商品名称</div>
           </template>
         </el-table-column>
-        <el-table-column label="型号">
+        <el-table-column label="型号" width="3">
           <el-table-column label="单位">
             <template #default="scope">
               <el-input @input="saveChange" v-model="scope.row.model" placeholder="型号，例如红色" />
@@ -186,8 +186,8 @@
       </el-tooltip>
     </div>
     <div class="result-info">
-      <Result :formData="result" />
-      <Callback :formData="callback" />
+      <result :formData="result" />
+      <callback :formData="callback" />
     </div>
   </div>
 </template>

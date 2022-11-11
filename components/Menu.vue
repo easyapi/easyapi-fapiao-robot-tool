@@ -64,7 +64,7 @@ function selectMenuItem(row) {
 
 .el-menu {
   border-top: 1px solid #dcdfe6;
-  border-right: 0px;
+  border-right: 0;
 }
 
 .menu .el-menu-item {

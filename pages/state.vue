@@ -19,8 +19,8 @@
       </el-form>
     </div>
     <div class="result-info">
-      <Result :formData="result" />
-      <Callback :formData="callback" />
+      <result :formData="result" />
+      <callback :formData="callback" />
     </div>
   </div>
 </template>

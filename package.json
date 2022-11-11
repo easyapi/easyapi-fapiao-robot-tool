@@ -12,18 +12,18 @@
   },
   "dependencies": {
     "nuxt": "^3.0.0-rc.13",
-    "element-plus": "^2.2.20",
-    "@element-plus/icons-vue": "^2.0.10",
+    "unplugin-auto-import": "^0.11.4",
+    "unplugin-vue-components": "^0.22.9",
     "sockjs-client": "1.6.1",
     "stompjs": "2.3.3"
   },
   "devDependencies": {
-    "@meforma/vue-toaster": "^1.3.0",
     "@nuxt/kit": "^3.0.0-rc.13",
     "@nuxtjs/tailwindcss": "^6.1.3",
     "@pinia/nuxt": "^0.4.3",
     "@tailwindcss/typography": "^0.5.8",
     "@types/lodash": "^4.14.188",
+    "element-plus": "^2.2.20",
     "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",

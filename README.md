@@ -31,7 +31,7 @@
 * [Element Plus组件库](https://element-plus.gitee.io/zh-CN/)
 * [Tailwind CSS](https://www.tailwindcss.cn/)
 
-> 本项目还用到了vue-drag-resize，toast-ui/calendar
+> 本项目还用到了sockjs-client，stompjs
 
 ## Build Setup
 
