@@ -77,9 +77,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       test.robotShop(formData).then(res => {
         if (res.code === 1) {
-          result.message = res.content.message
-          result.topic = res.content.topic
-          result.webSocket = res.content.webSocket
+          Object.assign(result, res.content);
           ElMessage({
             type: 'success',
             message: res.message

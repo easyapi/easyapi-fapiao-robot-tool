@@ -70,11 +70,9 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      test.redInvoice(formData).then(res => {
+      test.retryInvoice(formData).then(res => {
         if (res.code === 1) {
-          result.message = res.content.message
-          result.topic = res.content.topic
-          result.webSocket = res.content.webSocket
+          Object.assign(result, res.content);
           ElMessage({
             type: 'success',
             message: res.message

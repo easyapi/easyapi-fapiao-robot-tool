@@ -406,7 +406,7 @@ function saveChange() {
  * 更新formData
  */
 function updateFormData() {
-  let data = getCacheData(route.name)
+  let data = getCacheData(route.name as string)
   formData.items = data.items
   formData.category = data.category
   formData.outOrderNo = data.outOrderNo
@@ -459,9 +459,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
       })
       test.makeInvoice(formData).then(res => {
         if (res.code === 1) {
-          result.message = res.content.message
-          result.topic = res.content.topic
-          result.webSocket = res.content.webSocket
+          Object.assign(result, res.content);
           ElMessage({
             type: 'success',
             message: res.message

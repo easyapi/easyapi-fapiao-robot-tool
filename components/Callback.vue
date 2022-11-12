@@ -6,7 +6,10 @@
 </template>
 
 <script setup lang="ts">
-const formData = {
-  content: ''
-}
+const props = defineProps({
+  formData: {
+    type: Object,
+    default: () => {}
+  }
+})
 </script>

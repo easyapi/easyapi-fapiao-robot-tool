@@ -6,7 +6,7 @@ export const test = {
    * @param params
    * @returns
    */
-  redInvoice(params): Promise<ApiResponse> {
+  redInvoice(params = {}): Promise<ApiResponse> {
     return http.post(`${http.baseUrl}/tool/invoice/red`, params)
   },
 
@@ -15,7 +15,7 @@ export const test = {
    * @param params
    * @returns
    */
-  makeInvoice(params): Promise<ApiResponse> {
+  makeInvoice(params = {}): Promise<ApiResponse> {
     return http.post(`${http.baseUrl}/tool/invoice/make`, params)
   },
 
@@ -24,7 +24,7 @@ export const test = {
    * @param params
    * @returns
    */
-  cancelInvoice(params): Promise<ApiResponse> {
+  cancelInvoice(params = {}): Promise<ApiResponse> {
     return http.post(`${http.baseUrl}/tool/invoice/cancel`, params)
   },
 
@@ -33,7 +33,7 @@ export const test = {
    * @param params
    * @returns
    */
-  printInvoice(params): Promise<ApiResponse> {
+  printInvoice(params = {}): Promise<ApiResponse> {
     return http.post(`${http.baseUrl}/tool/invoice/print`, params)
   },
 
@@ -42,7 +42,7 @@ export const test = {
    * @param params
    * @returns
    */
-  queryInvoice(params): Promise<ApiResponse> {
+  queryInvoice(params = {}): Promise<ApiResponse> {
     return http.get(`${http.baseUrl}/tool/invoice/query`, params)
   },
 
@@ -51,8 +51,8 @@ export const test = {
    * @param params
    * @returns
    */
-  retryInvoice(params): Promise<ApiResponse> {
-    return http.get(`${http.baseUrl}/tool/invoice/retry`, params)
+  retryInvoice(params = {}): Promise<ApiResponse> {
+    return http.post(`${http.baseUrl}/tool/invoice/retry`, params)
   },
 
   /**
@@ -60,7 +60,7 @@ export const test = {
    * @param params
    * @returns
    */
-  amountShop(params): Promise<ApiResponse> {
+  amountShop(params = {}): Promise<ApiResponse> {
     return http.get(`${http.baseUrl}/tool/shop/amount`, params)
   },
 
@@ -69,7 +69,7 @@ export const test = {
    * @param params
    * @returns
    */
-  stateShop(params): Promise<ApiResponse> {
+  stateShop(params = {}): Promise<ApiResponse> {
     return http.get(`${http.baseUrl}/tool/shop/state`, params)
   },
 
@@ -78,7 +78,7 @@ export const test = {
    * @param params
    * @returns
    */
-  robotShop(params): Promise<ApiResponse> {
+  robotShop(params = {}): Promise<ApiResponse> {
     return http.get(`${http.baseUrl}/tool/shop/robot`, params)
   }
 }

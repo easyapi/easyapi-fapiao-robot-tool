@@ -10,9 +10,10 @@
 </template>
 
 <script setup lang="ts">
-const formData = {
-  webSocket: '',
-  topic: '',
-  message: ''
-}
+const props = defineProps({
+  formData: {
+    type: Object,
+    default: () => {}
+  }
+})
 </script>
