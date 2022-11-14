@@ -14,6 +14,10 @@
         <el-form-item label="发票号码：" prop="number">
           <el-input v-model="formData.number" placeholder="8位数字是发票代码" @input="saveChange" />
         </el-form-item>
+        <el-form-item label="打印密钥回调：" prop="printCallbackUrl">
+          <el-input v-model="formData.printCallbackUrl" placeholder="" @input="saveChange" />
+          仅诺诺发票打印需要回传打印密钥
+        </el-form-item>
         <el-form-item label="回调地址：" prop="callbackUrl">
           <el-input v-model="formData.callbackUrl" placeholder="回调地址" @input="saveChange" />
           <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
@@ -52,6 +56,7 @@ const formData = reactive({
   outOrderNo: '',
   code: '',
   number: '',
+  printCallbackUrl: 'https://fapiao-robot-api.easyapi.com/callback/nuonuo/print',
   callbackUrl: ''
 })
 
