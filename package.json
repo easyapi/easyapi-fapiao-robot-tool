@@ -29,6 +29,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1",
     "pinia": "^2.0.23",
+    "vue-toastification": "^2.0.0-rc.5",
     "cross-env": "^7.0.3"
   }
 }
