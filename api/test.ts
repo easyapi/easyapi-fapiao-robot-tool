@@ -65,6 +65,15 @@ export const test = {
   },
 
   /**
+   * 重发邮件
+   * @param params
+   * @returns
+   */
+  sendEmail(params = {}): Promise<ApiResponse> {
+    return http.get(`${http.baseUrl}/tool/invoice/email`, params)
+  },
+
+  /**
    * 税盘状态查询
    * @param params
    * @returns

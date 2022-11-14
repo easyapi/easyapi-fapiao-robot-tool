@@ -10,6 +10,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ArrowRight } from '@element-plus/icons-vue'
+
 const route = useRouter()
 const name = ref('')
 
@@ -40,6 +41,9 @@ watch(
         break
       case '/amount':
         name.value = '发票库存查询'
+        break
+      case '/email':
+        name.value = '重发邮件'
         break
       case '/state':
         name.value = '税盘状态'
@@ -77,6 +81,9 @@ onMounted(() => {
       break
     case '/amount':
       name.value = '发票库存查询'
+      break
+    case '/email':
+      name.value = '重发邮件'
       break
     case '/state':
       name.value = '税盘状态'

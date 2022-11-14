@@ -26,6 +26,9 @@
       <el-menu-item index="amount">
         <span>发票库存查询</span>
       </el-menu-item>
+      <el-menu-item index="email">
+        <span>重发邮件</span>
+      </el-menu-item>
       <el-menu-item index="state">
         <span>税盘状态</span>
       </el-menu-item>
