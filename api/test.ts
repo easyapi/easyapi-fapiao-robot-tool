@@ -3,38 +3,34 @@ import http from '~/api/request'
 export const test = {
   /**
    * 发票红冲
-   * @param params
-   * @returns
+   * @param data
    */
-  redInvoice(params = {}): Promise<ApiResponse> {
-    return http.post(`${http.baseUrl}/tool/invoice/red`, params)
+  redInvoice(data = {}): Promise<ApiResponse> {
+    return http.post(`${http.baseUrl}/tool/invoice/red`, data)
   },
 
   /**
    * 开具发票
-   * @param params
-   * @returns
+   * @param data
    */
-  makeInvoice(params = {}): Promise<ApiResponse> {
-    return http.post(`${http.baseUrl}/tool/invoice/make`, params)
+  makeInvoice(data = {}): Promise<ApiResponse> {
+    return http.post(`${http.baseUrl}/tool/invoice/make`, data)
   },
 
   /**
    * 作废发票
-   * @param params
-   * @returns
+   * @param data
    */
-  cancelInvoice(params = {}): Promise<ApiResponse> {
-    return http.post(`${http.baseUrl}/tool/invoice/cancel`, params)
+  cancelInvoice(data = {}): Promise<ApiResponse> {
+    return http.post(`${http.baseUrl}/tool/invoice/cancel`, data)
   },
 
   /**
    * 打印发票
-   * @param params
-   * @returns
+   * @param data
    */
-  printInvoice(params = {}): Promise<ApiResponse> {
-    return http.post(`${http.baseUrl}/tool/invoice/print`, params)
+  printInvoice(data = {}): Promise<ApiResponse> {
+    return http.post(`${http.baseUrl}/tool/invoice/print`, data)
   },
 
   /**
@@ -51,8 +47,8 @@ export const test = {
    * @param params
    * @returns
    */
-  retryInvoice(params = {}): Promise<ApiResponse> {
-    return http.post(`${http.baseUrl}/tool/invoice/retry`, params)
+  retryInvoice(data = {}): Promise<ApiResponse> {
+    return http.post(`${http.baseUrl}/tool/invoice/retry`, data)
   },
 
   /**
@@ -66,11 +62,10 @@ export const test = {
 
   /**
    * 重发邮件
-   * @param params
-   * @returns
+   * @param data
    */
-  sendEmail(params = {}): Promise<ApiResponse> {
-    return http.get(`${http.baseUrl}/tool/invoice/email`, params)
+  sendEmail(data = {}): Promise<ApiResponse> {
+    return http.post(`${http.baseUrl}/tool/invoice/email`, data)
   },
 
   /**
