@@ -17,6 +17,10 @@
         <el-form-item label="接收邮箱：" prop="email">
           <el-input v-model="formData.email" placeholder="接收邮箱" @input="saveChange" />
         </el-form-item>
+        <el-form-item label="回调地址：" prop="callbackUrl">
+          <el-input v-model="formData.callbackUrl" placeholder="回调地址" @input="saveChange" />
+          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
+        </el-form-item>
         <el-form-item>
           <client-only>
             <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
