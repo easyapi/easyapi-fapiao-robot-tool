@@ -305,7 +305,10 @@ const formRules = reactive<FormRules>({
   purchaserName: [{ required: true, message: '购买方名称不能为空', trigger: 'change' }],
   sellerName: [{ required: true, message: '销售方名称不能为空', trigger: 'change' }],
   sellerTaxpayerNumber: [{ required: true, message: '销售方纳税人识别号不能为空', trigger: 'change' }],
-  email: [{ required: true, message: '电子发票接收邮箱不能为空', trigger: 'change' }],
+  email: [
+    { required: true, message: '电子发票接收邮箱不能为空', trigger: 'change' },
+    { pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, message: '请输入有效的邮箱', trigger: 'change' }
+  ],
   callbackUrl: [{ required: true, message: '回调客户地址URL不能为空', trigger: 'change' }]
 })
 
@@ -459,7 +462,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
       })
       test.makeInvoice(formData).then(res => {
         if (res.code === 1) {
-          Object.assign(result, res.content);
+          Object.assign(result, res.content)
           ElMessage({
             type: 'success',
             message: res.message
