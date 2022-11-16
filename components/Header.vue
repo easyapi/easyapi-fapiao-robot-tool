@@ -94,13 +94,14 @@ function logout() {
 function getRobotState() {
   if (state.timer) clearInterval(state.timer)
   state.timer = setInterval(() => {
-    let robotState = localStorage.getItem('robotState')
-    if (robotState && robotState.code == 1 && robotState.content.make == 1) {
+    let robotState = JSON.parse(localStorage.getItem('robotState'))
+    if (robotState && robotState.make == 1) {
       state.isMakeInvoice = true
     } else {
       state.isMakeInvoice = false
     }
-  }, 1000)
+    localStorage.removeItem('robotState')
+  }, 5000)
 }
 
 onMounted(() => {
