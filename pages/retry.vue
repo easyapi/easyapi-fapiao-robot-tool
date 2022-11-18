@@ -8,6 +8,10 @@
         <el-form-item label="商户订单号：" prop="outOrderNo">
           <el-input v-model="formData.outOrderNo" placeholder="商户订单号" @input="saveChange" />
         </el-form-item>
+        <el-form-item label="开票回调地址：" prop="makeCallbackUrl">
+          <el-input v-model="formData.makeCallbackUrl" placeholder="重新发起开票回调地址" @input="saveChange" />
+          <div class="tips">当重试的订单号不存在的时候，会回调该接口，服务端会重新推送开票信息</div>
+        </el-form-item>
         <el-form-item label="回调地址：" prop="callbackUrl">
           <el-input v-model="formData.callbackUrl" placeholder="回调地址" @input="saveChange" />
           <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
@@ -45,6 +49,7 @@ const ruleFormRef = ref<FormInstance>()
 const formData = reactive({
   taxNumber: '91320211MA1WML8X6T',
   outOrderNo: '',
+  makeCallbackUrl: '',
   callbackUrl: ''
 })
 
@@ -58,6 +63,7 @@ const callback = reactive({})
 
 const formRules = reactive<FormRules>({
   outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
+  makeCallbackUrl: [{ required: true, message: '开票回调地址不能为空', trigger: 'change' }],
   callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
 })
 
@@ -72,7 +78,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       test.retryInvoice(formData).then(res => {
         if (res.code === 1) {
-          Object.assign(result, res.content);
+          Object.assign(result, res.content)
           ElMessage({
             type: 'success',
             message: res.message
@@ -90,6 +96,7 @@ function updateFormData() {
   let data = getCacheData(route.name as string)
   formData.taxNumber = data.taxNumber
   formData.outOrderNo = data.outOrderNo
+  formData.makeCallbackUrl = data.makeCallbackUrl
   formData.callbackUrl = data.callbackUrl
 }
 

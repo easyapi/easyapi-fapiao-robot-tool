@@ -37,10 +37,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, reactive, onMounted } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
 import { userStore } from '@/stores/user'
 import { CircleCloseFilled, SuccessFilled } from '@element-plus/icons-vue'
-import { setTaxNumber, connect } from '@/utils/webSocketUtil'
+import { connect, setTaxNumber } from '@/utils/webSocketUtil'
 
 const token = useCookie('robotToken')
 const robotUser = useCookie('robotUser')
