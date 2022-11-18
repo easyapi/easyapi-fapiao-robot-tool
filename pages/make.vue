@@ -159,7 +159,7 @@
         </el-table-column>
         <el-table-column label="优惠政策">
           <template #default="scope">
-            <el-select v-model="scope.row.preferentialPolicyFlag" placeholder="选择优惠政策" @change="saveChange">
+            <el-select v-model="scope.row.preferentialPolicyFlag" placeholder="选择优惠政策" @change="saveChange('优惠政策', scope.$index)">
               <el-option v-for="item in preferentialPolicyFlagList" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
             <el-select v-if="scope.row.preferentialPolicyFlag === 1" v-model="scope.row.zeroRateFlag" placeholder="选择优惠政策" @change="saveChange">
@@ -401,7 +401,13 @@ function deleteItem(index) {
 /**
  * 缓存记录数据
  */
-function saveChange() {
+function saveChange(type: string, idx: any) {
+  if (type == '优惠政策') {
+    if (formData.items[idx].preferentialPolicyFlag == '') {
+      formData.items[idx].zeroRateFlag = ''
+      formData.items[idx].preferentialPolicyName = ''
+    }
+  }
   setCacheData(route.name as string, formData)
 }
 
@@ -460,6 +466,8 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
           formData.items.splice(index, 1)
         }
       })
+      console.log(formData, 123)
+      return
       test.makeInvoice(formData).then(res => {
         if (res.code === 1) {
           Object.assign(result, res.content)
