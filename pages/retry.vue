@@ -49,7 +49,7 @@ const ruleFormRef = ref<FormInstance>()
 const formData = reactive({
   taxNumber: '91320211MA1WML8X6T',
   outOrderNo: '',
-  makeCallbackUrl: '',
+  makeCallbackUrl: 'https://fapiao-robot-api.easyapi.com/callback/retry/make',
   callbackUrl: ''
 })
 
