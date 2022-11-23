@@ -466,8 +466,6 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
           formData.items.splice(index, 1)
         }
       })
-      console.log(formData, 123)
-      return
       test.makeInvoice(formData).then(res => {
         if (res.code === 1) {
           Object.assign(result, res.content)
