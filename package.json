@@ -11,25 +11,24 @@
     "pm2": "pm2 delete easyapi-fapiao-robot-tool \n pm2 start npm --name 'easyapi-fapiao-robot-tool' -- run start"
   },
   "dependencies": {
-    "nuxt": "^3.0.0-rc.13",
-    "unplugin-auto-import": "^0.11.4",
-    "unplugin-vue-components": "^0.22.9",
+    "nuxt": "^3.0.0",
+    "unplugin-auto-import": "^0.11.5",
+    "unplugin-vue-components": "^0.22.11",
     "sockjs-client": "1.6.1",
     "stompjs": "2.3.3"
   },
   "devDependencies": {
-    "@nuxt/kit": "^3.0.0-rc.13",
+    "@nuxt/kit": "^3.0.0",
     "@nuxtjs/tailwindcss": "^6.1.3",
-    "@pinia/nuxt": "^0.4.3",
+    "@pinia/nuxt": "^0.4.5",
     "@tailwindcss/typography": "^0.5.8",
-    "@types/lodash": "^4.14.188",
-    "element-plus": "^2.2.21",
+    "@types/lodash": "^4.14.189",
+    "element-plus": "^2.2.22",
     "@element-plus/icons-vue": "^2.0.10",
-    "eslint": "^8.27.0",
+    "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.7.1",
-    "pinia": "^2.0.23",
+    "prettier": "^2.8.0",
     "cross-env": "^7.0.3"
   }
 }

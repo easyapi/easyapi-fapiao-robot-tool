@@ -7,8 +7,7 @@ const lifecycle = process.env.npm_lifecycle_event
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  buildModules: ['@pinia/nuxt'],
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'],
   build: {
     transpile: lifecycle === 'build' ? ['element-plus'] : []
   },
