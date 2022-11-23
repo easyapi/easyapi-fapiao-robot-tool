@@ -140,8 +140,10 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
             type: 'success',
             message: res.message
           })
-          fullscreenLoading.value = true
-          webSocket()
+          if (formData.printCallbackUrl) {
+            fullscreenLoading.value = true
+            webSocket()
+          }
         }
       })
     }
@@ -180,8 +182,7 @@ function saveChange() {
  */
 function updateFormData() {
   let data = getCacheData(route.name as string)
-  formData.taxNumber = data.taxNumber
-  formData.callbackUrl = data.callbackUrl
+  Object.assign(formData, data)
 }
 
 function gotoPath(url: string) {
@@ -191,7 +192,7 @@ function gotoPath(url: string) {
 onMounted(() => {})
 
 useHead({
-  title: '发票红冲 - EasyAPI发票机器人'
+  title: '发票打印 - EasyAPI发票机器人'
 })
 </script>
 

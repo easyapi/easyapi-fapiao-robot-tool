@@ -101,8 +101,7 @@ function saveChange() {
  */
 function updateFormData() {
   let data = getCacheData(route.name as string)
-  formData.taxNumber = data.taxNumber
-  formData.callbackUrl = data.callbackUrl
+  Object.assign(formData, data)
 }
 
 /**

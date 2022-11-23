@@ -94,10 +94,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
  */
 function updateFormData() {
   let data = getCacheData(route.name as string)
-  formData.taxNumber = data.taxNumber
-  formData.outOrderNo = data.outOrderNo
-  formData.makeCallbackUrl = data.makeCallbackUrl
-  formData.callbackUrl = data.callbackUrl
+  Object.assign(formData, data)
 }
 
 /**
@@ -107,7 +104,9 @@ function saveChange() {
   setCacheData(route.name as string, formData)
 }
 
-onMounted(() => {})
+onMounted(() => {
+  updateFormData()
+})
 
 useHead({
   title: '重试开票 - EasyAPI发票机器人'

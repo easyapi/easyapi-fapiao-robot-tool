@@ -416,28 +416,7 @@ function saveChange(type: string, idx: any) {
  */
 function updateFormData() {
   let data = getCacheData(route.name as string)
-  formData.items = data.items
-  formData.category = data.category
-  formData.outOrderNo = data.outOrderNo
-  formData.purchaserName = data.purchaserName
-  formData.purchaserTaxpayerNumber = data.purchaserTaxpayerNumber
-  formData.purchaserAddress = data.purchaserAddress
-  formData.purchaserPhone = data.purchaserPhone
-  formData.purchaserBank = data.purchaserBank
-  formData.purchaserBankAccount = data.purchaserBankAccount
-  formData.sellerName = data.sellerName
-  formData.sellerTaxpayerNumber = data.sellerTaxpayerNumber
-  formData.sellerAddress = data.sellerAddress
-  formData.sellerPhone = data.sellerPhone
-  formData.sellerBank = data.sellerBank
-  formData.sellerBankAccount = data.sellerBankAccount
-  formData.receiverName = data.receiverName
-  formData.checkerName = data.checkerName
-  formData.drawerName = data.drawerName
-  formData.mobile = data.mobile
-  formData.email = data.email
-  formData.remark = data.remark
-  formData.callbackUrl = data.callbackUrl
+  Object.assign(formData, data)
 }
 
 /**
