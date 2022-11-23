@@ -14,6 +14,7 @@
 .body-content {
   height: calc(100vh - 68px);
 }
+
 .body-content-items {
   width: calc(100vw - 250px);
 }

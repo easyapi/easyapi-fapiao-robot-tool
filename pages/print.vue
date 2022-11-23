@@ -41,7 +41,9 @@
     <template #header="{ close, titleId }">
       <div class="flex items-center justify-between border-b py-3 px-4">
         <div :id="titleId" class="text-sm font-semibold tracking-wide">温馨提示</div>
-        <el-icon class="cursor-pointer" @click="close"><Close /></el-icon>
+        <el-icon class="cursor-pointer" @click="close">
+          <Close />
+        </el-icon>
       </div>
     </template>
     <div class="px-4 font-normal tracking-wide">
@@ -59,7 +61,8 @@
         <span
           class="cursor-pointer text-blue-400"
           @click="gotoPath('https://www.nuonuo.com/nuonuo/web/mainbody/special/index.html?guid=c0f3054219944a8fa56ad2fc534d3850')">
-          使用说明<el-icon><QuestionFilled /></el-icon>
+          使用说明
+          <el-icon><QuestionFilled /></el-icon>
         </span>
       </div>
     </div>

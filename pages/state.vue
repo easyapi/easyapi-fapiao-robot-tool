@@ -36,6 +36,7 @@ import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 import SockJS from 'sockjs-client/dist/sockjs.min.js'
 import Stomp from 'stompjs'
+
 const token = useCookie('robotToken')
 
 const route = useRoute()
@@ -77,7 +78,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       test.stateShop(formData).then(res => {
         if (res.code === 1) {
-          Object.assign(result, res.content);
+          Object.assign(result, res.content)
           ElMessage({
             type: 'success',
             message: res.message

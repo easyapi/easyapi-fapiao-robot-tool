@@ -77,7 +77,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       test.robotShop(formData).then(res => {
         if (res.code === 1) {
-          Object.assign(result, res.content);
+          Object.assign(result, res.content)
           ElMessage({
             type: 'success',
             message: res.message

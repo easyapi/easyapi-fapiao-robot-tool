@@ -44,7 +44,7 @@ import { test } from '@/api/test'
 import { setCacheData, getCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
-import {ref} from "vue";
+import { ref } from 'vue'
 
 const token = useCookie('robotToken')
 const route = useRoute()
@@ -85,7 +85,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       test.cancelInvoice(formData).then(res => {
         if (res.code === 1) {
-          Object.assign(result, res.content);
+          Object.assign(result, res.content)
           ElMessage({
             type: 'success',
             message: res.message
