@@ -1,25 +1,27 @@
 <template>
   <div class="page flex form-page">
     <div class="form-info bg-white">
-      <el-form :model="formData" ref="ruleFormRef" :rules="formRules" label-width="110px">
+      <el-form ref="ruleFormRef" :model="formData" :rules="formRules" label-width="110px">
         <el-form-item label="企业税号：" prop="taxNumber">
-          <el-input v-model="formData.taxNumber" placeholder="企业税号" @input="saveChange" maxlength="18" />
+          <el-input v-model="formData.taxNumber" placeholder="企业税号" maxlength="18" @input="saveChange" />
         </el-form-item>
         <el-form-item label="商户订单号：" prop="outOrderNo">
           <el-input v-model="formData.outOrderNo" placeholder="商户订单号" @input="saveChange" />
         </el-form-item>
         <el-form-item label="发票代码：" prop="code">
-          <el-input v-model="formData.code" placeholder="12位数字是发票代码" @input="saveChange" maxlength="12" />
+          <el-input v-model="formData.code" placeholder="12位数字是发票代码" maxlength="12" @input="saveChange" />
         </el-form-item>
         <el-form-item label="发票号码：" prop="number">
-          <el-input v-model="formData.number" placeholder="8位数字是发票代码" @input="saveChange" maxlength="8" />
+          <el-input v-model="formData.number" placeholder="8位数字是发票代码" maxlength="8" @input="saveChange" />
         </el-form-item>
         <el-form-item label="红冲原因：" prop="reason">
           <el-input v-model="formData.reason" placeholder="红冲原因" @input="saveChange" />
         </el-form-item>
         <el-form-item label="红字信息表编码：" prop="redSerialNo">
           <el-input v-model="formData.redSerialNo" placeholder="红字信息表编码" @input="saveChange" />
-          <div class="tips">红字信息表编码：专票红冲时需申请红字信息表，此字段专票红冲时必填 3202201506013858</div>
+          <div class="tips">
+            红字信息表编码：专票红冲时需申请红字信息表，此字段专票红冲时必填 3202201506013858
+          </div>
         </el-form-item>
         <el-form-item label="回调地址：" prop="callbackUrl">
           <el-input v-model="formData.callbackUrl" placeholder="回调地址" @input="saveChange" />
@@ -28,15 +30,17 @@
         <el-form-item>
           <client-only>
             <el-tooltip effect="dark" content="请先行登录" placement="top" :disabled="disable">
-              <el-button type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
+              <el-button type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">
+                发送
+              </el-button>
             </el-tooltip>
           </client-only>
         </el-form-item>
       </el-form>
     </div>
     <div class="result-info">
-      <result :formData="result" />
-      <callback :formData="callback" />
+      <Result :form-data="result" />
+      <Callback :form-data="callback" />
     </div>
   </div>
 </template>
@@ -86,8 +90,8 @@ const disable = !!token.value
 /**
  * 更新formData
  */
-function updateFormData() {
-  let data = getCacheData(route.name as string)
+function updateFormData () {
+  const data = getCacheData(route.name as string)
   Object.assign(formData, data)
 }
 
@@ -95,10 +99,10 @@ function updateFormData() {
  * 发送
  */
 const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  await formEl.validate((valid, fields) => {
+  if (!formEl) { return }
+  await formEl.validate((valid) => {
     if (valid) {
-      test.redInvoice(formData).then(res => {
+      test.redInvoice(formData).then((res) => {
         if (res.code === 1) {
           Object.assign(result, res.content)
           ElMessage({
@@ -114,7 +118,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
 /**
  * 缓存记录数据
  */
-function saveChange() {
+function saveChange () {
   setCacheData(route.name as string, formData)
 }
 

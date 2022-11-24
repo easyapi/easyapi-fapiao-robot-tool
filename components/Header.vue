@@ -3,7 +3,7 @@
     <div class="flex px-1 md:px-6 justify-between items-center border-b">
       <div class="flex items-center py-4">
         <div class="font-black inline text-xl cursor-pointer" @click="gotoHome">
-          <img src="/logo-black.png" class="logo-img w-8 h-8" alt="" srcset="" />
+          <img src="/logo-black.png" class="logo-img w-8 h-8" alt="" srcset="">
         </div>
         <span class="ml-2 text-xl">EasyAPI发票机器人 接口测试工具</span>
       </div>
@@ -16,16 +16,19 @@
             <span v-else>开票异常</span>
           </div>
           <a
-            href="https://robot.easyapi.com/login?from=https://robot.easyapi.com/tool/"
             v-if="!loginStatus"
-            class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md">
+            href="https://robot.easyapi.com/login?from=https://robot.easyapi.com/tool/"
+            class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md"
+          >
             登录
           </a>
-          <el-popover trigger="click" v-else>
-            <p class="chose-style" @click="logout()">退出登录</p>
+          <el-popover v-else trigger="click">
+            <p class="chose-style" @click="logout()">
+              退出登录
+            </p>
             <template #reference>
               <div class="flex cursor-pointer">
-                <img v-show="loginStatus" class="w-8 h-8 mr-2" src="/img/header.png" />
+                <img v-show="loginStatus" class="w-8 h-8 mr-2" src="/img/header.png">
                 <!-- <span>{{ robotUser.username }}</span> -->
               </div>
             </template>
@@ -38,8 +41,8 @@
 
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
-import { userStore } from '@/stores/user'
 import { CircleCloseFilled, SuccessFilled } from '@element-plus/icons-vue'
+import { userStore } from '@/stores/user'
 import { connect, setTaxNumber } from '@/utils/webSocketUtil'
 
 const token = useCookie('robotToken')
@@ -53,7 +56,7 @@ const state = reactive({
   isMakeInvoice: false
 })
 
-if (typeof token.value != 'undefined') {
+if (typeof token.value !== 'undefined') {
   loginStatus.value = true
 }
 
@@ -78,11 +81,11 @@ const dataList = ref([
   }
 ])
 
-function gotoHome() {
+function gotoHome () {
   router.push('')
 }
 
-function logout() {
+function logout () {
   store.$patch({
     showLogin: false
   })
@@ -91,10 +94,10 @@ function logout() {
   location.reload()
 }
 
-function getRobotState() {
-  if (state.timer) clearInterval(state.timer)
+function getRobotState () {
+  if (state.timer) { clearInterval(state.timer) }
   state.timer = setInterval(() => {
-    let robotState = JSON.parse(localStorage.getItem('robotState'))
+    const robotState = JSON.parse(localStorage.getItem('robotState'))
     if (robotState && robotState.make == 1) {
       state.isMakeInvoice = true
     } else {

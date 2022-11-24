@@ -73,7 +73,6 @@ $ yarn pm2
  ├──.gitignore          #忽略配置文件
  ├──app.vue             #项目入口文件
  ├──package.json        #用于描述应用的依赖关系和对外暴露的脚本接口
- ├──prettier.config.js  #Prettier前端格式化配置文件
  ├──nuxt.config.js      #Nuxt.js配置文件，覆盖默认配置。
  └──tailwind.config     #Tailwind CSS配置
 ```

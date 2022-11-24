@@ -16,7 +16,7 @@ const name = ref('')
 
 watch(
   () => route.currentRoute.value.path,
-  newPath => {
+  (newPath) => {
     switch (newPath) {
       case '/':
         name.value = '首页'
@@ -56,7 +56,7 @@ watch(
 )
 
 onMounted(() => {
-  let newPath = route.currentRoute.value.path
+  const newPath = route.currentRoute.value.path
   switch (newPath) {
     case '/':
       name.value = '首页'

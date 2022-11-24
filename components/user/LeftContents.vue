@@ -2,11 +2,11 @@
   <ul class="left-ul">
     <li v-for="(item, index) in menu" :key="index" class="my-2" :class="$route.path === item.path ? 'active' : ''">
       <nuxt-link :to="item.path">
-        <div v-if="item.icon !== 'false'" class="mr-3 iconfont" :class="item.icon"></div>
-        <p v-text="item.name"></p>
+        <div v-if="item.icon !== 'false'" class="mr-3 iconfont" :class="item.icon" />
+        <p v-text="item.name" />
       </nuxt-link>
     </li>
-    <hr class="my-2" />
+    <hr class="my-2">
     <li>
       <a @click="logout()">
         <p class="text-red-600">退出登陆</p>
@@ -26,7 +26,7 @@ const menu = ref([
   { path: '/user/create', name: '创作中心', icon: 'icon-pencil-fill' },
   { path: '/user/order', name: '订单管理', icon: 'icon-favorites-fill' }
 ])
-function logout() {
+function logout () {
   store.$patch({
     isLogin: false
   })

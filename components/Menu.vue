@@ -1,6 +1,8 @@
 <template>
   <div class="menu bg-white">
-    <div class="menu-title">接口调试</div>
+    <div class="menu-title">
+      接口调试
+    </div>
     <el-menu active-text-color="#409EFF" class="el-menu-vertical-demo" :default-active="selectMenu" @select="selectMenuItem">
       <el-menu-item index="">
         <span>首页</span>
@@ -50,7 +52,7 @@ onMounted(() => {
   selectMenu.value = route.name === 'index' ? '' : String(route.name)
 })
 
-function selectMenuItem(row) {
+function selectMenuItem (row) {
   router.push(`/${row}`)
 }
 </script>

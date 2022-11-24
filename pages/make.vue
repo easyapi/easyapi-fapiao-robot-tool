@@ -1,11 +1,11 @@
 <template>
   <div class="page flex invoicing">
     <div class="form-info bg-white">
-      <el-form :model="formData" ref="ruleFormRef" :rules="formRules" label-width="150px">
+      <el-form ref="ruleFormRef" :model="formData" :rules="formRules" label-width="150px">
         <el-row>
           <el-col :span="8">
             <el-form-item label="商户流水号：" prop="outOrderNo">
-              <el-input @input="saveChange" v-model="formData.outOrderNo" />
+              <el-input v-model="formData.outOrderNo" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -19,97 +19,97 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="购买方名称：" prop="purchaserName">
-              <el-input @input="saveChange" v-model="formData.purchaserName" />
+              <el-input v-model="formData.purchaserName" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="纳税人识别号：" prop="purchaserTaxpayerNumber">
-              <el-input @input="saveChange" v-model="formData.purchaserTaxpayerNumber" maxlength="18" />
+              <el-input v-model="formData.purchaserTaxpayerNumber" maxlength="18" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="购买方地址：" prop="purchaserAddress">
-              <el-input @input="saveChange" v-model="formData.purchaserAddress" />
+              <el-input v-model="formData.purchaserAddress" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="购买方电话：" prop="purchaserPhone">
-              <el-input @input="saveChange" v-model="formData.purchaserPhone" />
+              <el-input v-model="formData.purchaserPhone" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="购买方开户行：" prop="purchaserBank">
-              <el-input @input="saveChange" v-model="formData.purchaserBank" />
+              <el-input v-model="formData.purchaserBank" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="购买方开户行账号：" prop="purchaserBankAccount">
-              <el-input @input="saveChange" v-model="formData.purchaserBankAccount" />
+              <el-input v-model="formData.purchaserBankAccount" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方名称：" prop="sellerName">
-              <el-input @input="saveChange" v-model="formData.sellerName" />
+              <el-input v-model="formData.sellerName" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方纳税人识别号：" prop="sellerTaxpayerNumber">
-              <el-input @input="saveChange" v-model="formData.sellerTaxpayerNumber" maxlength="18" />
+              <el-input v-model="formData.sellerTaxpayerNumber" maxlength="18" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方地址：" prop="sellerAddress">
-              <el-input @input="saveChange" v-model="formData.sellerAddress" />
+              <el-input v-model="formData.sellerAddress" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方电话：" prop="sellerPhone">
-              <el-input @input="saveChange" v-model="formData.sellerPhone" />
+              <el-input v-model="formData.sellerPhone" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方银行：" prop="sellerBank">
-              <el-input @input="saveChange" v-model="formData.sellerBank" />
+              <el-input v-model="formData.sellerBank" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方银行账号：" prop="sellerBankAccount">
-              <el-input @input="saveChange" v-model="formData.sellerBankAccount" />
+              <el-input v-model="formData.sellerBankAccount" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="收款人名称：" prop="receiverName">
-              <el-input @input="saveChange" v-model="formData.receiverName" />
+              <el-input v-model="formData.receiverName" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="复核名称：" prop="checkerName">
-              <el-input @input="saveChange" v-model="formData.checkerName" />
+              <el-input v-model="formData.checkerName" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="收票人手机号码：" prop="drawerName">
-              <el-input @input="saveChange" v-model="formData.drawerName" />
+              <el-input v-model="formData.drawerName" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="收款人名称：" prop="mobile">
-              <el-input @input="saveChange" v-model="formData.mobile" />
+              <el-input v-model="formData.mobile" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="电子发票接收邮箱：" prop="email">
-              <el-input @input="saveChange" v-model="formData.email" />
+              <el-input v-model="formData.email" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="备注：" prop="remark">
-              <el-input @input="saveChange" v-model="formData.remark" />
+              <el-input v-model="formData.remark" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="回调客户地址URL：" prop="callbackUrl">
-              <el-input @input="saveChange" v-model="formData.callbackUrl" />
+              <el-input v-model="formData.callbackUrl" @input="saveChange" />
               <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
             </el-form-item>
           </el-col>
@@ -118,21 +118,23 @@
       <el-table :data="formData.items">
         <el-table-column label="税收分类编码">
           <template #default="scope">
-            <el-input @input="saveChange" v-model="scope.row.no" placeholder="税收分类编码" />
+            <el-input v-model="scope.row.no" placeholder="税收分类编码" @input="saveChange" />
             <a href="https://fapiao.easyapi.com/taxcode.html" target="_blank">查找税收分类编码</a>
           </template>
         </el-table-column>
         <el-table-column label="商品名称">
           <template #default="scope">
-            <el-input @input="saveChange" v-model="scope.row.name" placeholder="强输入商品名称" />
-            <div class="tips">例如：*信息技术服务*技术服务费，其中技术服务费是商品名称</div>
+            <el-input v-model="scope.row.name" placeholder="强输入商品名称" @input="saveChange" />
+            <div class="tips">
+              例如：*信息技术服务*技术服务费，其中技术服务费是商品名称
+            </div>
           </template>
         </el-table-column>
         <el-table-column label="型号" width="3">
           <el-table-column label="单位">
             <template #default="scope">
-              <el-input @input="saveChange" v-model="scope.row.model" placeholder="型号，例如红色" />
-              <el-input @input="saveChange" v-model="scope.row.unit" placeholder="单位，例如次" />
+              <el-input v-model="scope.row.model" placeholder="型号，例如红色" @input="saveChange" />
+              <el-input v-model="scope.row.unit" placeholder="单位，例如次" @input="saveChange" />
             </template>
           </el-table-column>
         </el-table-column>
@@ -149,12 +151,12 @@
         </el-table-column>
         <el-table-column label="含税折扣金额">
           <template #default="scope">
-            <el-input @input="saveChange" v-model="scope.row.discount" placeholder="表示是否有折扣（默认为0）" />
+            <el-input v-model="scope.row.discount" placeholder="表示是否有折扣（默认为0）" @input="saveChange" />
           </template>
         </el-table-column>
         <el-table-column label="税率">
           <template #default="scope">
-            <el-input @input="saveChange" v-model="scope.row.taxRate" placeholder="例如0.06" />
+            <el-input v-model="scope.row.taxRate" placeholder="例如0.06" @input="saveChange" />
           </template>
         </el-table-column>
         <el-table-column label="优惠政策">
@@ -169,29 +171,36 @@
               v-if="scope.row.preferentialPolicyFlag === 1"
               v-model="scope.row.preferentialPolicyName"
               placeholder="增值税特殊管理"
-              @change="saveChange">
+              @change="saveChange"
+            >
               <el-option v-for="item in specials" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="100">
           <template #default="scope">
-            <el-button text type="primary" @click="addItem">添加</el-button>
-            <el-button type="danger" v-if="scope.$index !== 0" link @click="deleteItem(scope.$index)">删除</el-button>
+            <el-button text type="primary" @click="addItem">
+              添加
+            </el-button>
+            <el-button v-if="scope.$index !== 0" type="danger" link @click="deleteItem(scope.$index)">
+              删除
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
       <client-only>
         <el-tooltip class="box-item" effect="dark" content="请先行登录" placement="top" :disabled="disable">
           <div class="outer-frame">
-            <el-button type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">发送</el-button>
+            <el-button type="primary" :disabled="!disable" @click="onSubmit(ruleFormRef)">
+              发送
+            </el-button>
           </div>
         </el-tooltip>
       </client-only>
     </div>
     <div class="result-info">
-      <result :formData="result" />
-      <callback :formData="callback" />
+      <Result :form-data="result" />
+      <Callback :form-data="callback" />
     </div>
   </div>
 </template>
@@ -200,12 +209,12 @@
 import { reactive, ref, onMounted } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
+import { integer } from 'vscode-languageserver-types'
 import { test } from '@/api/test'
 import { setCacheData, getCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 import { invoiceCategoryList } from '~/utils/invoice-category'
-import { integer } from 'vscode-languageserver-types'
 const token = useCookie('robotToken')
 
 const route = useRoute()
@@ -316,18 +325,18 @@ const formRules = reactive<FormRules>({
 /**
  * 修改商品明细数量
  */
-function changeNumber(index: integer) {
+function changeNumber (index: integer) {
   if (!formData.items[index].number) {
     formData.items[index].sum = null
     return
   }
   if (formData.items[index].price) {
-    //计算小计（保留2位小数）
+    // 计算小计（保留2位小数）
     formData.items[index].sum = Number(formData.items[index].number) * Number(formData.items[index].price)
     return
   }
   if (formData.items[index].sum) {
-    //并且数量有值，计算单价（保留8为小数）
+    // 并且数量有值，计算单价（保留8为小数）
     formData.items[index].price = Number(formData.items[index].sum) / Number(formData.items[index].number)
   }
   setCacheData(route.name as string, formData)
@@ -336,18 +345,18 @@ function changeNumber(index: integer) {
 /**
  * 修改商品明细单价
  */
-function changePrice(index: integer) {
+function changePrice (index: integer) {
   if (!formData.items[index].price) {
     formData.items[index].sum = null
     return
   }
   if (formData.items[index].number) {
-    //计算小计（保留2位小数）
+    // 计算小计（保留2位小数）
     formData.items[index].sum = Number(formData.items[index].number) * Number(formData.items[index].price)
     return
   }
   if (formData.items[index].sum) {
-    //计算数量
+    // 计算数量
     formData.items[index].number = Number(formData.items[index].sum) / Number(formData.items[index].price)
   }
   setCacheData(route.name as string, formData)
@@ -356,13 +365,13 @@ function changePrice(index: integer) {
 /**
  * 修改商品明细小计
  */
-function changeSum(index: integer) {
+function changeSum (index: integer) {
   if (formData.items[index].sum) {
     formData.items[index].price = null
     return
   }
   if (formData.items[index].number) {
-    //并且数量有值，计算单价（保留8为小数）
+    // 并且数量有值，计算单价（保留8为小数）
     formData.items[index].price = Number(formData.items[index].sum) / Number(formData.items[index].number)
     return
   }
@@ -375,7 +384,7 @@ function changeSum(index: integer) {
 /**
  *添加
  */
-function addItem() {
+function addItem () {
   formData.items.push({
     no: '',
     name: '',
@@ -395,14 +404,14 @@ function addItem() {
 /**
  * 删除
  */
-function deleteItem(index: integer) {
+function deleteItem (index: integer) {
   formData.items.splice(index, 1)
 }
 
 /**
  * 缓存记录数据
  */
-function saveChange(type: string, idx: any) {
+function saveChange (type: string, idx: any) {
   if (type == '优惠政策') {
     if (formData.items[idx].preferentialPolicyFlag == '') {
       formData.items[idx].zeroRateFlag = ''
@@ -415,8 +424,8 @@ function saveChange(type: string, idx: any) {
 /**
  * 更新formData
  */
-function updateFormData() {
-  let data = getCacheData(route.name as string)
+function updateFormData () {
+  const data = getCacheData(route.name as string)
   Object.assign(formData, data)
 }
 
@@ -426,8 +435,8 @@ function updateFormData() {
 const onSubmit = async (formEl: FormInstance | undefined) => {
   if (formData.category.indexOf('专用')) {
   }
-  if (!formEl) return
-  await formEl.validate((valid, fields) => {
+  if (!formEl) { return }
+  await formEl.validate((valid) => {
     if (valid) {
       formData.items.forEach((item, index) => {
         if (
@@ -446,7 +455,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
           formData.items.splice(index, 1)
         }
       })
-      test.makeInvoice(formData).then(res => {
+      test.makeInvoice(formData).then((res) => {
         if (res.code === 1) {
           Object.assign(result, res.content)
           ElMessage({

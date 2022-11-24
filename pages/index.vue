@@ -1,6 +1,8 @@
 <template>
   <div class="page flex invoicing">
-    <div class="form-info bg-white">点击左侧开始测试</div>
+    <div class="form-info bg-white">
+      点击左侧开始测试
+    </div>
   </div>
 </template>
 
