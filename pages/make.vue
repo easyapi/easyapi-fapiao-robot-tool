@@ -205,6 +205,7 @@ import { setCacheData, getCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 import { invoiceCategoryList } from '~/utils/invoice-category'
+import { integer } from 'vscode-languageserver-types'
 const token = useCookie('robotToken')
 
 const route = useRoute()
@@ -215,7 +216,7 @@ const disable = !!token.value
 
 const formData = reactive({
   category: '增值税电子普通发票',
-  outOrderNo: 'TOOL' + new Date().getTime(),
+  outOrderNo: '',
   purchaserName: '深圳市腾讯计算机系统有限公司',
   purchaserTaxpayerNumber: '91440300708461136T',
   purchaserAddress: '',
@@ -315,7 +316,7 @@ const formRules = reactive<FormRules>({
 /**
  * 修改商品明细数量
  */
-function changeNumber(index) {
+function changeNumber(index: integer) {
   if (!formData.items[index].number) {
     formData.items[index].sum = null
     return
@@ -335,7 +336,7 @@ function changeNumber(index) {
 /**
  * 修改商品明细单价
  */
-function changePrice(index) {
+function changePrice(index: integer) {
   if (!formData.items[index].price) {
     formData.items[index].sum = null
     return
@@ -355,7 +356,7 @@ function changePrice(index) {
 /**
  * 修改商品明细小计
  */
-function changeSum(index) {
+function changeSum(index: integer) {
   if (formData.items[index].sum) {
     formData.items[index].price = null
     return
@@ -394,7 +395,7 @@ function addItem() {
 /**
  * 删除
  */
-function deleteItem(index) {
+function deleteItem(index: integer) {
   formData.items.splice(index, 1)
 }
 
@@ -460,6 +461,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
 
 onMounted(() => {
   updateFormData()
+  formData.outOrderNo = 'TOOL' + new Date().getTime()
 })
 
 useHead({
