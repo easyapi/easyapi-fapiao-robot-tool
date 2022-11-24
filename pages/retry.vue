@@ -3,7 +3,7 @@
     <div class="form-info bg-white">
       <el-form :model="formData" ref="ruleFormRef" :rules="formRules" label-width="110px">
         <el-form-item label="企业税号：" prop="taxNumber">
-          <el-input v-model="formData.taxNumber" placeholder="企业税号" @input="saveChange" />
+          <el-input v-model="formData.taxNumber" placeholder="企业税号" @input="saveChange" maxlength="18" />
         </el-form-item>
         <el-form-item label="商户订单号：" prop="outOrderNo">
           <el-input v-model="formData.outOrderNo" placeholder="商户订单号" @input="saveChange" />

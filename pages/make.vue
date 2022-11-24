@@ -24,7 +24,7 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="纳税人识别号：" prop="purchaserTaxpayerNumber">
-              <el-input @input="saveChange" v-model="formData.purchaserTaxpayerNumber" />
+              <el-input @input="saveChange" v-model="formData.purchaserTaxpayerNumber" maxlength="18" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -54,7 +54,7 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="销售方纳税人识别号：" prop="sellerTaxpayerNumber">
-              <el-input @input="saveChange" v-model="formData.sellerTaxpayerNumber" />
+              <el-input @input="saveChange" v-model="formData.sellerTaxpayerNumber" maxlength="18" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
