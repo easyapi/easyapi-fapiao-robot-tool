@@ -1,5 +1,10 @@
 {
   "extends": [
     "@nuxtjs/eslint-config-typescript"
-  ]
+  ],
+
+  "rules": {
+    "brace-style": "off",
+    "@typescript-eslint/brace-style": "off"
+  }
 }

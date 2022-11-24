@@ -108,7 +108,9 @@ function updateFormData () {
   Object.assign(formData, data)
 }
 
-onMounted(() => {})
+onMounted(() => {
+  updateFormData()
+})
 
 useHead({
   title: '同步查询 - EasyAPI发票机器人'

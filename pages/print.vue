@@ -175,7 +175,7 @@ function webSocket () {
 }
 
 function subscribe () {
-  stompClient.subscribe(`/topic/${formData.taxNumber}/nuonuo/print`, (message: object) => {
+  stompClient.subscribe(`/topic/${formData.taxNumber}/nuonuo/print`, (message: any) => {
     const target = JSON.parse(message.body)
     invoiceDetail.category = target.category
     invoiceDetail.code = target.code
@@ -205,7 +205,9 @@ function gotoPath (url: string) {
   window.open(url, '_blank')
 }
 
-onMounted(() => {})
+onMounted(() => {
+  updateFormData()
+})
 
 useHead({
   title: '发票打印 - EasyAPI发票机器人'

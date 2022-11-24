@@ -254,11 +254,11 @@ const formData = reactive({
       name: '',
       model: '',
       unit: '',
-      number: null,
-      price: null,
-      sum: null,
+      number: null as any,
+      price: null as any,
+      sum: null as any,
       discount: 0,
-      taxRate: null,
+      taxRate: 0.03,
       preferentialPolicyFlag: '',
       zeroRateFlag: '',
       preferentialPolicyName: ''
@@ -394,7 +394,7 @@ function addItem () {
     price: null,
     sum: null,
     discount: 0,
-    taxRate: null,
+    taxRate: 0.03,
     preferentialPolicyFlag: '',
     zeroRateFlag: '',
     preferentialPolicyName: ''
@@ -412,8 +412,8 @@ function deleteItem (index: integer) {
  * 缓存记录数据
  */
 function saveChange (type: string, idx: any) {
-  if (type == '优惠政策') {
-    if (formData.items[idx].preferentialPolicyFlag == '') {
+  if (type === '优惠政策') {
+    if (formData.items[idx].preferentialPolicyFlag === '') {
       formData.items[idx].zeroRateFlag = ''
       formData.items[idx].preferentialPolicyName = ''
     }
@@ -434,13 +434,14 @@ function updateFormData () {
  */
 const onSubmit = async (formEl: FormInstance | undefined) => {
   if (formData.category.indexOf('专用')) {
+    // todo
   }
   if (!formEl) { return }
   await formEl.validate((valid) => {
     if (valid) {
       formData.items.forEach((item, index) => {
         if (
-          item.no == '' &&
+          item.no === '' &&
           item.name === '' &&
           item.model === '' &&
           item.unit === '' &&

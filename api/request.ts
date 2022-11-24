@@ -1,8 +1,8 @@
+import { ElMessage } from 'element-plus'
+
 const apiUrl = 'https://api.easyapi.com'
 const baseUrl = 'https://fapiao-robot-api.easyapi.com'
 const accountUrl = 'https://account-api.easyapi.com'
-
-import { ElMessage } from 'element-plus'
 
 const get = async (url: string, params = {}): Promise<ApiResponse> => {
   try {
@@ -12,10 +12,10 @@ const get = async (url: string, params = {}): Promise<ApiResponse> => {
         Authorization: token.value ? `Bearer ${token.value}` : ''
       },
       method: 'GET',
-      params: params
+      params
     })
     return res
-  } catch (error) {
+  } catch (error : any) {
     ElMessage({
       type: 'error',
       message: error.data.message
@@ -35,7 +35,7 @@ const post = async (url: string, data = {}): Promise<ApiResponse> => {
       body: data
     })
     return res
-  } catch (error) {
+  } catch (error : any) {
     ElMessage({
       type: 'error',
       message: error.data.message
@@ -45,7 +45,6 @@ const post = async (url: string, data = {}): Promise<ApiResponse> => {
 }
 
 const put = async (url: string, data = {}): Promise<ApiResponse> => {
-  const router = useRouter()
   try {
     const token = useCookie('robotToken')
     const res = await $fetch<ApiResponse>(url, {
@@ -56,7 +55,7 @@ const put = async (url: string, data = {}): Promise<ApiResponse> => {
       body: data
     })
     return res
-  } catch (error) {
+  } catch (error : any) {
     ElMessage({
       type: 'error',
       message: error.data.message
@@ -76,7 +75,7 @@ const del = async (url: string, data = {}): Promise<ApiResponse> => {
       body: data
     })
     return res
-  } catch (error) {
+  } catch (error : any) {
     ElMessage({
       type: 'error',
       message: error.data.message

@@ -119,7 +119,7 @@ function webSocket () {
 }
 
 function subscribe () {
-  stompClient.subscribe(`/topic/${formData.taxNumber}/tool/callback`, (message) => {
+  stompClient.subscribe(`/topic/${formData.taxNumber}/tool/callback`, (message: string) => {
     console.log(message, 789)
   })
 }

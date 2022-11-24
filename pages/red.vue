@@ -122,7 +122,9 @@ function saveChange () {
   setCacheData(route.name as string, formData)
 }
 
-onMounted(() => {})
+onMounted(() => {
+  updateFormData()
+})
 
 useHead({
   title: '发票红冲 - EasyAPI发票机器人'
