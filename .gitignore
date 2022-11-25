@@ -8,7 +8,9 @@ node_modules
 .idea
 dist
 
+# Misc
 .DS_Store
 
 #Auto files
 components.d.ts
+auto-imports.d.ts
