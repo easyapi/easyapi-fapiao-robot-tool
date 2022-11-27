@@ -1,4 +1,4 @@
-export function setCacheData (path: string, data: any) {
+export function setCacheData(path: string, data: any) {
   let repeat = false
   const arr = localStorage.getItem('cacheData') ? JSON.parse(localStorage.getItem('cacheData') as any) : []
   arr.forEach((item: any) => {
@@ -10,23 +10,23 @@ export function setCacheData (path: string, data: any) {
   if (!repeat) {
     const obj = {
       path,
-      formData: data
+      formData: data,
     }
     arr.push(obj)
   }
   localStorage.setItem('cacheData', JSON.stringify(arr))
 }
 
-export function getCacheData (path: string) {
+export function getCacheData(path: string) {
   let data: any
   if (path !== 'make') {
     data = {
-      callbackUrl: ''
+      callbackUrl: '',
     }
   } else if (path === 'make') {
     data = {
       category: '增值税电子普通发票',
-      outOrderNo: 'TOOL' + new Date().getTime(),
+      outOrderNo: `TOOL${new Date().getTime()}`,
       purchaserName: '深圳市腾讯计算机系统有限公司',
       purchaserTaxpayerNumber: '91440300708461136T',
       purchaserAddress: '',
@@ -62,17 +62,16 @@ export function getCacheData (path: string) {
           taxRate: null,
           preferentialPolicyFlag: '',
           zeroRateFlag: '',
-          preferentialPolicyName: ''
-        }
-      ]
+          preferentialPolicyName: '',
+        },
+      ],
     }
   }
 
   const arr = localStorage.getItem('cacheData') ? JSON.parse(localStorage.getItem('cacheData') as any) : []
   arr.forEach((item: any) => {
-    if (item.path === path) {
+    if (item.path === path)
       data = item.formData
-    }
   })
   return data
 }

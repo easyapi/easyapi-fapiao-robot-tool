@@ -1,3 +1,12 @@
+<script setup lang="ts">
+const props = defineProps({
+  formData: {
+    type: Object,
+    default: () => {},
+  },
+})
+</script>
+
 <template>
   <div class="w-full bg-white form-style">
     <div class="title">
@@ -14,12 +23,3 @@
     <el-input v-model="formData.message" type="textarea" placeholder="下发内容" />
   </div>
 </template>
-
-<script setup lang="ts">
-const props = defineProps({
-  formData: {
-    type: Object,
-    default: () => {}
-  }
-})
-</script>

@@ -1,7 +1,7 @@
 {
   "name": "easyapi-fapiao-robot-tool",
-  "private": true,
   "version": "1.0.1",
+  "private": true,
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -14,22 +14,23 @@
   },
   "dependencies": {
     "nuxt": "^3.0.0",
-    "unplugin-auto-import": "^0.12.0",
-    "unplugin-vue-components": "^0.22.11",
     "sockjs-client": "1.6.1",
-    "stompjs": "2.3.3"
+    "stompjs": "2.3.3",
+    "unplugin-auto-import": "^0.12.0",
+    "unplugin-vue-components": "^0.22.11"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.31.0",
+    "@element-plus/icons-vue": "^2.0.10",
     "@nuxt/kit": "^3.0.0",
-    "@nuxtjs/tailwindcss": "^6.1.3",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@nuxtjs/tailwindcss": "^6.1.3",
     "@pinia/nuxt": "^0.4.5",
     "@tailwindcss/typography": "^0.5.8",
     "@types/lodash": "^4.14.190",
+    "cross-env": "^7.0.3",
     "element-plus": "^2.2.25",
-    "@element-plus/icons-vue": "^2.0.10",
-    "typescript": "^4.9.3",
-    "eslint-plugin-nuxt": "^4.0.0",
-    "cross-env": "^7.0.3"
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.3"
   }
 }

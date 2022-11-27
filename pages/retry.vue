@@ -1,3 +1,85 @@
+<script setup lang="ts">
+import { onMounted, reactive, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
+import { test } from '@/api/test'
+import { getCacheData, setCacheData } from '@/utils/cacheData'
+import Result from '@/components/Result.vue'
+import Callback from '@/components/Callback.vue'
+
+const token = useCookie('robotToken')
+const route = useRoute()
+
+const ruleFormRef = ref<FormInstance>()
+
+const formData = reactive({
+  taxNumber: '91320211MA1WML8X6T',
+  outOrderNo: '',
+  makeCallbackUrl: 'https://fapiao-robot-api.easyapi.com/callback/retry/make',
+  callbackUrl: '',
+})
+
+const result = reactive({
+  message: '',
+  topic: '',
+  webSocket: '',
+})
+
+const callback = reactive({})
+
+const formRules = reactive<FormRules>({
+  outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
+  makeCallbackUrl: [{ required: true, message: '开票回调地址不能为空', trigger: 'change' }],
+  callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }],
+})
+
+const disable = !!token.value
+
+/**
+ * 发送
+ */
+const onSubmit = async (formEl: FormInstance | undefined) => {
+  if (!formEl)
+    return
+  await formEl.validate((valid) => {
+    if (valid) {
+      test.retryInvoice(formData).then((res) => {
+        if (res.code === 1) {
+          Object.assign(result, res.content)
+          ElMessage({
+            type: 'success',
+            message: res.message,
+          })
+        }
+      })
+    }
+  })
+}
+
+/**
+ * 更新formData
+ */
+function updateFormData() {
+  const data = getCacheData(route.name as string)
+  Object.assign(formData, data)
+}
+
+/**
+ * 缓存记录数据
+ */
+function saveChange() {
+  setCacheData(route.name as string, formData)
+}
+
+onMounted(() => {
+  updateFormData()
+})
+
+useHead({
+  title: '重试开票 - EasyAPI发票机器人',
+})
+</script>
+
 <template>
   <div class="page flex form-page">
     <div class="form-info bg-white">
@@ -35,84 +117,3 @@
     </view>
   </div>
 </template>
-
-<script setup lang="ts">
-import { reactive, ref, onMounted } from 'vue'
-import { ElMessage } from 'element-plus'
-import type { FormInstance, FormRules } from 'element-plus'
-import { test } from '@/api/test'
-import { setCacheData, getCacheData } from '@/utils/cacheData'
-import Result from '@/components/Result.vue'
-import Callback from '@/components/Callback.vue'
-
-const token = useCookie('robotToken')
-const route = useRoute()
-
-const ruleFormRef = ref<FormInstance>()
-
-const formData = reactive({
-  taxNumber: '91320211MA1WML8X6T',
-  outOrderNo: '',
-  makeCallbackUrl: 'https://fapiao-robot-api.easyapi.com/callback/retry/make',
-  callbackUrl: ''
-})
-
-const result = reactive({
-  message: '',
-  topic: '',
-  webSocket: ''
-})
-
-const callback = reactive({})
-
-const formRules = reactive<FormRules>({
-  outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
-  makeCallbackUrl: [{ required: true, message: '开票回调地址不能为空', trigger: 'change' }],
-  callbackUrl: [{ required: true, message: '回调地址不能为空', trigger: 'change' }]
-})
-
-const disable = !!token.value
-
-/**
- * 发送
- */
-const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (!formEl) { return }
-  await formEl.validate((valid) => {
-    if (valid) {
-      test.retryInvoice(formData).then((res) => {
-        if (res.code === 1) {
-          Object.assign(result, res.content)
-          ElMessage({
-            type: 'success',
-            message: res.message
-          })
-        }
-      })
-    }
-  })
-}
-
-/**
- * 更新formData
- */
-function updateFormData () {
-  const data = getCacheData(route.name as string)
-  Object.assign(formData, data)
-}
-
-/**
- * 缓存记录数据
- */
-function saveChange () {
-  setCacheData(route.name as string, formData)
-}
-
-onMounted(() => {
-  updateFormData()
-})
-
-useHead({
-  title: '重试开票 - EasyAPI发票机器人'
-})
-</script>

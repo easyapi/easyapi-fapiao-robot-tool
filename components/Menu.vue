@@ -1,3 +1,20 @@
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+
+const route = useRoute()
+const router = useRouter()
+
+const selectMenu = ref()
+
+onMounted(() => {
+  selectMenu.value = route.name === 'index' ? '' : String(route.name)
+})
+
+function selectMenuItem(row) {
+  router.push(`/${row}`)
+}
+</script>
+
 <template>
   <div class="menu bg-white">
     <div class="menu-title">
@@ -40,22 +57,7 @@
     </el-menu>
   </div>
 </template>
-<script setup lang="ts">
-import { onMounted, ref } from 'vue'
 
-const route = useRoute()
-const router = useRouter()
-
-const selectMenu = ref()
-
-onMounted(() => {
-  selectMenu.value = route.name === 'index' ? '' : String(route.name)
-})
-
-function selectMenuItem (row) {
-  router.push(`/${row}`)
-}
-</script>
 <style scoped>
 .menu {
   height: calc(100% - 40px);

@@ -7,7 +7,7 @@ let taxNumber: any = ''
 /**
  * 机器人状态
  */
-function handlerRobotState (message: any) {
+function handlerRobotState(message: any) {
   const robotState = JSON.parse(message.body)
   localStorage.setItem('robotState', JSON.stringify(robotState))
 }
@@ -15,14 +15,14 @@ function handlerRobotState (message: any) {
 /**
  * 连接失败
  */
-function socketError () {
+function socketError() {
   setTimeout(connect, 2 * 1000)
 }
 
 /**
  * 订阅
  */
-function subscribe () {
+function subscribe() {
   // 发票机器人工作状态
   stompClient.subscribe(`/topic/${taxNumber}/shop/robot-state`, (message: any) => {
     handlerRobotState(message)
@@ -32,7 +32,7 @@ function subscribe () {
 /**
  * 连接
  */
-export function connect () {
+export function connect() {
   const socketUrl = 'https://fapiao-robot-api.easyapi.com/easyapi-socket'
 
   const socket = new SockJS(socketUrl)
@@ -45,15 +45,14 @@ export function connect () {
 /**
  * 取消订阅
  */
-export function disconnect () {
-  if (stompClient) {
+export function disconnect() {
+  if (stompClient)
     stompClient.disconnect()
-  }
 }
 
 /**
  * 设置税号
  */
-export function setTaxNumber (data: any) {
+export function setTaxNumber(data: any) {
   taxNumber = data
 }

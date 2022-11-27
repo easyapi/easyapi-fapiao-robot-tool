@@ -1,12 +1,3 @@
-<template>
-  <div class="breadcrumb bg-white p-3">
-    <el-breadcrumb :separator-icon="ArrowRight">
-      <el-breadcrumb-item>接口调试</el-breadcrumb-item>
-      <el-breadcrumb-item>{{ name }}</el-breadcrumb-item>
-    </el-breadcrumb>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ArrowRight } from '@element-plus/icons-vue'
@@ -52,7 +43,7 @@ watch(
         name.value = '发票机器人状态'
         break
     }
-  }
+  },
 )
 
 onMounted(() => {
@@ -94,6 +85,15 @@ onMounted(() => {
   }
 })
 </script>
+
+<template>
+  <div class="breadcrumb bg-white p-3">
+    <el-breadcrumb :separator-icon="ArrowRight">
+      <el-breadcrumb-item>接口调试</el-breadcrumb-item>
+      <el-breadcrumb-item>{{ name }}</el-breadcrumb-item>
+    </el-breadcrumb>
+  </div>
+</template>
 
 <style>
 .breadcrumb {

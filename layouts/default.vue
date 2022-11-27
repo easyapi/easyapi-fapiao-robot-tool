@@ -10,6 +10,7 @@
     </div>
   </div>
 </template>
+
 <style>
 .body-content {
   height: calc(100vh - 68px);

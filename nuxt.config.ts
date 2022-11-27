@@ -13,33 +13,33 @@ export default defineNuxtConfig({
       // automatically imports `defineStore`
         'defineStore', // import { defineStore } from 'pinia'
         // automatically imports `defineStore` as `definePiniaStore`
-        ['defineStore', 'definePiniaStore'] // import { defineStore as definePiniaStore } from 'pinia'
-      ]
+        ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+      ],
     }]],
   build: {
-    transpile: lifecycle === 'build' ? ['element-plus'] : []
+    transpile: lifecycle === 'build' ? ['element-plus'] : [],
   },
   css: ['~/assets/css/page.css'],
   components: true,
   vite: {
     plugins: [
       AutoImport({
-        resolvers: [ElementPlusResolver()]
+        resolvers: [ElementPlusResolver()],
       }),
       Components({
         dts: true,
         resolvers: [
           ElementPlusResolver({
-            importStyle: false
-          })
-        ]
-      })
+            importStyle: false,
+          }),
+        ],
+      }),
     ],
     build: {
       chunkSizeWarningLimit: 4096,
       rollupOptions: {
-        output: {}
-      }
-    }
-  }
+        output: {},
+      },
+    },
+  },
 })

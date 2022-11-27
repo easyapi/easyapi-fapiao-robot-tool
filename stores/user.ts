@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 
 export const userStore = defineStore('user', {
-  state () {
+  state() {
     return {
       showLogin: false,
-      isLogin: false
+      isLogin: false,
     }
-  }
+  },
 })

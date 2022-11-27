@@ -1,3 +1,78 @@
+<script setup lang="ts">
+import { onMounted, reactive, ref, watch } from 'vue'
+import { CircleCloseFilled, SuccessFilled } from '@element-plus/icons-vue'
+import { userStore } from '@/stores/user'
+import { connect, setTaxNumber } from '@/utils/webSocketUtil'
+
+const token = useCookie('robotToken')
+const robotUser = useCookie('robotUser')
+const store = userStore()
+const router = useRouter()
+const loginStatus = ref(false)
+
+const state = reactive({
+  timer: null,
+  isMakeInvoice: false,
+})
+
+if (typeof token.value !== 'undefined')
+  loginStatus.value = true
+
+watch(
+  () => store.isLogin,
+  (newStatus, oldStatus) => {
+    loginStatus.value = newStatus
+  },
+  {
+    deep: true,
+  },
+)
+
+const dataList = ref([
+  {
+    link: '/order/list',
+    name: '订单管理',
+  },
+  {
+    link: '/setting/shop',
+    name: '开票配置',
+  },
+])
+
+function gotoHome() {
+  router.push('')
+}
+
+function logout() {
+  store.$patch({
+    showLogin: false,
+  })
+  token.value = null
+  router.push('')
+  location.reload()
+}
+
+function getRobotState() {
+  if (state.timer)
+    clearInterval(state.timer)
+  state.timer = setInterval(() => {
+    const robotState = JSON.parse(localStorage.getItem('robotState'))
+    if (robotState && robotState.make == 1)
+      state.isMakeInvoice = true
+    else
+      state.isMakeInvoice = false
+
+    localStorage.removeItem('robotState')
+  }, 5000)
+}
+
+onMounted(() => {
+  setTaxNumber('91320211MA1WML8X6T')
+  connect()
+  getRobotState()
+})
+</script>
+
 <template>
   <header>
     <div class="flex px-1 md:px-6 justify-between items-center border-b">
@@ -38,81 +113,6 @@
     </div>
   </header>
 </template>
-
-<script setup lang="ts">
-import { onMounted, reactive, ref, watch } from 'vue'
-import { CircleCloseFilled, SuccessFilled } from '@element-plus/icons-vue'
-import { userStore } from '@/stores/user'
-import { connect, setTaxNumber } from '@/utils/webSocketUtil'
-
-const token = useCookie('robotToken')
-const robotUser = useCookie('robotUser')
-const store = userStore()
-const router = useRouter()
-const loginStatus = ref(false)
-
-const state = reactive({
-  timer: null,
-  isMakeInvoice: false
-})
-
-if (typeof token.value !== 'undefined') {
-  loginStatus.value = true
-}
-
-watch(
-  () => store.isLogin,
-  (newStatus, oldStatus) => {
-    loginStatus.value = newStatus
-  },
-  {
-    deep: true
-  }
-)
-
-const dataList = ref([
-  {
-    link: '/order/list',
-    name: '订单管理'
-  },
-  {
-    link: '/setting/shop',
-    name: '开票配置'
-  }
-])
-
-function gotoHome () {
-  router.push('')
-}
-
-function logout () {
-  store.$patch({
-    showLogin: false
-  })
-  token.value = null
-  router.push('')
-  location.reload()
-}
-
-function getRobotState () {
-  if (state.timer) { clearInterval(state.timer) }
-  state.timer = setInterval(() => {
-    const robotState = JSON.parse(localStorage.getItem('robotState'))
-    if (robotState && robotState.make == 1) {
-      state.isMakeInvoice = true
-    } else {
-      state.isMakeInvoice = false
-    }
-    localStorage.removeItem('robotState')
-  }, 5000)
-}
-
-onMounted(() => {
-  setTaxNumber('91320211MA1WML8X6T')
-  connect()
-  getRobotState()
-})
-</script>
 
 <style scoped>
 header {
