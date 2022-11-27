@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "nuxt": "^3.0.0",
-    "unplugin-auto-import": "^0.11.5",
+    "unplugin-auto-import": "^0.12.0",
     "unplugin-vue-components": "^0.22.11",
     "sockjs-client": "1.6.1",
     "stompjs": "2.3.3"
@@ -25,10 +25,10 @@
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@pinia/nuxt": "^0.4.5",
     "@tailwindcss/typography": "^0.5.8",
-    "@types/lodash": "^4.14.189",
-    "element-plus": "^2.2.22",
+    "@types/lodash": "^4.14.190",
+    "element-plus": "^2.2.25",
     "@element-plus/icons-vue": "^2.0.10",
-    "typescript": "^4.7.4",
+    "typescript": "^4.9.3",
     "eslint-plugin-nuxt": "^4.0.0",
     "cross-env": "^7.0.3"
   }
