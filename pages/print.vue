@@ -213,7 +213,7 @@ useHead({
             >
               <el-button
                 type="primary"
-              
+                :disabled="!disable"
                 @click="onSubmit(ruleFormRef)"
               >
                 发送
