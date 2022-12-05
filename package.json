@@ -20,17 +20,17 @@
     "unplugin-vue-components": "^0.22.11"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.31.0",
+    "@antfu/eslint-config": "^0.33.1",
     "@element-plus/icons-vue": "^2.0.10",
     "@nuxt/kit": "^3.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/tailwindcss": "^6.1.3",
-    "@pinia/nuxt": "^0.4.5",
+    "@pinia/nuxt": "^0.4.6",
     "@tailwindcss/typography": "^0.5.8",
-    "@types/lodash": "^4.14.190",
+    "@types/lodash": "^4.14.191",
     "cross-env": "^7.0.3",
-    "element-plus": "^2.2.25",
-    "eslint": "^8.28.0",
+    "element-plus": "^2.2.26",
+    "eslint": "^8.29.0",
     "typescript": "^4.9.3"
   }
 }
