@@ -31,6 +31,6 @@
     "cross-env": "^7.0.3",
     "element-plus": "^2.2.26",
     "eslint": "^8.29.0",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.4"
   }
 }
