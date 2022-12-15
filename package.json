@@ -16,11 +16,11 @@
     "nuxt": "^3.0.0",
     "sockjs-client": "1.6.1",
     "stompjs": "2.3.3",
-    "unplugin-auto-import": "^0.12.0",
-    "unplugin-vue-components": "^0.22.11"
+    "unplugin-auto-import": "^0.12.1",
+    "unplugin-vue-components": "^0.22.12"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.33.1",
+    "@antfu/eslint-config": "^0.34.0",
     "@element-plus/icons-vue": "^2.0.10",
     "@nuxt/kit": "^3.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
