@@ -92,7 +92,7 @@ onMounted(() => {
           </div>
           <a
             v-if="!loginStatus"
-            href="https://robot.easyapi.com/login?from=https://robot.easyapi.com/tool/"
+            href="https://robot.easyapi.com/login?from=https://robot-tool.easyapi.com"
             class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md"
           >
             登录
