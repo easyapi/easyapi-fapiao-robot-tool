@@ -156,7 +156,7 @@ useHead({
         ref="ruleFormRef"
         :model="formData"
         :rules="formRules"
-        label-width="110px"
+        label-width="auto"
       >
         <el-form-item label="企业税号：" prop="taxNumber">
           <el-input
