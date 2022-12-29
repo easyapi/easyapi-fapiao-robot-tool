@@ -1,23 +1,25 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref } from 'vue'
 
-const route = useRoute();
-const router = useRouter();
+const route = useRoute()
+const router = useRouter()
 
-const selectMenu = ref();
+const selectMenu = ref()
 
 onMounted(() => {
-  selectMenu.value = route.name === "index" ? "/" : String(route.path);
-});
+  selectMenu.value = route.name === 'index' ? '/' : String(route.path)
+})
 
 function selectMenuItem(row: any) {
-  router.push(row);
+  router.push(row)
 }
 </script>
 
 <template>
   <div class="menu bg-white">
-    <div class="menu-title">接口调试</div>
+    <div class="menu-title">
+      接口调试
+    </div>
     <el-menu
       active-text-color="#409EFF"
       class="el-menu-vertical-demo"
@@ -57,14 +59,6 @@ function selectMenuItem(row: any) {
       <el-menu-item index="/robot">
         <span>发票机器人状态</span>
       </el-menu-item>
-    </el-menu>
-    <div class="menu-title">全电发票接口调试</div>
-    <el-menu
-      active-text-color="#409EFF"
-      class="el-menu-vertical-demo"
-      :default-active="selectMenu"
-      @select="selectMenuItem"
-    >
       <el-menu-item index="/quandian/make">
         <span>开具全电发票</span>
       </el-menu-item>
@@ -94,7 +88,7 @@ function selectMenuItem(row: any) {
 }
 
 .el-menu {
-  border-top: 1px solid #dcdfe6;
+  border-top: 1px solid #eeeeee;
   border-right: 0;
 }
 
@@ -102,7 +96,7 @@ function selectMenuItem(row: any) {
   padding-left: 30px !important;
   width: 190px;
   height: 40px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 40px;
 }
 </style>

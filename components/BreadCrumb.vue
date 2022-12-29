@@ -42,6 +42,17 @@ watch(
       case '/robot':
         name.value = '发票机器人状态'
         break
+      case '/quandian/make':
+        name.value = '开具全电发票'
+        break
+      case '/quandian/query':
+        name.value = '全电发票查询'
+        break
+      case '/quandian/print':
+        name.value = '全电发票打印'
+        break
+      case '/quandian/red':
+        name.value = '全电发票红冲'
     }
   },
 )
@@ -81,6 +92,18 @@ onMounted(() => {
       break
     case '/robot':
       name.value = '发票机器人状态'
+      break
+    case '/quandian/make':
+      name.value = '开具全电发票'
+      break
+    case '/quandian/query':
+      name.value = '全电发票查询'
+      break
+    case '/quandian/print':
+      name.value = '全电发票打印'
+      break
+    case '/quandian/red':
+      name.value = '全电发票红冲'
       break
   }
 })

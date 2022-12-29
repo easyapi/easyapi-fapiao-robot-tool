@@ -406,7 +406,7 @@ useHead({
         </el-table-column>
         <el-table-column label="商品名称">
           <template #default="scope">
-            <el-input v-model="scope.row.name" placeholder="强输入商品名称" @input="saveChange" />
+            <el-input v-model="scope.row.name" placeholder="请输入商品名称" @input="saveChange" />
             <div class="tips">
               例如：*信息技术服务*技术服务费，其中技术服务费是商品名称
             </div>

@@ -13,5 +13,5 @@ export const invoiceCategoryList = [
  */
 export const quandianInvoiceCategoryList = [
   { value: '全电电子普通发票', label: '全电电子普通发票' },
-  { value: '全电电子专用发票', label: '全电电子专用发票' }
+  { value: '全电电子专用发票', label: '全电电子专用发票' },
 ]
