@@ -96,8 +96,8 @@ const specials = [
 ]
 
 const formRules = reactive<FormRules>({
-  purchaserName: [{ required: true, message: '购买方名称不能为空', trigger: 'change' }],
-  callbackUrl: [{ required: true, message: '回调客户地址URL不能为空', trigger: 'change' }],
+  purchaserName: [{ required: true, message: '购方名称不能为空', trigger: 'change' }],
+  callbackUrl: [{ required: true, message: '回调URL不能为空', trigger: 'change' }],
 })
 
 /**
@@ -278,7 +278,7 @@ useHead({
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="购买方名称：" prop="purchaserName">
+            <el-form-item label="购方名称：" prop="purchaserName">
               <el-input v-model="formData.purchaserName" @input="saveChange" />
             </el-form-item>
           </el-col>
@@ -288,37 +288,37 @@ useHead({
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="购买方地址：" prop="purchaserAddress">
+            <el-form-item label="购方地址：" prop="purchaserAddress">
               <el-input v-model="formData.purchaserAddress" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="购买方电话：" prop="purchaserPhone">
+            <el-form-item label="购方电话：" prop="purchaserPhone">
               <el-input v-model="formData.purchaserPhone" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="购买方开户行：" prop="purchaserBank">
+            <el-form-item label="购方开户行：" prop="purchaserBank">
               <el-input v-model="formData.purchaserBank" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="购买方开户行账号：" prop="purchaserBankAccount">
+            <el-form-item label="购方开户行账号：" prop="purchaserBankAccount">
               <el-input v-model="formData.purchaserBankAccount" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="销售方地址：" prop="sellerAddress">
+            <el-form-item label="销方地址：" prop="sellerAddress">
               <el-input v-model="formData.sellerAddress" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="销售方银行：" prop="sellerBank">
+            <el-form-item label="销方银行：" prop="sellerBank">
               <el-input v-model="formData.sellerBank" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="销售方银行账号：" prop="sellerBankAccount">
+            <el-form-item label="销方银行账号：" prop="sellerBankAccount">
               <el-input v-model="formData.sellerBankAccount" @input="saveChange" />
             </el-form-item>
           </el-col>
@@ -328,8 +328,8 @@ useHead({
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="回调客户地址URL：" prop="callbackUrl">
-              <el-input v-model="formData.callbackUrl" @input="saveChange" />
+            <el-form-item label="回调URL：" prop="callbackUrl">
+              <el-input v-model="formData.callbackUrl" @input="saveChange" placeholder="回传开票结果" />
               <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
             </el-form-item>
           </el-col>
