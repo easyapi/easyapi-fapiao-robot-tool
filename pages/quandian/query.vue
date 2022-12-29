@@ -110,13 +110,15 @@ useHead({
           />
         </el-form-item>
         <el-form-item label="开票时间：" prop="makeDate">
-          <el-date-picker
-            v-model="formData.makeDate"
-            type="date"
-            placeholder="请选择开票时间"
-            value-format="YYYY-MM-DD"
-            @change="saveChange"
-          />
+          <client-only>
+            <el-date-picker
+              v-model="formData.makeDate"
+              type="date"
+              placeholder="请选择开票时间"
+              value-format="YYYY-MM-DD"
+              @change="saveChange"
+            />
+          </client-only>
         </el-form-item>
         <el-form-item label="回调地址：" prop="callbackUrl">
           <el-input
