@@ -7,7 +7,7 @@ import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
-import { invoiceCategoryList } from '~/utils/invoice-category'
+import { quandianInvoiceCategoryList } from '~/utils/invoice-category'
 
 const token = useCookie('robotToken')
 
@@ -19,24 +19,15 @@ const disable = !!token.value
 
 const formData = reactive({
   category: '增值税电子普通发票',
-  outOrderNo: '',
   purchaserName: '深圳市腾讯计算机系统有限公司',
   purchaserTaxpayerNumber: '91440300708461136T',
   purchaserAddress: '',
   purchaserPhone: '',
   purchaserBank: '',
   purchaserBankAccount: '',
-  sellerName: '无锡帮趣数据服务有限公司',
-  sellerTaxpayerNumber: '91320211MA1WML8X6T',
-  sellerAddress: '无锡市滨湖区吟白路1号超级计算无锡中心6楼',
-  sellerPhone: '0510-85180020',
-  sellerBank: '建设银行无锡滨湖支行',
-  sellerBankAccount: '32050161483600001096',
-  receiverName: '',
-  checkerName: '',
-  drawerName: '',
-  mobile: '',
-  email: '',
+  sellerAddress: '上海市宝山区呼兰路911弄11号5号楼111C室',
+  sellerBank: '中国工商银行股份有限公司上海市长江西路支行',
+  sellerBankAccount: '1001036509006822168',
   remark: '',
   callbackUrl: '',
   webSocket: '',
@@ -105,14 +96,7 @@ const specials = [
 ]
 
 const formRules = reactive<FormRules>({
-  outOrderNo: [{ required: true, message: '商户订单号不能为空', trigger: 'change' }],
   purchaserName: [{ required: true, message: '购买方名称不能为空', trigger: 'change' }],
-  sellerName: [{ required: true, message: '销售方名称不能为空', trigger: 'change' }],
-  sellerTaxpayerNumber: [{ required: true, message: '销售方纳税人识别号不能为空', trigger: 'change' }],
-  email: [
-    { required: true, message: '电子发票接收邮箱不能为空', trigger: 'change' },
-    { pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, message: '请输入有效的邮箱', trigger: 'change' },
-  ],
   callbackUrl: [{ required: true, message: '回调客户地址URL不能为空', trigger: 'change' }],
 })
 
@@ -266,7 +250,6 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
 
 onMounted(() => {
   updateFormData()
-  formData.outOrderNo = `TOOL${new Date().getTime()}`
 })
 
 useHead({
@@ -280,11 +263,6 @@ useHead({
       <el-form ref="ruleFormRef" :model="formData" :rules="formRules" label-width="150px">
         <el-row>
           <el-col :span="8">
-            <el-form-item label="商户流水号：" prop="outOrderNo">
-              <el-input v-model="formData.outOrderNo" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
             <el-form-item label="发票类别：" prop="category">
               <client-only>
                 <el-select
@@ -292,7 +270,7 @@ useHead({
                   @change="saveChange"
                 >
                   <el-option
-                    v-for="item in invoiceCategoryList" :key="item.value" :label="item.label"
+                    v-for="item in quandianInvoiceCategoryList" :key="item.value" :label="item.label"
                     :value="item.value"
                   />
                 </el-select>
@@ -330,23 +308,8 @@ useHead({
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="销售方名称：" prop="sellerName">
-              <el-input v-model="formData.sellerName" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="销售方纳税人识别号：" prop="sellerTaxpayerNumber">
-              <el-input v-model="formData.sellerTaxpayerNumber" maxlength="18" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
             <el-form-item label="销售方地址：" prop="sellerAddress">
               <el-input v-model="formData.sellerAddress" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="销售方电话：" prop="sellerPhone">
-              <el-input v-model="formData.sellerPhone" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -357,31 +320,6 @@ useHead({
           <el-col :span="8">
             <el-form-item label="销售方银行账号：" prop="sellerBankAccount">
               <el-input v-model="formData.sellerBankAccount" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="收款人名称：" prop="receiverName">
-              <el-input v-model="formData.receiverName" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="复核名称：" prop="checkerName">
-              <el-input v-model="formData.checkerName" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="收票人手机号码：" prop="drawerName">
-              <el-input v-model="formData.drawerName" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="收款人名称：" prop="mobile">
-              <el-input v-model="formData.mobile" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="电子发票接收邮箱：" prop="email">
-              <el-input v-model="formData.email" @input="saveChange" />
             </el-form-item>
           </el-col>
           <el-col :span="8">

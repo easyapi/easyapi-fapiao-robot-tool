@@ -1,58 +1,81 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from "vue";
 
-const route = useRoute()
-const router = useRouter()
+const route = useRoute();
+const router = useRouter();
 
-const selectMenu = ref()
+const selectMenu = ref();
 
 onMounted(() => {
-  selectMenu.value = route.name === 'index' ? '' : String(route.name)
-})
+  selectMenu.value = route.name === "index" ? "/" : String(route.path);
+});
 
-function selectMenuItem(row) {
-  router.push(`/${row}`)
+function selectMenuItem(row: any) {
+  router.push(row);
 }
 </script>
 
 <template>
   <div class="menu bg-white">
-    <div class="menu-title">
-      接口调试
-    </div>
-    <el-menu active-text-color="#409EFF" class="el-menu-vertical-demo" :default-active="selectMenu" @select="selectMenuItem">
-      <el-menu-item index="">
+    <div class="menu-title">接口调试</div>
+    <el-menu
+      active-text-color="#409EFF"
+      class="el-menu-vertical-demo"
+      :default-active="selectMenu"
+      @select="selectMenuItem"
+    >
+      <el-menu-item index="/">
         <span>首页</span>
       </el-menu-item>
-      <el-menu-item index="make">
+      <el-menu-item index="/make">
         <span>开具发票</span>
       </el-menu-item>
-      <el-menu-item index="red">
+      <el-menu-item index="/red">
         <span>发票红冲</span>
       </el-menu-item>
-      <el-menu-item index="cancel">
+      <el-menu-item index="/cancel">
         <span>发票作废</span>
       </el-menu-item>
-      <el-menu-item index="query">
+      <el-menu-item index="/query">
         <span>发票同步查询</span>
       </el-menu-item>
-      <el-menu-item index="print">
+      <el-menu-item index="/print">
         <span>发票打印</span>
       </el-menu-item>
-      <el-menu-item index="retry">
+      <el-menu-item index="/retry">
         <span>发票重试</span>
       </el-menu-item>
-      <el-menu-item index="amount">
+      <el-menu-item index="/amount">
         <span>发票库存查询</span>
       </el-menu-item>
-      <el-menu-item index="email">
+      <el-menu-item index="/email">
         <span>重发邮件</span>
       </el-menu-item>
-      <el-menu-item index="state">
+      <el-menu-item index="/state">
         <span>税盘状态</span>
       </el-menu-item>
-      <el-menu-item index="robot">
+      <el-menu-item index="/robot">
         <span>发票机器人状态</span>
+      </el-menu-item>
+    </el-menu>
+    <div class="menu-title">全电发票接口调试</div>
+    <el-menu
+      active-text-color="#409EFF"
+      class="el-menu-vertical-demo"
+      :default-active="selectMenu"
+      @select="selectMenuItem"
+    >
+      <el-menu-item index="/quandian/make">
+        <span>开具全电发票</span>
+      </el-menu-item>
+      <el-menu-item index="/quandian/red">
+        <span>发票红冲</span>
+      </el-menu-item>
+      <el-menu-item index="/quandian/query">
+        <span>全电发票查询</span>
+      </el-menu-item>
+      <el-menu-item index="/quandian/print">
+        <span>全电发票打印</span>
       </el-menu-item>
     </el-menu>
   </div>
@@ -62,6 +85,7 @@ function selectMenuItem(row) {
 .menu {
   height: calc(100% - 40px);
   margin: 20px 0 0 20px;
+  overflow-y: scroll;
 }
 
 .menu-title {
