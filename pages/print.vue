@@ -147,7 +147,7 @@ useHead({
     v-loading.fullscreen.lock="fullscreenLoading"
     class="page flex form-page"
   >
-    <div class="form-info bg-white">
+    <div class="form-info bg-white rounded">
       <el-form
         ref="ruleFormRef"
         :model="formData"

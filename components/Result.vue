@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="w-full bg-white form-style">
+  <div class="w-full bg-white form-style rounded">
     <div class="title">
       WebSocket地址：
     </div>

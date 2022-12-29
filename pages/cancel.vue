@@ -84,7 +84,7 @@ useHead({
 
 <template>
   <div class="page flex form-page">
-    <div class="form-info bg-white">
+    <div class="form-info bg-white rounded">
       <el-form ref="ruleFormRef" :model="formData" :rules="formRules" label-width="110px">
         <el-form-item label="企业税号：" prop="taxNumber">
           <el-input v-model="formData.taxNumber" placeholder="企业税号" maxlength="18" @input="saveChange" />

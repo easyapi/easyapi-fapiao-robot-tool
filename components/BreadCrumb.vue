@@ -87,7 +87,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="breadcrumb bg-white p-3">
+  <div class="breadcrumb bg-white p-3 rounded">
     <el-breadcrumb :separator-icon="ArrowRight">
       <el-breadcrumb-item>接口调试</el-breadcrumb-item>
       <el-breadcrumb-item>{{ name }}</el-breadcrumb-item>

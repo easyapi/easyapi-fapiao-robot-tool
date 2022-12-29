@@ -276,7 +276,7 @@ useHead({
 
 <template>
   <div class="page flex invoicing">
-    <div class="form-info bg-white">
+    <div class="form-info bg-white rounded">
       <el-form ref="ruleFormRef" :model="formData" :rules="formRules" label-width="150px">
         <el-row>
           <el-col :span="8">

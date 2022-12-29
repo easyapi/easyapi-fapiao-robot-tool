@@ -7,7 +7,7 @@ useHead({
 
 <template>
   <div class="page flex invoicing">
-    <div class="form-info bg-white">
+    <div class="form-info bg-white rounded">
       点击左侧开始测试
     </div>
   </div>

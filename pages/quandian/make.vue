@@ -259,7 +259,7 @@ useHead({
 
 <template>
   <div class="page flex invoicing">
-    <div class="form-info bg-white">
+    <div class="form-info bg-white rounded">
       <el-form ref="ruleFormRef" :model="formData" :rules="formRules" label-width="150px">
         <el-row>
           <el-col :span="8">
@@ -420,7 +420,7 @@ useHead({
       <client-only>
         <el-tooltip class="box-item" effect="dark" content="请先行登录" placement="top" :disabled="disable">
           <div class="outer-frame">
-            <el-button type="primary"  @click="onSubmit(ruleFormRef)">
+            <el-button type="primary" @click="onSubmit(ruleFormRef)">
               发送
             </el-button>
           </div>
