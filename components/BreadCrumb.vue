@@ -1,112 +1,33 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { ArrowRight } from '@element-plus/icons-vue'
+import { ref } from "vue";
+import { ArrowRight } from "@element-plus/icons-vue";
+import { menuList } from "../utils/menu";
 
-const route = useRouter()
-const name = ref('')
+const route = useRouter();
+const name = ref("");
 
 watch(
   () => route.currentRoute.value.path,
   (newPath) => {
-    switch (newPath) {
-      case '/':
-        name.value = '首页'
-        break
-      case '/make':
-        name.value = '开具发票'
-        break
-      case '/red':
-        name.value = '发票红冲'
-        break
-      case '/cancel':
-        name.value = '发票作废'
-        break
-      case '/query':
-        name.value = '发票同步查询'
-        break
-      case '/print':
-        name.value = '发票打印'
-        break
-      case '/retry':
-        name.value = '发票重试'
-        break
-      case '/amount':
-        name.value = '发票库存查询'
-        break
-      case '/email':
-        name.value = '重发邮件'
-        break
-      case '/state':
-        name.value = '税盘状态'
-        break
-      case '/robot':
-        name.value = '发票机器人状态'
-        break
-      case '/quandian/make':
-        name.value = '开具全电发票'
-        break
-      case '/quandian/query':
-        name.value = '全电发票查询'
-        break
-      case '/quandian/print':
-        name.value = '全电发票打印'
-        break
-      case '/quandian/red':
-        name.value = '全电发票红冲'
+    getNameByPath(menuList, newPath);
+  }
+);
+
+const getNameByPath = (list: any, path: String) => {
+  list.forEach((item: any) => {
+    if (item.path == path) {
+      name.value = item.name;
+      return;
     }
-  },
-)
+    if (item.children && item.children.length > 0) {
+      getNameByPath(item.children, path);
+    }
+  });
+};
 
 onMounted(() => {
-  const newPath = route.currentRoute.value.path
-  switch (newPath) {
-    case '/':
-      name.value = '首页'
-      break
-    case '/make':
-      name.value = '开具发票'
-      break
-    case '/red':
-      name.value = '发票红冲'
-      break
-    case '/cancel':
-      name.value = '发票作废'
-      break
-    case '/query':
-      name.value = '发票同步查询'
-      break
-    case '/print':
-      name.value = '发票打印'
-      break
-    case '/retry':
-      name.value = '发票重试'
-      break
-    case '/amount':
-      name.value = '发票库存查询'
-      break
-    case '/email':
-      name.value = '重发邮件'
-      break
-    case '/state':
-      name.value = '税盘状态'
-      break
-    case '/robot':
-      name.value = '发票机器人状态'
-      break
-    case '/quandian/make':
-      name.value = '开具全电发票'
-      break
-    case '/quandian/query':
-      name.value = '全电发票查询'
-      break
-    case '/quandian/print':
-      name.value = '全电发票打印'
-      break
-    case '/quandian/red':
-      name.value = '全电发票红冲'
-      break
-  }
-})
+  getNameByPath(menuList, route.currentRoute.value.path);
+});
 </script>
 
 <template>

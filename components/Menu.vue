@@ -1,76 +1,46 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from "vue";
+import { menuList } from "../utils/menu";
 
-const route = useRoute()
-const router = useRouter()
+const route = useRoute();
+const router = useRouter();
 
-const selectMenu = ref()
+const selectMenu = ref();
 
 onMounted(() => {
-  selectMenu.value = route.name === 'index' ? '/' : String(route.path)
-})
+  selectMenu.value = route.name === "index" ? "/" : String(route.path);
+});
 
 function selectMenuItem(row: any) {
-  router.push(row)
+  router.push(row);
 }
 </script>
 
 <template>
   <div class="menu bg-white">
-    <div class="menu-title">
-      接口调试
-    </div>
+    <div class="menu-title">接口调试</div>
     <el-menu
       active-text-color="#409EFF"
       class="el-menu-vertical-demo"
       :default-active="selectMenu"
       @select="selectMenuItem"
     >
-      <el-menu-item index="/">
-        <span>首页</span>
-      </el-menu-item>
-      <el-menu-item index="/make">
-        <span>开具发票</span>
-      </el-menu-item>
-      <el-menu-item index="/red">
-        <span>发票红冲</span>
-      </el-menu-item>
-      <el-menu-item index="/cancel">
-        <span>发票作废</span>
-      </el-menu-item>
-      <el-menu-item index="/query">
-        <span>发票同步查询</span>
-      </el-menu-item>
-      <el-menu-item index="/print">
-        <span>发票打印</span>
-      </el-menu-item>
-      <el-menu-item index="/retry">
-        <span>发票重试</span>
-      </el-menu-item>
-      <el-menu-item index="/amount">
-        <span>发票库存查询</span>
-      </el-menu-item>
-      <el-menu-item index="/email">
-        <span>重发邮件</span>
-      </el-menu-item>
-      <el-menu-item index="/state">
-        <span>税盘状态</span>
-      </el-menu-item>
-      <el-menu-item index="/robot">
-        <span>发票机器人状态</span>
-      </el-menu-item>
-      <el-menu-item index="/quandian/make">
-        <span>开具全电发票</span>
-      </el-menu-item>
-      <el-menu-item index="/quandian/red">
-        <span>发票红冲</span>
-      </el-menu-item>
-      <el-menu-item index="/quandian/query">
-        <span>全电发票查询</span>
-      </el-menu-item>
-      <el-menu-item index="/quandian/print">
-        <span>全电发票打印</span>
-      </el-menu-item>
+      <div v-for="(item, index) in menuList" :key="index">
+        <div
+          class="text-gray-400 text-xs menu-subtitle"
+          v-if="item.children.length > 0"
+        >
+          {{ item.name }}
+        </div>
+        <el-menu-item :index="item.path" v-else>
+          <span>{{ item.name }}</span>
+        </el-menu-item>
+        <div v-for="(citem, cindex) in item.children" :key="cindex">
+          <el-menu-item :index="citem.path">
+            <span>{{ citem.name }}</span>
+          </el-menu-item>
+        </div>
+      </div>
     </el-menu>
   </div>
 </template>
@@ -97,6 +67,11 @@ function selectMenuItem(row: any) {
   width: 190px;
   height: 40px;
   font-size: 14px;
+  line-height: 40px;
+}
+
+.menu-subtitle {
+  padding-left: 30px !important;
   line-height: 40px;
 }
 </style>
