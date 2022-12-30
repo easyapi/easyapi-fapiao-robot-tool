@@ -31,6 +31,7 @@ const formData = reactive({
   taxNumber: "91320211MA1WML8X6T",
   allElectronicInvoiceNumber: "",
   makeDate: "",
+  secretKey: "",
   printCallbackUrl:
     "https://fapiao-robot-api.easyapi.com/callback/51fapiao/print",
   callbackUrl: "",
@@ -58,6 +59,7 @@ const formRules = reactive<FormRules>({
   callbackUrl: [
     { required: true, message: "回调地址不能为空", trigger: "change" },
   ],
+  secretKey: [{ required: true, message: "密钥不能为空", trigger: "change" }],
 });
 
 const disable = !!token.value;
@@ -174,6 +176,7 @@ useHead({
             v-model="formData.allElectronicInvoiceNumber"
             placeholder="请输入全电发票号码"
             @input="saveChange"
+            maxlength="20"
           />
         </el-form-item>
         <el-form-item label="开票时间：" prop="makeDate">
@@ -205,6 +208,14 @@ useHead({
           <a href="https://hooks.upyun.com/" target="_blank"
             >获取测试用回调地址</a
           >
+        </el-form-item>
+        <el-form-item label="机器人密钥：" prop="secretKey">
+          <el-input
+            v-model="formData.secretKey"
+            placeholder="请输入机器人密钥"
+            @input="saveChange"
+            maxlength="8"
+          />
         </el-form-item>
         <el-form-item>
           <client-only>

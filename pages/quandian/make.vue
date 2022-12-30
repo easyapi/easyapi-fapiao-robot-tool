@@ -30,6 +30,7 @@ const formData = reactive({
   sellerBankAccount: "1001036509006822168",
   remark: "",
   callbackUrl: "",
+  secretKey: "",
   webSocket: "",
   topic: "",
   message: "",
@@ -102,6 +103,7 @@ const formRules = reactive<FormRules>({
   callbackUrl: [
     { required: true, message: "回调URL不能为空", trigger: "change" },
   ],
+  secretKey: [{ required: true, message: "密钥不能为空", trigger: "change" }],
 });
 
 /**
@@ -357,6 +359,16 @@ useHead({
           <el-col :span="8">
             <el-form-item label="备注：" prop="remark">
               <el-input v-model="formData.remark" @input="saveChange" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="机器人密钥：" prop="secretKey">
+              <el-input
+                v-model="formData.secretKey"
+                placeholder="请输入机器人密钥"
+                @input="saveChange"
+                maxlength="8"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="8">
