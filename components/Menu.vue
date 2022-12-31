@@ -1,24 +1,26 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { menuList } from "../utils/menu";
+import { onMounted, ref } from 'vue'
+import { menuList } from '../utils/menu'
 
-const route = useRoute();
-const router = useRouter();
+const route = useRoute()
+const router = useRouter()
 
-const selectMenu = ref();
+const selectMenu = ref()
 
 onMounted(() => {
-  selectMenu.value = route.name === "index" ? "/" : String(route.path);
-});
+  selectMenu.value = route.name === 'index' ? '/' : String(route.path)
+})
 
 function selectMenuItem(row: any) {
-  router.push(row);
+  router.push(row)
 }
 </script>
 
 <template>
   <div class="menu bg-white">
-    <div class="menu-title">接口调试</div>
+    <div class="menu-title">
+      接口调试
+    </div>
     <el-menu
       active-text-color="#409EFF"
       class="el-menu-vertical-demo"
@@ -27,12 +29,12 @@ function selectMenuItem(row: any) {
     >
       <div v-for="(item, index) in menuList" :key="index">
         <div
-          class="text-gray-400 text-xs menu-subtitle"
           v-if="item.children.length > 0"
+          class="text-gray-400 text-xs menu-subtitle"
         >
           {{ item.name }}
         </div>
-        <el-menu-item :index="item.path" v-else>
+        <el-menu-item v-else :index="item.path">
           <span>{{ item.name }}</span>
         </el-menu-item>
         <div v-for="(citem, cindex) in item.children" :key="cindex">

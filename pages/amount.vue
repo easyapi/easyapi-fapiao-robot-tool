@@ -1,82 +1,83 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
-import { ElMessage } from "element-plus";
-import type { FormInstance, FormRules } from "element-plus";
-import { test } from "@/api/test";
-import { getCacheData, setCacheData } from "@/utils/cacheData";
-import Result from "@/components/Result.vue";
-import Callback from "@/components/Callback.vue";
+import { onMounted, reactive, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
+import { test } from '@/api/test'
+import { getCacheData, setCacheData } from '@/utils/cacheData'
+import Result from '@/components/Result.vue'
+import Callback from '@/components/Callback.vue'
 
-const token = useCookie("robotToken");
-const route = useRoute();
-const ruleFormRef = ref<FormInstance>();
+const token = useCookie('robotToken')
+const route = useRoute()
+const ruleFormRef = ref<FormInstance>()
 
 const formData = reactive({
-  taxNumber: "91320211MA1WML8X6T",
-  callbackUrl: "",
-  secretKey: "",
-});
+  taxNumber: '91320211MA1WML8X6T',
+  callbackUrl: '',
+  secretKey: '',
+})
 
 const result = reactive({
-  message: "",
-  topic: "",
-  webSocket: "",
-});
+  message: '',
+  topic: '',
+  webSocket: '',
+})
 
-const callback = reactive({});
+const callback = reactive({})
 
 const formRules = reactive<FormRules>({
   taxNumber: [
-    { required: true, message: "企业税号不能为空", trigger: "change" },
+    { required: true, message: '企业税号不能为空', trigger: 'change' },
   ],
   callbackUrl: [
-    { required: true, message: "回调地址不能为空", trigger: "change" },
+    { required: true, message: '回调地址不能为空', trigger: 'change' },
   ],
-  secretKey: [{ required: true, message: "密钥不能为空", trigger: "change" }],
-});
+  secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
+})
 
-const disable = !!token.value;
+const disable = !!token.value
 
 /**
  * 发送
  */
 const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
+  if (!formEl)
+    return
   await formEl.validate((valid) => {
     if (valid) {
       test.amountShop(formData).then((res) => {
         if (res.code === 1) {
-          Object.assign(result, res.content);
+          Object.assign(result, res.content)
           ElMessage({
-            type: "success",
+            type: 'success',
             message: res.message,
-          });
+          })
         }
-      });
+      })
     }
-  });
-};
+  })
+}
 
 /**
  * 更新formData
  */
 function updateFormData() {
-  const data = getCacheData(route.name as string);
-  Object.assign(formData, data);
+  const data = getCacheData(route.name as string)
+  Object.assign(formData, data)
 }
 
 /**
  * 缓存记录数据
  */
 function saveChange() {
-  setCacheData(route.name as string, formData);
+  setCacheData(route.name as string, formData)
 }
 
 onMounted(() => {
-  updateFormData();
-});
+  updateFormData()
+})
 
-useHead({ title: "发票库存查询 - EasyAPI发票机器人" });
+useHead({ title: '发票库存查询 - EasyAPI发票机器人' })
 </script>
 
 <template>
@@ -102,16 +103,14 @@ useHead({ title: "发票库存查询 - EasyAPI发票机器人" });
             placeholder="回调地址"
             @input="saveChange"
           />
-          <a href="https://hooks.upyun.com/" target="_blank"
-            >获取测试用回调地址</a
-          >
+          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item label="机器人密钥：" prop="secretKey">
           <el-input
             v-model="formData.secretKey"
             placeholder="请输入机器人密钥"
-            @input="saveChange"
             maxlength="8"
+            @input="saveChange"
           />
         </el-form-item>
         <el-form-item>
