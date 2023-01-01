@@ -17,7 +17,7 @@ function selectMenuItem(row: any) {
 </script>
 
 <template>
-  <div class="menu bg-white">
+  <div class="menu bg-white rounded">
     <div class="menu-title">
       接口调试
     </div>
@@ -51,7 +51,7 @@ function selectMenuItem(row: any) {
 .menu {
   height: calc(100% - 40px);
   margin: 20px 0 0 20px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .menu-title {
