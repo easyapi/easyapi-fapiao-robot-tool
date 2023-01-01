@@ -1,49 +1,49 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { menuList } from '../utils/menu'
+import { onMounted, ref } from "vue";
+import { menuList } from "../utils/menu";
 
-const route = useRoute()
-const router = useRouter()
+const route = useRoute();
+const router = useRouter();
 
-const selectMenu = ref()
+const selectMenu = ref();
 
 onMounted(() => {
-  selectMenu.value = route.name === 'index' ? '/' : String(route.path)
-})
+  selectMenu.value = route.name === "index" ? "/" : String(route.path);
+});
 
 function selectMenuItem(row: any) {
-  router.push(row)
+  router.push(row);
 }
 </script>
 
 <template>
   <div class="menu bg-white rounded">
-    <div class="menu-title">
-      接口调试
-    </div>
-    <el-menu
-      active-text-color="#409EFF"
-      class="el-menu-vertical-demo"
-      :default-active="selectMenu"
-      @select="selectMenuItem"
-    >
-      <div v-for="(item, index) in menuList" :key="index">
-        <div
-          v-if="item.children.length > 0"
-          class="text-gray-400 text-xs menu-subtitle"
-        >
-          {{ item.name }}
-        </div>
-        <el-menu-item v-else :index="item.path">
-          <span>{{ item.name }}</span>
-        </el-menu-item>
-        <div v-for="(citem, cindex) in item.children" :key="cindex">
-          <el-menu-item :index="citem.path">
-            <span>{{ citem.name }}</span>
+    <el-scrollbar height="100%">
+      <div class="menu-title">接口调试</div>
+      <el-menu
+        active-text-color="#409EFF"
+        class="el-menu-vertical-demo"
+        :default-active="selectMenu"
+        @select="selectMenuItem"
+      >
+        <div v-for="(item, index) in menuList" :key="index">
+          <div
+            v-if="item.children.length > 0"
+            class="text-gray-400 text-xs menu-subtitle"
+          >
+            {{ item.name }}
+          </div>
+          <el-menu-item v-else :index="item.path">
+            <span>{{ item.name }}</span>
           </el-menu-item>
+          <div v-for="(citem, cindex) in item.children" :key="cindex">
+            <el-menu-item :index="citem.path">
+              <span>{{ citem.name }}</span>
+            </el-menu-item>
+          </div>
         </div>
-      </div>
-    </el-menu>
+      </el-menu>
+    </el-scrollbar>
   </div>
 </template>
 

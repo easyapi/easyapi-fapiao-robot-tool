@@ -298,333 +298,368 @@ useHead({
 <template>
   <div class="page flex invoicing">
     <div class="form-info bg-white rounded">
-      <el-form
-        ref="ruleFormRef"
-        :model="formData"
-        :rules="formRules"
-        label-width="150px"
-      >
-        <el-row>
-          <el-col :span="8">
-            <el-form-item label="商户流水号：" prop="outOrderNo">
-              <el-input v-model="formData.outOrderNo" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="发票类别：" prop="category">
-              <client-only>
+      <el-scrollbar height="100%">
+        <div class="form-info_padding">
+          <el-form
+            ref="ruleFormRef"
+            :model="formData"
+            :rules="formRules"
+            label-width="150px"
+          >
+            <el-row>
+              <el-col :span="8">
+                <el-form-item label="商户流水号：" prop="outOrderNo">
+                  <el-input v-model="formData.outOrderNo" @input="saveChange" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="发票类别：" prop="category">
+                  <client-only>
+                    <el-select
+                      v-model="formData.category"
+                      placeholder="请选择发票类别"
+                      filterable
+                      size="default"
+                      @change="saveChange"
+                    >
+                      <el-option
+                        v-for="item in invoiceCategoryList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      />
+                    </el-select>
+                  </client-only>
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="购方名称：" prop="purchaserName">
+                  <el-input
+                    v-model="formData.purchaserName"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item
+                  label="纳税人识别号："
+                  prop="purchaserTaxpayerNumber"
+                >
+                  <el-input
+                    v-model="formData.purchaserTaxpayerNumber"
+                    maxlength="18"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="购方地址：" prop="purchaserAddress">
+                  <el-input
+                    v-model="formData.purchaserAddress"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="购方电话：" prop="purchaserPhone">
+                  <el-input
+                    v-model="formData.purchaserPhone"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="购方开户行：" prop="purchaserBank">
+                  <el-input
+                    v-model="formData.purchaserBank"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item
+                  label="购方开户行账号："
+                  prop="purchaserBankAccount"
+                >
+                  <el-input
+                    v-model="formData.purchaserBankAccount"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="销方名称：" prop="sellerName">
+                  <el-input v-model="formData.sellerName" @input="saveChange" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item
+                  label="销方纳税人识别号："
+                  prop="sellerTaxpayerNumber"
+                >
+                  <el-input
+                    v-model="formData.sellerTaxpayerNumber"
+                    maxlength="18"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="销方地址：" prop="sellerAddress">
+                  <el-input
+                    v-model="formData.sellerAddress"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="销方电话：" prop="sellerPhone">
+                  <el-input
+                    v-model="formData.sellerPhone"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="销方银行：" prop="sellerBank">
+                  <el-input v-model="formData.sellerBank" @input="saveChange" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="销方银行账号：" prop="sellerBankAccount">
+                  <el-input
+                    v-model="formData.sellerBankAccount"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="收款人名称：" prop="receiverName">
+                  <el-input
+                    v-model="formData.receiverName"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="复核名称：" prop="checkerName">
+                  <el-input
+                    v-model="formData.checkerName"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="手机号码：" prop="drawerName">
+                  <el-input
+                    v-model="formData.drawerName"
+                    @input="saveChange"
+                    placeholder="用来接收发票手机短消息"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="收款人名称：" prop="mobile">
+                  <el-input v-model="formData.mobile" @input="saveChange" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="邮箱：" prop="email">
+                  <el-input
+                    v-model="formData.email"
+                    @input="saveChange"
+                    placeholder="用来接收电子发票发送邮件"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="备注：" prop="remark">
+                  <el-input v-model="formData.remark" @input="saveChange" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="机器人密钥：" prop="secretKey">
+                  <el-input
+                    v-model="formData.secretKey"
+                    placeholder="请输入机器人密钥"
+                    @input="saveChange"
+                    maxlength="8"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="回调URL：" prop="callbackUrl">
+                  <el-input
+                    v-model="formData.callbackUrl"
+                    @input="saveChange"
+                    placeholder="回传开票结果"
+                  />
+                  <a href="https://hooks.upyun.com/" target="_blank"
+                    >获取测试用回调地址</a
+                  >
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-form>
+          <el-table :data="formData.items">
+            <el-table-column label="税收分类编码">
+              <template #default="scope">
+                <el-input
+                  v-model="scope.row.no"
+                  placeholder="税收分类编码"
+                  @input="saveChange"
+                />
+                <a
+                  href="https://fapiao.easyapi.com/taxcode.html"
+                  target="_blank"
+                  >查找税收分类编码</a
+                >
+              </template>
+            </el-table-column>
+            <el-table-column label="商品名称">
+              <template #default="scope">
+                <el-input
+                  v-model="scope.row.name"
+                  placeholder="请输入商品名称"
+                  @input="saveChange"
+                />
+                <div class="tips">
+                  例如：*信息技术服务*技术服务费，其中技术服务费是商品名称
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column label="型号" width="3">
+              <el-table-column label="单位">
+                <template #default="scope">
+                  <el-input
+                    v-model="scope.row.model"
+                    placeholder="型号，例如红色"
+                    @input="saveChange"
+                  />
+                  <el-input
+                    v-model="scope.row.unit"
+                    placeholder="单位，例如次"
+                    @input="saveChange"
+                  />
+                </template>
+              </el-table-column>
+            </el-table-column>
+            <el-table-column label="数量">
+              <el-table-column label="单价">
+                <el-table-column label="金额">
+                  <template #default="scope">
+                    <el-input
+                      v-model.number="scope.row.number"
+                      placeholder="数量"
+                      @input="changeNumber(scope.$index)"
+                    />
+                    <el-input
+                      v-model.number="scope.row.price"
+                      placeholder="单价"
+                      @input="changePrice(scope.$index)"
+                    />
+                    <el-input
+                      v-model.number="scope.row.sum"
+                      placeholder="金额"
+                      @input="changeSum(scope.$index)"
+                    />
+                  </template>
+                </el-table-column>
+              </el-table-column>
+            </el-table-column>
+            <el-table-column label="含税折扣金额">
+              <template #default="scope">
+                <el-input
+                  v-model="scope.row.discount"
+                  placeholder="表示是否有折扣（默认为0）"
+                  @input="saveChange"
+                />
+              </template>
+            </el-table-column>
+            <el-table-column label="税率">
+              <template #default="scope">
+                <el-input
+                  v-model="scope.row.taxRate"
+                  placeholder="例如0.06"
+                  @input="saveChange"
+                />
+              </template>
+            </el-table-column>
+            <el-table-column label="优惠政策">
+              <template #default="scope">
                 <el-select
-                  v-model="formData.category"
-                  placeholder="请选择发票类别"
-                  filterable
-                  size="default"
-                  @change="saveChange"
+                  v-model="scope.row.preferentialPolicyFlag"
+                  placeholder="选择优惠政策"
+                  @change="saveChange('优惠政策', scope.$index)"
                 >
                   <el-option
-                    v-for="item in invoiceCategoryList"
+                    v-for="item in preferentialPolicyFlagList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
                   />
                 </el-select>
-              </client-only>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="购方名称：" prop="purchaserName">
-              <el-input v-model="formData.purchaserName" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="纳税人识别号：" prop="purchaserTaxpayerNumber">
-              <el-input
-                v-model="formData.purchaserTaxpayerNumber"
-                maxlength="18"
-                @input="saveChange"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="购方地址：" prop="purchaserAddress">
-              <el-input
-                v-model="formData.purchaserAddress"
-                @input="saveChange"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="购方电话：" prop="purchaserPhone">
-              <el-input v-model="formData.purchaserPhone" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="购方开户行：" prop="purchaserBank">
-              <el-input v-model="formData.purchaserBank" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="购方开户行账号：" prop="purchaserBankAccount">
-              <el-input
-                v-model="formData.purchaserBankAccount"
-                @input="saveChange"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="销方名称：" prop="sellerName">
-              <el-input v-model="formData.sellerName" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item
-              label="销方纳税人识别号："
-              prop="sellerTaxpayerNumber"
-            >
-              <el-input
-                v-model="formData.sellerTaxpayerNumber"
-                maxlength="18"
-                @input="saveChange"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="销方地址：" prop="sellerAddress">
-              <el-input v-model="formData.sellerAddress" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="销方电话：" prop="sellerPhone">
-              <el-input v-model="formData.sellerPhone" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="销方银行：" prop="sellerBank">
-              <el-input v-model="formData.sellerBank" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="销方银行账号：" prop="sellerBankAccount">
-              <el-input
-                v-model="formData.sellerBankAccount"
-                @input="saveChange"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="收款人名称：" prop="receiverName">
-              <el-input v-model="formData.receiverName" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="复核名称：" prop="checkerName">
-              <el-input v-model="formData.checkerName" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="手机号码：" prop="drawerName">
-              <el-input
-                v-model="formData.drawerName"
-                @input="saveChange"
-                placeholder="用来接收发票手机短消息"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="收款人名称：" prop="mobile">
-              <el-input v-model="formData.mobile" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="邮箱：" prop="email">
-              <el-input
-                v-model="formData.email"
-                @input="saveChange"
-                placeholder="用来接收电子发票发送邮件"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="备注：" prop="remark">
-              <el-input v-model="formData.remark" @input="saveChange" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="机器人密钥：" prop="secretKey">
-              <el-input
-                v-model="formData.secretKey"
-                placeholder="请输入机器人密钥"
-                @input="saveChange"
-                maxlength="8"
-              />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="回调URL：" prop="callbackUrl">
-              <el-input
-                v-model="formData.callbackUrl"
-                @input="saveChange"
-                placeholder="回传开票结果"
-              />
-              <a href="https://hooks.upyun.com/" target="_blank"
-                >获取测试用回调地址</a
-              >
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
-      <el-table :data="formData.items">
-        <el-table-column label="税收分类编码">
-          <template #default="scope">
-            <el-input
-              v-model="scope.row.no"
-              placeholder="税收分类编码"
-              @input="saveChange"
-            />
-            <a href="https://fapiao.easyapi.com/taxcode.html" target="_blank"
-              >查找税收分类编码</a
-            >
-          </template>
-        </el-table-column>
-        <el-table-column label="商品名称">
-          <template #default="scope">
-            <el-input
-              v-model="scope.row.name"
-              placeholder="请输入商品名称"
-              @input="saveChange"
-            />
-            <div class="tips">
-              例如：*信息技术服务*技术服务费，其中技术服务费是商品名称
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column label="型号" width="3">
-          <el-table-column label="单位">
-            <template #default="scope">
-              <el-input
-                v-model="scope.row.model"
-                placeholder="型号，例如红色"
-                @input="saveChange"
-              />
-              <el-input
-                v-model="scope.row.unit"
-                placeholder="单位，例如次"
-                @input="saveChange"
-              />
-            </template>
-          </el-table-column>
-        </el-table-column>
-        <el-table-column label="数量">
-          <el-table-column label="单价">
-            <el-table-column label="金额">
-              <template #default="scope">
-                <el-input
-                  v-model.number="scope.row.number"
-                  placeholder="数量"
-                  @input="changeNumber(scope.$index)"
-                />
-                <el-input
-                  v-model.number="scope.row.price"
-                  placeholder="单价"
-                  @input="changePrice(scope.$index)"
-                />
-                <el-input
-                  v-model.number="scope.row.sum"
-                  placeholder="金额"
-                  @input="changeSum(scope.$index)"
-                />
+                <el-select
+                  v-if="scope.row.preferentialPolicyFlag === 1"
+                  v-model="scope.row.zeroRateFlag"
+                  placeholder="选择优惠政策"
+                  @change="saveChange"
+                >
+                  <el-option
+                    v-for="item in zeroRateFlagList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  />
+                </el-select>
+                <el-select
+                  v-if="scope.row.preferentialPolicyFlag === 1"
+                  v-model="scope.row.preferentialPolicyName"
+                  placeholder="增值税特殊管理"
+                  @change="saveChange"
+                >
+                  <el-option
+                    v-for="item in specials"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  />
+                </el-select>
               </template>
             </el-table-column>
-          </el-table-column>
-        </el-table-column>
-        <el-table-column label="含税折扣金额">
-          <template #default="scope">
-            <el-input
-              v-model="scope.row.discount"
-              placeholder="表示是否有折扣（默认为0）"
-              @input="saveChange"
-            />
-          </template>
-        </el-table-column>
-        <el-table-column label="税率">
-          <template #default="scope">
-            <el-input
-              v-model="scope.row.taxRate"
-              placeholder="例如0.06"
-              @input="saveChange"
-            />
-          </template>
-        </el-table-column>
-        <el-table-column label="优惠政策">
-          <template #default="scope">
-            <el-select
-              v-model="scope.row.preferentialPolicyFlag"
-              placeholder="选择优惠政策"
-              @change="saveChange('优惠政策', scope.$index)"
+            <el-table-column label="操作" width="100">
+              <template #default="scope">
+                <el-button text type="primary" @click="addItem">
+                  添加
+                </el-button>
+                <el-button
+                  v-if="scope.$index !== 0"
+                  type="danger"
+                  link
+                  @click="deleteItem(scope.$index)"
+                >
+                  删除
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+          <client-only>
+            <el-tooltip
+              class="box-item"
+              effect="dark"
+              content="请先行登录"
+              placement="top"
+              :disabled="disable"
             >
-              <el-option
-                v-for="item in preferentialPolicyFlagList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-            <el-select
-              v-if="scope.row.preferentialPolicyFlag === 1"
-              v-model="scope.row.zeroRateFlag"
-              placeholder="选择优惠政策"
-              @change="saveChange"
-            >
-              <el-option
-                v-for="item in zeroRateFlagList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-            <el-select
-              v-if="scope.row.preferentialPolicyFlag === 1"
-              v-model="scope.row.preferentialPolicyName"
-              placeholder="增值税特殊管理"
-              @change="saveChange"
-            >
-              <el-option
-                v-for="item in specials"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-          </template>
-        </el-table-column>
-        <el-table-column label="操作" width="100">
-          <template #default="scope">
-            <el-button text type="primary" @click="addItem"> 添加 </el-button>
-            <el-button
-              v-if="scope.$index !== 0"
-              type="danger"
-              link
-              @click="deleteItem(scope.$index)"
-            >
-              删除
-            </el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <client-only>
-        <el-tooltip
-          class="box-item"
-          effect="dark"
-          content="请先行登录"
-          placement="top"
-          :disabled="disable"
-        >
-          <div class="outer-frame">
-            <el-button type="primary" @click="onSubmit(ruleFormRef)">
-              发送
-            </el-button>
-          </div>
-        </el-tooltip>
-      </client-only>
+              <div class="outer-frame">
+                <el-button type="primary" @click="onSubmit(ruleFormRef)">
+                  发送
+                </el-button>
+              </div>
+            </el-tooltip>
+          </client-only>
+        </div>
+      </el-scrollbar>
     </div>
     <div class="result-info">
       <Result :form-data="result" />
@@ -636,8 +671,11 @@ useHead({
 <style scoped>
 .invoicing .form-info {
   width: 74%;
-  padding: 20px;
   overflow: auto;
+}
+
+.form-info_padding {
+  padding: 20px;
 }
 
 .invoicing .form-info .tips {
