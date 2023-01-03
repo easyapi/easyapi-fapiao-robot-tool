@@ -1,33 +1,33 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import { ArrowRight } from "@element-plus/icons-vue";
-import { menuList } from "../utils/menu";
+import { ref } from 'vue'
+import { ArrowRight } from '@element-plus/icons-vue'
+import { menuList } from '../utils/menu'
 
-const route = useRouter();
-const name = ref("");
+const route = useRouter()
+const name = ref('')
 
 watch(
   () => route.currentRoute.value.path,
   (newPath) => {
-    getNameByPath(menuList, newPath);
+    getNameByPath(menuList, newPath)
   }
-);
+)
 
 const getNameByPath = (list: any, path: String) => {
   list.forEach((item: any) => {
     if (item.path == path) {
-      name.value = item.name;
-      return;
+      name.value = item.name
+      return
     }
     if (item.children && item.children.length > 0) {
-      getNameByPath(item.children, path);
+      getNameByPath(item.children, path)
     }
-  });
-};
+  })
+}
 
 onMounted(() => {
-  getNameByPath(menuList, route.currentRoute.value.path);
-});
+  getNameByPath(menuList, route.currentRoute.value.path)
+})
 </script>
 
 <template>

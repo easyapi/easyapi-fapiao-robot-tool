@@ -1,93 +1,93 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
-import { ElMessage } from "element-plus";
-import type { FormInstance, FormRules } from "element-plus";
-import { test } from "@/api/test";
-import { getCacheData, setCacheData } from "@/utils/cacheData";
-import Result from "@/components/Result.vue";
-import Callback from "@/components/Callback.vue";
+import { onMounted, reactive, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
+import { test } from '@/api/test'
+import { getCacheData, setCacheData } from '@/utils/cacheData'
+import Result from '@/components/Result.vue'
+import Callback from '@/components/Callback.vue'
 
-const token = useCookie("robotToken");
-const route = useRoute();
-const ruleFormRef = ref<FormInstance>();
+const token = useCookie('robotToken')
+const route = useRoute()
+const ruleFormRef = ref<FormInstance>()
 
 const formData = reactive({
-  taxNumber: "91320211MA1WML8X6T",
-  allElectronicInvoiceNumber: "",
-  makeDate: "",
-  callbackUrl: "",
-  secretKey: "",
-});
+  taxNumber: '91320211MA1WML8X6T',
+  allElectronicInvoiceNumber: '',
+  makeDate: '',
+  callbackUrl: '',
+  secretKey: '',
+})
 
 const disabledDate = (time: Date) => {
-  return time.getTime() > Date.now();
-};
+  return time.getTime() > Date.now()
+}
 
 const result = reactive({
-  message: "",
-  topic: "",
-  webSocket: "",
-});
+  message: '',
+  topic: '',
+  webSocket: '',
+})
 
-const callback = reactive({});
+const callback = reactive({})
 
 const formRules = reactive<FormRules>({
   allElectronicInvoiceNumber: [
-    { required: true, message: "全电发票号码不能为空", trigger: "change" },
+    { required: true, message: '全电发票号码不能为空', trigger: 'change' },
   ],
   makeDate: [
-    { required: true, message: "开票时间不能为空", trigger: "change" },
+    { required: true, message: '开票时间不能为空', trigger: 'change' },
   ],
   callbackUrl: [
-    { required: true, message: "回调地址不能为空", trigger: "change" },
+    { required: true, message: '回调地址不能为空', trigger: 'change' },
   ],
-  secretKey: [{ required: true, message: "密钥不能为空", trigger: "change" }],
-});
+  secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
+})
 
-const disable = !!token.value;
+const disable = !!token.value
 
 /**
  * 发送
  */
 const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
+  if (!formEl) return
   await formEl.validate((valid) => {
     if (valid) {
       test.queryInvoice(formData).then((res) => {
         if (res.code === 1) {
-          Object.assign(result, res.content);
+          Object.assign(result, res.content)
           ElMessage({
-            type: "success",
+            type: 'success',
             message: res.message,
-          });
+          })
         }
-      });
+      })
     }
-  });
-};
+  })
+}
 
 /**
  * 缓存记录数据
  */
 function saveChange() {
-  setCacheData(route.name as string, formData);
+  setCacheData(route.name as string, formData)
 }
 
 /**
  * 更新formData
  */
 function updateFormData() {
-  const data = getCacheData(route.name as string);
-  Object.assign(formData, data);
+  const data = getCacheData(route.name as string)
+  Object.assign(formData, data)
 }
 
 onMounted(() => {
-  updateFormData();
-});
+  updateFormData()
+})
 
 useHead({
-  title: "同步查询 - EasyAPI发票机器人",
-});
+  title: '同步查询 - EasyAPI发票机器人',
+})
 </script>
 
 <template>

@@ -1,147 +1,147 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
-import { ElMessage } from "element-plus";
-import type { FormInstance, FormRules } from "element-plus";
-import { Close, QuestionFilled } from "@element-plus/icons-vue";
-import SockJS from "sockjs-client/dist/sockjs.min.js";
-import Stomp from "stompjs";
-import { test } from "@/api/test";
-import { getCacheData, setCacheData } from "@/utils/cacheData";
-import http from "~/api/request";
-import Result from "@/components/Result.vue";
-import Callback from "@/components/Callback.vue";
+import { onMounted, reactive, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
+import { Close, QuestionFilled } from '@element-plus/icons-vue'
+import SockJS from 'sockjs-client/dist/sockjs.min.js'
+import Stomp from 'stompjs'
+import { test } from '@/api/test'
+import { getCacheData, setCacheData } from '@/utils/cacheData'
+import http from '~/api/request'
+import Result from '@/components/Result.vue'
+import Callback from '@/components/Callback.vue'
 
-const token = useCookie("robotToken");
-const route = useRoute();
-const ruleFormRef = ref<FormInstance>();
-const visible = ref(false);
-const fullscreenLoading = ref(false);
-const socketUrl = ref("");
+const token = useCookie('robotToken')
+const route = useRoute()
+const ruleFormRef = ref<FormInstance>()
+const visible = ref(false)
+const fullscreenLoading = ref(false)
+const socketUrl = ref('')
 
-let stompClient: any;
+let stompClient: any
 
 const invoiceDetail = reactive({
-  category: "",
-  code: "",
-  number: "",
-  href: "",
-});
+  category: '',
+  code: '',
+  number: '',
+  href: '',
+})
 
 const formData = reactive({
-  taxNumber: "91320211MA1WML8X6T",
-  outOrderNo: "",
-  code: "",
-  number: "",
+  taxNumber: '91320211MA1WML8X6T',
+  outOrderNo: '',
+  code: '',
+  number: '',
   printCallbackUrl:
-    "https://fapiao-robot-api.easyapi.com/callback/51fapiao/print",
-  callbackUrl: "",
-  secretKey: "",
-});
+    'https://fapiao-robot-api.easyapi.com/callback/51fapiao/print',
+  callbackUrl: '',
+  secretKey: '',
+})
 
 const result = reactive({
-  message: "",
-  topic: "",
-  webSocket: "",
-});
+  message: '',
+  topic: '',
+  webSocket: '',
+})
 
-const callback = reactive({});
+const callback = reactive({})
 
 const formRules = reactive<FormRules>({
-  code: [{ required: true, message: "发票代码不能为空", trigger: "change" }],
-  number: [{ required: true, message: "发票号码不能为空", trigger: "change" }],
+  code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
+  number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
   callbackUrl: [
-    { required: true, message: "回调地址不能为空", trigger: "change" },
+    { required: true, message: '回调地址不能为空', trigger: 'change' },
   ],
-  secretKey: [{ required: true, message: "密钥不能为空", trigger: "change" }],
-});
+  secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
+})
 
-const disable = !!token.value;
+const disable = !!token.value
 
 /**
  * 发送
  */
 const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
+  if (!formEl) return
   await formEl.validate((valid) => {
     if (valid) {
       test.printInvoice(formData).then((res) => {
         if (res.code === 1) {
-          Object.assign(result, res.content);
+          Object.assign(result, res.content)
           ElMessage({
-            type: "success",
+            type: 'success',
             message: res.message,
-          });
+          })
           if (formData.printCallbackUrl) {
-            fullscreenLoading.value = true;
-            webSocket();
+            fullscreenLoading.value = true
+            webSocket()
           }
         }
-      });
+      })
     }
-  });
-};
+  })
+}
 
 function webSocket() {
-  socketUrl.value = `${http.baseUrl}/easyapi-socket`;
-  const socket = new SockJS(socketUrl.value);
-  stompClient = Stomp.over(socket);
-  stompClient.debug = null;
-  stompClient.connect({}, subscribe);
+  socketUrl.value = `${http.baseUrl}/easyapi-socket`
+  const socket = new SockJS(socketUrl.value)
+  stompClient = Stomp.over(socket)
+  stompClient.debug = null
+  stompClient.connect({}, subscribe)
 }
 
 function subscribe() {
   stompClient.subscribe(
     `/topic/${formData.taxNumber}/nuonuo/print`,
     (message: any) => {
-      const target = JSON.parse(message.body);
-      invoiceDetail.category = target.category;
-      invoiceDetail.code = target.code;
-      invoiceDetail.number = target.number;
-      invoiceDetail.href = `webprint:"0,${target.printEncryptData}"`;
-      fullscreenLoading.value = false;
-      visible.value = true;
+      const target = JSON.parse(message.body)
+      invoiceDetail.category = target.category
+      invoiceDetail.code = target.code
+      invoiceDetail.number = target.number
+      invoiceDetail.href = `webprint:"0,${target.printEncryptData}"`
+      fullscreenLoading.value = false
+      visible.value = true
     }
-  );
+  )
   stompClient.subscribe(
     `/topic/${formData.taxNumber}/51fapiao/print`,
     (message: any) => {
-      const target = JSON.parse(message.body);
-      invoiceDetail.category = target.category;
-      invoiceDetail.code = target.code;
-      invoiceDetail.number = target.number;
-      invoiceDetail.href = target.printEncryptData;
-      fullscreenLoading.value = false;
-      visible.value = true;
+      const target = JSON.parse(message.body)
+      invoiceDetail.category = target.category
+      invoiceDetail.code = target.code
+      invoiceDetail.number = target.number
+      invoiceDetail.href = target.printEncryptData
+      fullscreenLoading.value = false
+      visible.value = true
     }
-  );
+  )
 }
 
 /**
  * 缓存记录数据
  */
 function saveChange() {
-  setCacheData(route.name as string, formData);
+  setCacheData(route.name as string, formData)
 }
 
 /**
  * 更新formData
  */
 function updateFormData() {
-  const data = getCacheData(route.name as string);
-  Object.assign(formData, data);
+  const data = getCacheData(route.name as string)
+  Object.assign(formData, data)
 }
 
 function gotoPath(url: string) {
-  window.open(url, "_blank");
+  window.open(url, '_blank')
 }
 
 onMounted(() => {
-  updateFormData();
-});
+  updateFormData()
+})
 
 useHead({
-  title: "发票打印 - EasyAPI发票机器人",
-});
+  title: '发票打印 - EasyAPI发票机器人',
+})
 </script>
 
 <template>
@@ -280,7 +280,9 @@ useHead({
           "
         >
           使用说明
-          <el-icon><QuestionFilled /></el-icon>
+          <el-icon>
+            <QuestionFilled />
+          </el-icon>
         </span>
       </div>
     </div>

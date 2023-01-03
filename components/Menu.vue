@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { menuList } from "../utils/menu";
+import { onMounted, ref } from 'vue'
+import { menuList } from '../utils/menu'
 
-const route = useRoute();
-const router = useRouter();
+const route = useRoute()
+const router = useRouter()
 
-const selectMenu = ref();
+const selectMenu = ref()
 
 onMounted(() => {
-  selectMenu.value = route.name === "index" ? "/" : String(route.path);
-});
+  selectMenu.value = route.name === 'index' ? '/' : String(route.path)
+})
 
 function selectMenuItem(row: any) {
-  router.push(row);
+  router.push(row)
 }
 </script>
 
