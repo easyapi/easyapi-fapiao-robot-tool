@@ -33,10 +33,10 @@ const formRules = reactive<FormRules>({
     { required: true, message: '商户订单号不能为空', trigger: 'change' },
   ],
   makeCallbackUrl: [
-    { required: true, message: '开票回调地址不能为空', trigger: 'change' },
+    { required: true, message: '开票回调URL不能为空', trigger: 'change' },
   ],
   callbackUrl: [
-    { required: true, message: '回调地址不能为空', trigger: 'change' },
+    { required: true, message: '回调URL不能为空', trigger: 'change' },
   ],
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
@@ -112,23 +112,23 @@ useHead({
             @input="saveChange"
           />
         </el-form-item>
-        <el-form-item label="开票回调地址：" prop="makeCallbackUrl">
+        <el-form-item label="开票回调URL：" prop="makeCallbackUrl">
           <el-input
             v-model="formData.makeCallbackUrl"
-            placeholder="重新发起开票回调地址"
+            placeholder="重新发起开票回调URL"
             @input="saveChange"
           />
           <div class="tips">
             当重试的订单号不存在的时候，会回调该接口，服务端会重新推送开票信息
           </div>
         </el-form-item>
-        <el-form-item label="回调地址：" prop="callbackUrl">
+        <el-form-item label="回调URL：" prop="callbackUrl">
           <el-input
             v-model="formData.callbackUrl"
-            placeholder="回调地址"
+            placeholder="回调URL"
             @input="saveChange"
           />
-          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
+          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调URL</a>
         </el-form-item>
         <el-form-item label="机器人密钥：" prop="secretKey">
           <el-input

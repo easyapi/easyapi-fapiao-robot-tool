@@ -30,7 +30,7 @@ const formRules = reactive<FormRules>({
     { required: true, message: '企业税号不能为空', trigger: 'change' },
   ],
   callbackUrl: [
-    { required: true, message: '回调地址不能为空', trigger: 'change' },
+    { required: true, message: '回调URL不能为空', trigger: 'change' },
   ],
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
@@ -97,13 +97,13 @@ useHead({ title: '发票库存查询 - EasyAPI发票机器人' })
             @input="saveChange"
           />
         </el-form-item>
-        <el-form-item label="回调地址：" prop="callbackUrl">
+        <el-form-item label="回调URL：" prop="callbackUrl">
           <el-input
             v-model="formData.callbackUrl"
-            placeholder="回调地址"
+            placeholder="回调URL"
             @input="saveChange"
           />
-          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
+          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调URL</a>
         </el-form-item>
         <el-form-item label="机器人密钥：" prop="secretKey">
           <el-input

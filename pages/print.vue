@@ -50,7 +50,7 @@ const formRules = reactive<FormRules>({
   code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
   number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
   callbackUrl: [
-    { required: true, message: '回调地址不能为空', trigger: 'change' },
+    { required: true, message: '回调URL不能为空', trigger: 'change' },
   ],
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
@@ -198,13 +198,13 @@ useHead({
             仅诺诺发票打印需要回传打印密钥
           </p>
         </el-form-item>
-        <el-form-item label="回调地址：" prop="callbackUrl">
+        <el-form-item label="回调URL：" prop="callbackUrl">
           <el-input
             v-model="formData.callbackUrl"
-            placeholder="回调地址"
+            placeholder="回调URL"
             @input="saveChange"
           />
-          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
+          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调URL</a>
         </el-form-item>
         <el-form-item label="机器人密钥：" prop="secretKey">
           <el-input
@@ -213,7 +213,10 @@ useHead({
             maxlength="8"
             @input="saveChange"
           />
-          <a href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text" target="_blank">如何获取机器人密钥</a>
+          <a
+            href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text"
+            target="_blank"
+          >如何获取机器人密钥</a>
         </el-form-item>
         <el-form-item>
           <client-only>
@@ -269,21 +272,13 @@ useHead({
         为确保您正常打印发票，请先下载安装
         <span
           class="cursor-pointer text-blue-400"
-          @click="
-            gotoPath(
-              'https://www.nuonuo.com/nuonuo/web/mainbody/special/index.html?guid=3dedd2bf999b4de2a5d50e35ac7a2771',
-            )
-          "
+          @click="gotoPath('https://www.nuonuo.com/nuonuo/web/mainbody/special/index.html?guid=3dedd2bf999b4de2a5d50e35ac7a2771')"
         >
           打印助手
         </span>
         <span
           class="cursor-pointer text-blue-400"
-          @click="
-            gotoPath(
-              'https://www.nuonuo.com/nuonuo/web/mainbody/special/index.html?guid=c0f3054219944a8fa56ad2fc534d3850',
-            )
-          "
+          @click="gotoPath('https://www.nuonuo.com/nuonuo/web/mainbody/special/index.html?guid=c0f3054219944a8fa56ad2fc534d3850')"
         >
           使用说明
           <el-icon>

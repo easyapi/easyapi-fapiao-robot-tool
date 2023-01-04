@@ -399,7 +399,7 @@ useHead({
                     placeholder="回传开票结果"
                     @input="saveChange"
                   />
-                  <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
+                  <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调URL</a>
                 </el-form-item>
               </el-col>
             </el-row>
