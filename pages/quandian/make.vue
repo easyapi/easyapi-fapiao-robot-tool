@@ -18,7 +18,7 @@ const ruleFormRef = ref<FormInstance>()
 const disable = !!token.value
 
 const formData = reactive({
-  category: '增值税电子普通发票',
+  category: '全电电子普通发票',
   purchaserName: '深圳市腾讯计算机系统有限公司',
   purchaserTaxpayerNumber: '91440300708461136T',
   purchaserAddress: '',
