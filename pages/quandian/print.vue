@@ -68,7 +68,8 @@ const disable = !!token.value
  * 发送
  */
 const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return
+  if (!formEl)
+    return
   await formEl.validate((valid) => {
     if (valid) {
       test.printInvoice(formData).then((res) => {
@@ -107,7 +108,7 @@ function subscribe() {
       invoiceDetail.href = `webprint:"0,${target.printEncryptData}"`
       fullscreenLoading.value = false
       visible.value = true
-    }
+    },
   )
   stompClient.subscribe(
     `/topic/${formData.taxNumber}/51fapiao/print`,
@@ -119,7 +120,7 @@ function subscribe() {
       invoiceDetail.href = target.printEncryptData
       fullscreenLoading.value = false
       visible.value = true
-    }
+    },
   )
 }
 
@@ -175,8 +176,8 @@ useHead({
           <el-input
             v-model="formData.allElectronicInvoiceNumber"
             placeholder="请输入全电发票号码"
-            @input="saveChange"
             maxlength="20"
+            @input="saveChange"
           />
         </el-form-item>
         <el-form-item label="开票时间：" prop="makeDate">
@@ -186,8 +187,8 @@ useHead({
               type="date"
               placeholder="请选择开票时间"
               value-format="YYYY-MM-DD"
-              @change="saveChange"
               :disabled-date="disabledDate"
+              @change="saveChange"
             />
           </client-only>
         </el-form-item>
@@ -205,17 +206,16 @@ useHead({
             placeholder="回调地址"
             @input="saveChange"
           />
-          <a href="https://hooks.upyun.com/" target="_blank"
-            >获取测试用回调地址</a
-          >
+          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item label="机器人密钥：" prop="secretKey">
           <el-input
             v-model="formData.secretKey"
             placeholder="请输入机器人密钥"
-            @input="saveChange"
             maxlength="8"
+            @input="saveChange"
           />
+          <a href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text" target="_blank">如何获取机器人密钥</a>
         </el-form-item>
         <el-form-item>
           <client-only>
@@ -261,15 +261,19 @@ useHead({
       <p class="leading-8 mt-2 tracking-wide">
         发票种类：{{ invoiceDetail.category }}
       </p>
-      <p class="leading-8">发票代码：{{ invoiceDetail.code }}</p>
-      <p class="leading-8 mb-2">发票号码：{{ invoiceDetail.number }}</p>
+      <p class="leading-8">
+        发票代码：{{ invoiceDetail.code }}
+      </p>
+      <p class="leading-8 mb-2">
+        发票号码：{{ invoiceDetail.number }}
+      </p>
       <div class="text-gray-400">
         为确保您正常打印发票，请先下载安装
         <span
           class="cursor-pointer text-blue-400"
           @click="
             gotoPath(
-              'https://www.nuonuo.com/nuonuo/web/mainbody/special/index.html?guid=3dedd2bf999b4de2a5d50e35ac7a2771'
+              'https://www.nuonuo.com/nuonuo/web/mainbody/special/index.html?guid=3dedd2bf999b4de2a5d50e35ac7a2771',
             )
           "
         >
@@ -279,7 +283,7 @@ useHead({
           class="cursor-pointer text-blue-400"
           @click="
             gotoPath(
-              'https://www.nuonuo.com/nuonuo/web/mainbody/special/index.html?guid=c0f3054219944a8fa56ad2fc534d3850'
+              'https://www.nuonuo.com/nuonuo/web/mainbody/special/index.html?guid=c0f3054219944a8fa56ad2fc534d3850',
             )
           "
         >
@@ -294,8 +298,7 @@ useHead({
       <a
         :href="invoiceDetail.href"
         class="px-4 py-2 bg-blue-500 text-white rounded-sm"
-        >发票打印</a
-      >
+      >发票打印</a>
     </div>
   </el-dialog>
 </template>

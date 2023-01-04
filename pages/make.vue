@@ -142,14 +142,14 @@ function changeNumber(index: integer) {
   }
   if (formData.items[index].price) {
     // 计算小计（保留2位小数）
-    formData.items[index].sum =
-      Number(formData.items[index].number) * Number(formData.items[index].price)
+    formData.items[index].sum
+      = Number(formData.items[index].number) * Number(formData.items[index].price)
     return
   }
   if (formData.items[index].sum) {
     // 并且数量有值，计算单价（保留8为小数）
-    formData.items[index].price =
-      Number(formData.items[index].sum) / Number(formData.items[index].number)
+    formData.items[index].price
+      = Number(formData.items[index].sum) / Number(formData.items[index].number)
   }
   setCacheData(route.name as string, formData)
 }
@@ -164,14 +164,14 @@ function changePrice(index: integer) {
   }
   if (formData.items[index].number) {
     // 计算小计（保留2位小数）
-    formData.items[index].sum =
-      Number(formData.items[index].number) * Number(formData.items[index].price)
+    formData.items[index].sum
+      = Number(formData.items[index].number) * Number(formData.items[index].price)
     return
   }
   if (formData.items[index].sum) {
     // 计算数量
-    formData.items[index].number =
-      Number(formData.items[index].sum) / Number(formData.items[index].price)
+    formData.items[index].number
+      = Number(formData.items[index].sum) / Number(formData.items[index].price)
   }
   setCacheData(route.name as string, formData)
 }
@@ -186,11 +186,12 @@ function changeSum(index: integer) {
   }
   if (formData.items[index].number) {
     // 并且数量有值，计算单价（保留8为小数）
-    formData.items[index].price =
-      Number(formData.items[index].sum) / Number(formData.items[index].number)
+    formData.items[index].price
+      = Number(formData.items[index].sum) / Number(formData.items[index].number)
     return
   }
-  if (formData.items[index].price) formData.items[index].number = 1
+  if (formData.items[index].price)
+    formData.items[index].number = 1
 
   setCacheData(route.name as string, formData)
 }
@@ -250,23 +251,24 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   if (formData.category.indexOf('专用')) {
     // todo
   }
-  if (!formEl) return
+  if (!formEl)
+    return
 
   await formEl.validate((valid) => {
     if (valid) {
       formData.items.forEach((item, index) => {
         if (
-          item.no === '' &&
-          item.name === '' &&
-          item.model === '' &&
-          item.unit === '' &&
-          item.number === '' &&
-          item.price === '' &&
-          item.sum === '' &&
-          item.taxRate === '' &&
-          item.preferentialPolicyFlag === '' &&
-          item.zeroRateFlag === '' &&
-          item.preferentialPolicyName === ''
+          item.no === ''
+          && item.name === ''
+          && item.model === ''
+          && item.unit === ''
+          && item.number === ''
+          && item.price === ''
+          && item.sum === ''
+          && item.taxRate === ''
+          && item.preferentialPolicyFlag === ''
+          && item.zeroRateFlag === ''
+          && item.preferentialPolicyName === ''
         )
           formData.items.splice(index, 1)
       })
@@ -451,8 +453,8 @@ useHead({
                 <el-form-item label="手机号码：" prop="drawerName">
                   <el-input
                     v-model="formData.drawerName"
-                    @input="saveChange"
                     placeholder="用来接收发票手机短消息"
+                    @input="saveChange"
                   />
                 </el-form-item>
               </el-col>
@@ -465,8 +467,8 @@ useHead({
                 <el-form-item label="邮箱：" prop="email">
                   <el-input
                     v-model="formData.email"
-                    @input="saveChange"
                     placeholder="用来接收电子发票发送邮件"
+                    @input="saveChange"
                   />
                 </el-form-item>
               </el-col>
@@ -480,21 +482,20 @@ useHead({
                   <el-input
                     v-model="formData.secretKey"
                     placeholder="请输入机器人密钥"
-                    @input="saveChange"
                     maxlength="8"
+                    @input="saveChange"
                   />
+                  <a href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text" target="_blank">如何获取机器人密钥</a>
                 </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item label="回调URL：" prop="callbackUrl">
                   <el-input
                     v-model="formData.callbackUrl"
-                    @input="saveChange"
                     placeholder="回传开票结果"
+                    @input="saveChange"
                   />
-                  <a href="https://hooks.upyun.com/" target="_blank"
-                    >获取测试用回调地址</a
-                  >
+                  <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -510,8 +511,7 @@ useHead({
                 <a
                   href="https://fapiao.easyapi.com/taxcode.html"
                   target="_blank"
-                  >查找税收分类编码</a
-                >
+                >查找税收分类编码</a>
               </template>
             </el-table-column>
             <el-table-column label="商品名称">

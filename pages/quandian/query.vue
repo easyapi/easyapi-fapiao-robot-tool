@@ -50,7 +50,8 @@ const disable = !!token.value
  * 发送
  */
 const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return
+  if (!formEl)
+    return
   await formEl.validate((valid) => {
     if (valid) {
       test.queryInvoice(formData).then((res) => {
@@ -111,8 +112,8 @@ useHead({
           <el-input
             v-model="formData.allElectronicInvoiceNumber"
             placeholder="请输入全电发票号码"
-            @input="saveChange"
             maxlength="20"
+            @input="saveChange"
           />
         </el-form-item>
         <el-form-item label="开票时间：" prop="makeDate">
@@ -122,8 +123,8 @@ useHead({
               type="date"
               placeholder="请选择开票时间"
               value-format="YYYY-MM-DD"
-              @change="saveChange"
               :disabled-date="disabledDate"
+              @change="saveChange"
             />
           </client-only>
         </el-form-item>
@@ -133,17 +134,16 @@ useHead({
             placeholder="回调地址"
             @input="saveChange"
           />
-          <a href="https://hooks.upyun.com/" target="_blank"
-            >获取测试用回调地址</a
-          >
+          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调地址</a>
         </el-form-item>
         <el-form-item label="机器人密钥：" prop="secretKey">
           <el-input
             v-model="formData.secretKey"
             placeholder="请输入机器人密钥"
-            @input="saveChange"
             maxlength="8"
+            @input="saveChange"
           />
+          <a href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text" target="_blank">如何获取机器人密钥</a>
         </el-form-item>
         <el-form-item>
           <client-only>
