@@ -111,7 +111,7 @@ useHead({
         <el-form-item label="全电发票号码：" prop="allElectronicInvoiceNumber">
           <el-input
             v-model="formData.allElectronicInvoiceNumber"
-            placeholder="请输入全电发票号码"
+            placeholder="全电发票号码长度为20位数字"
             maxlength="20"
             @input="saveChange"
           />
