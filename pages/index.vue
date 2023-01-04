@@ -11,23 +11,23 @@ useHead({
       <el-scrollbar height="100%">
         <div class="w-full flex flex-wrap">
           <div class="card-item py-4 bg-white rounded text-center shadow">
-            <div class="text-xl font-semibold mb-2">助手下载</div>
+            <div class="text-xl font-semibold mb-2">
+              EasyAPI发票机器人助手下载
+            </div>
             <img
               class="inline-block mb-2"
               src="../assets/svg/logo.svg"
               alt=""
-            />
-            <div class="mb-2 text-sm font-medium">
+            >
+            <div class="mb-2 text-sm">
               <span>下载地址：</span>
-              <a href="http://www.baidu.com" target="_blank"
-                >http://www.baidu.com</a
-              >
+              <a href="javascript:;">联系微信fanfanle获取</a>
             </div>
-            <div class="mb-2 text-sm font-medium">
-              <span>版本号：</span><span>1.1.0</span>
+            <div class="mb-2 text-sm">
+              <span>版本号：</span><span>1.0.0</span>
             </div>
-            <div class="text-sm font-medium">
-              <span>更新时间：</span><span>2022.09.27</span>
+            <div class="text-sm">
+              <span>更新时间：</span><span>2023.01.02</span>
             </div>
           </div>
         </div>
@@ -49,6 +49,6 @@ useHead({
 }
 
 .card-item:nth-child(3n) {
-  margin-right: 0px;
+  margin-right: 0;
 }
 </style>
