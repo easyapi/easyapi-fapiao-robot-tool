@@ -265,7 +265,6 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
           && item.number === ''
           && item.price === ''
           && item.sum === ''
-          && item.taxRate === ''
           && item.preferentialPolicyFlag === ''
           && item.zeroRateFlag === ''
           && item.preferentialPolicyName === ''
@@ -450,26 +449,25 @@ useHead({
                 </el-form-item>
               </el-col>
               <el-col :span="8">
-                <el-form-item label="手机号码：" prop="drawerName">
+                <el-form-item label="收款人名称：" prop="drawerName">
                   <el-input
                     v-model="formData.drawerName"
-                    placeholder="用来接收发票手机短消息"
                     @input="saveChange"
                   />
-                </el-form-item>
-              </el-col>
-              <el-col :span="8">
-                <el-form-item label="收款人名称：" prop="mobile">
-                  <el-input v-model="formData.mobile" @input="saveChange" />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item label="邮箱：" prop="email">
                   <el-input
                     v-model="formData.email"
-                    placeholder="用来接收电子发票发送邮件"
+                    placeholder="用来接收电子发票发送邮件（免费）"
                     @input="saveChange"
                   />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="手机号码：" prop="mobile">
+                  <el-input v-model="formData.mobile" placeholder="用来接收发票手机短消息（单独付费）" @input="saveChange" />
                 </el-form-item>
               </el-col>
               <el-col :span="8">

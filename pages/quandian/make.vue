@@ -33,6 +33,8 @@ const formData = reactive({
   sellerBank: '中国工商银行股份有限公司上海市长江西路支行',
   sellerBankAccount: '1001036509006822168',
   remark: '',
+  mobile: '',
+  email: '',
   callbackUrl: '',
   secretKey: '',
   webSocket: '',
@@ -243,7 +245,6 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
           && item.number === ''
           && item.price === ''
           && item.sum === ''
-          && item.taxRate === ''
           && item.preferentialPolicyFlag === ''
           && item.zeroRateFlag === ''
           && item.preferentialPolicyName === ''
@@ -411,6 +412,24 @@ useHead({
               <el-col :span="8">
                 <el-form-item label="备注：" prop="remark">
                   <el-input v-model="formData.remark" @input="saveChange" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="邮箱：" prop="email">
+                  <el-input
+                    v-model="formData.email"
+                    placeholder="用来接收全电发票发送邮件（免费）"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="手机号码：" prop="drawerName">
+                  <el-input
+                    v-model="formData.drawerName"
+                    placeholder="用来接收发票手机短消息（单独付费）"
+                    @input="saveChange"
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
