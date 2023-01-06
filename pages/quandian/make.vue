@@ -19,13 +19,17 @@ const disable = !!token.value
 
 const formData = reactive({
   category: '全电电子普通发票',
+  outOrderNo: '',
   purchaserName: '深圳市腾讯计算机系统有限公司',
   purchaserTaxpayerNumber: '91440300708461136T',
   purchaserAddress: '',
   purchaserPhone: '',
   purchaserBank: '',
   purchaserBankAccount: '',
+  sellerName: '',
+  sellerTaxpayerNumber: '',
   sellerAddress: '上海市宝山区呼兰路911弄11号5号楼111C室',
+  sellerPhone: '',
   sellerBank: '中国工商银行股份有限公司上海市长江西路支行',
   sellerBankAccount: '1001036509006822168',
   remark: '',
@@ -261,6 +265,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
 
 onMounted(() => {
   updateFormData()
+  formData.outOrderNo = `TOOL${new Date().getTime()}`
 })
 
 useHead({
@@ -310,7 +315,7 @@ useHead({
               </el-col>
               <el-col :span="8">
                 <el-form-item
-                  label="纳税人识别号："
+                  label="购方纳税人识别号："
                   prop="purchaserTaxpayerNumber"
                 >
                   <el-input
@@ -337,7 +342,7 @@ useHead({
                 </el-form-item>
               </el-col>
               <el-col :span="8">
-                <el-form-item label="购方开户行：" prop="purchaserBank">
+                <el-form-item label="购方开户银行：" prop="purchaserBank">
                   <el-input
                     v-model="formData.purchaserBank"
                     @input="saveChange"
@@ -346,7 +351,7 @@ useHead({
               </el-col>
               <el-col :span="8">
                 <el-form-item
-                  label="购方开户行账号："
+                  label="购方银行账号："
                   prop="purchaserBankAccount"
                 >
                   <el-input
@@ -356,22 +361,49 @@ useHead({
                 </el-form-item>
               </el-col>
               <el-col :span="8">
-                <el-form-item label="销方地址：" prop="sellerAddress">
+                <el-form-item label="销方名称：" prop="sellerName">
                   <el-input
-                    v-model="formData.sellerAddress"
+                    v-model="formData.sellerName"
                     @input="saveChange"
                   />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
-                <el-form-item label="销方银行：" prop="sellerBank">
-                  <el-input v-model="formData.sellerBank" @input="saveChange" />
+                <el-form-item label="销方纳税人识别号：" prop="sellerTaxpayerNumber">
+                  <el-input
+                    v-model="formData.sellerTaxpayerNumber"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="销方地址：" prop="sellerAddress">
+                  <el-input
+                    v-model="formData.sellerAddress"
+                    placeholder="必须传入电子税务局存在的销方地址"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="销方电话：" prop="sellerPhone">
+                  <el-input
+                    v-model="formData.sellerPhone"
+                    placeholder="无需传入"
+                    disabled
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="销方开户银行：" prop="sellerBank">
+                  <el-input v-model="formData.sellerBank" placeholder="必须传入电子税务局存在的开户银行" @input="saveChange" />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item label="销方银行账号：" prop="sellerBankAccount">
                   <el-input
                     v-model="formData.sellerBankAccount"
+                    placeholder="必须传入电子税务局匹配的银行账号"
                     @input="saveChange"
                   />
                 </el-form-item>
