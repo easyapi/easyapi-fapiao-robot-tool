@@ -122,14 +122,14 @@ function changeNumber(index: integer) {
   }
   if (formData.items[index].price) {
     // 计算小计（保留2位小数）
-    formData.items[index].sum
-      = Number(formData.items[index].number) * Number(formData.items[index].price)
+    formData.items[index].sum =
+      Number(formData.items[index].number) * Number(formData.items[index].price)
     return
   }
   if (formData.items[index].sum) {
     // 并且数量有值，计算单价（保留8为小数）
-    formData.items[index].price
-      = Number(formData.items[index].sum) / Number(formData.items[index].number)
+    formData.items[index].price =
+      Number(formData.items[index].sum) / Number(formData.items[index].number)
   }
   setCacheData(route.name as string, formData)
 }
@@ -144,14 +144,14 @@ function changePrice(index: integer) {
   }
   if (formData.items[index].number) {
     // 计算小计（保留2位小数）
-    formData.items[index].sum
-      = Number(formData.items[index].number) * Number(formData.items[index].price)
+    formData.items[index].sum =
+      Number(formData.items[index].number) * Number(formData.items[index].price)
     return
   }
   if (formData.items[index].sum) {
     // 计算数量
-    formData.items[index].number
-      = Number(formData.items[index].sum) / Number(formData.items[index].price)
+    formData.items[index].number =
+      Number(formData.items[index].sum) / Number(formData.items[index].price)
   }
   setCacheData(route.name as string, formData)
 }
@@ -166,12 +166,11 @@ function changeSum(index: integer) {
   }
   if (formData.items[index].number) {
     // 并且数量有值，计算单价（保留8为小数）
-    formData.items[index].price
-      = Number(formData.items[index].sum) / Number(formData.items[index].number)
+    formData.items[index].price =
+      Number(formData.items[index].sum) / Number(formData.items[index].number)
     return
   }
-  if (formData.items[index].price)
-    formData.items[index].number = 1
+  if (formData.items[index].price) formData.items[index].number = 1
 
   setCacheData(route.name as string, formData)
 }
@@ -231,23 +230,22 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   if (formData.category.indexOf('专用')) {
     // todo
   }
-  if (!formEl)
-    return
+  if (!formEl) return
 
   await formEl.validate((valid) => {
     if (valid) {
       formData.items.forEach((item, index) => {
         if (
-          item.no === ''
-          && item.name === ''
-          && item.model === ''
-          && item.unit === ''
-          && item.number === ''
-          && item.price === ''
-          && item.sum === ''
-          && item.preferentialPolicyFlag === ''
-          && item.zeroRateFlag === ''
-          && item.preferentialPolicyName === ''
+          item.no === '' &&
+          item.name === '' &&
+          item.model === '' &&
+          item.unit === '' &&
+          item.number === '' &&
+          item.price === '' &&
+          item.sum === '' &&
+          item.preferentialPolicyFlag === '' &&
+          item.zeroRateFlag === '' &&
+          item.preferentialPolicyName === ''
         )
           formData.items.splice(index, 1)
       })
@@ -279,42 +277,16 @@ useHead({
     <div class="form-info bg-white rounded">
       <el-scrollbar height="100%">
         <div class="form-info_padding">
-          <el-form
-            ref="ruleFormRef"
-            :model="formData"
-            :rules="formRules"
-            label-width="150px"
-          >
-            <el-row>
-              <el-col :span="8">
-                <el-form-item label="发票类别：" prop="category">
-                  <client-only>
-                    <el-select
-                      v-model="formData.category"
-                      placeholder="请选择发票类别"
-                      filterable
-                      size="default"
-                      @change="saveChange"
-                    >
-                      <el-option
-                        v-for="item in quandianInvoiceCategoryList"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                      />
-                    </el-select>
-                  </client-only>
-                </el-form-item>
-              </el-col>
-              <el-col :span="8">
+          <el-form ref="ruleFormRef" :model="formData" :rules="formRules">
+            <div class="flex">
+              <div class="w-1/2 border px-4 pt-4 mr-4">
+                <div class="text-black text-xl font-bold mb-4">购买方信息</div>
                 <el-form-item label="购方名称：" prop="purchaserName">
                   <el-input
                     v-model="formData.purchaserName"
                     @input="saveChange"
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
                 <el-form-item
                   label="购方纳税人识别号："
                   prop="purchaserTaxpayerNumber"
@@ -325,32 +297,24 @@ useHead({
                     @input="saveChange"
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
                 <el-form-item label="购方地址：" prop="purchaserAddress">
                   <el-input
                     v-model="formData.purchaserAddress"
                     @input="saveChange"
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
                 <el-form-item label="购方电话：" prop="purchaserPhone">
                   <el-input
                     v-model="formData.purchaserPhone"
                     @input="saveChange"
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
                 <el-form-item label="购方开户银行：" prop="purchaserBank">
                   <el-input
                     v-model="formData.purchaserBank"
                     @input="saveChange"
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
                 <el-form-item
                   label="购方银行账号："
                   prop="purchaserBankAccount"
@@ -360,24 +324,21 @@ useHead({
                     @input="saveChange"
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
+              </div>
+              <div class="w-1/2 border px-4 pt-4">
+                <div class="text-black text-xl font-bold mb-4">销售方信息</div>
                 <el-form-item label="销方名称：" prop="sellerName">
-                  <el-input
-                    v-model="formData.sellerName"
-                    @input="saveChange"
-                  />
+                  <el-input v-model="formData.sellerName" @input="saveChange" />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
-                <el-form-item label="销方纳税人识别号：" prop="sellerTaxpayerNumber">
+                <el-form-item
+                  label="销方纳税人识别号："
+                  prop="sellerTaxpayerNumber"
+                >
                   <el-input
                     v-model="formData.sellerTaxpayerNumber"
                     @input="saveChange"
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
                 <el-form-item label="销方地址：" prop="sellerAddress">
                   <el-input
                     v-model="formData.sellerAddress"
@@ -385,8 +346,6 @@ useHead({
                     @input="saveChange"
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
                 <el-form-item label="销方电话：" prop="sellerPhone">
                   <el-input
                     v-model="formData.sellerPhone"
@@ -394,13 +353,13 @@ useHead({
                     disabled
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
                 <el-form-item label="销方开户银行：" prop="sellerBank">
-                  <el-input v-model="formData.sellerBank" placeholder="必须传入电子税务局存在的开户银行" @input="saveChange" />
+                  <el-input
+                    v-model="formData.sellerBank"
+                    placeholder="必须传入电子税务局存在的开户银行"
+                    @input="saveChange"
+                  />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
                 <el-form-item label="销方银行账号：" prop="sellerBankAccount">
                   <el-input
                     v-model="formData.sellerBankAccount"
@@ -408,22 +367,11 @@ useHead({
                     @input="saveChange"
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
-                <el-form-item label="备注：" prop="remark">
-                  <el-input v-model="formData.remark" @input="saveChange" />
-                </el-form-item>
-              </el-col>
-              <el-col :span="8">
-                <el-form-item label="邮箱：" prop="email">
-                  <el-input
-                    v-model="formData.email"
-                    placeholder="用来接收全电发票发送邮件（免费）"
-                    @input="saveChange"
-                  />
-                </el-form-item>
-              </el-col>
-              <el-col :span="8">
+              </div>
+            </div>
+
+            <div class="border my-4 flex">
+              <div class="w-1/2 px-4 pt-4 mr-4">
                 <el-form-item label="手机号码：" prop="drawerName">
                   <el-input
                     v-model="formData.drawerName"
@@ -431,8 +379,25 @@ useHead({
                     @input="saveChange"
                   />
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
+                <el-form-item label="发票类别：" prop="category">
+                  <client-only>
+                    <el-select
+                      v-model="formData.category"
+                      placeholder="请选择发票类别"
+                      filterable
+                      size="default"
+                      @change="saveChange"
+                      class="w-full"
+                    >
+                      <el-option
+                        v-for="item in quandianInvoiceCategoryList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      />
+                    </el-select>
+                  </client-only>
+                </el-form-item>
                 <el-form-item label="机器人密钥：" prop="secretKey">
                   <el-input
                     v-model="formData.secretKey"
@@ -440,20 +405,36 @@ useHead({
                     maxlength="8"
                     @input="saveChange"
                   />
-                  <a href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text" target="_blank">如何获取机器人密钥</a>
+                  <a
+                    href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text"
+                    target="_blank"
+                    >如何获取机器人密钥</a
+                  >
                 </el-form-item>
-              </el-col>
-              <el-col :span="8">
+              </div>
+              <div class="w-1/2 px-4 pt-4">
+                <el-form-item label="邮箱：" prop="email">
+                  <el-input
+                    v-model="formData.email"
+                    placeholder="用来接收全电发票发送邮件（免费）"
+                    @input="saveChange"
+                  />
+                </el-form-item>
+                <el-form-item label="备注：" prop="remark">
+                  <el-input v-model="formData.remark" @input="saveChange" />
+                </el-form-item>
                 <el-form-item label="回调URL：" prop="callbackUrl">
                   <el-input
                     v-model="formData.callbackUrl"
                     placeholder="回传开票结果"
                     @input="saveChange"
                   />
-                  <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调URL</a>
+                  <a href="https://hooks.upyun.com/" target="_blank"
+                    >获取测试用回调URL</a
+                  >
                 </el-form-item>
-              </el-col>
-            </el-row>
+              </div>
+            </div>
           </el-form>
           <el-table :data="formData.items">
             <el-table-column label="税收分类编码">
@@ -466,7 +447,8 @@ useHead({
                 <a
                   href="https://fapiao.easyapi.com/taxcode.html"
                   target="_blank"
-                >查找税收分类编码</a>
+                  >查找税收分类编码</a
+                >
               </template>
             </el-table-column>
             <el-table-column label="商品名称">
