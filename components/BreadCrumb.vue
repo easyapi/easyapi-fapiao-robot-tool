@@ -10,18 +10,17 @@ watch(
   () => route.currentRoute.value.path,
   (newPath) => {
     getNameByPath(menuList, newPath)
-  }
+  },
 )
 
 const getNameByPath = (list: any, path: String) => {
   list.forEach((item: any) => {
-    if (item.path == path) {
+    if (item.path === path) {
       name.value = item.name
       return
     }
-    if (item.children && item.children.length > 0) {
+    if (item.children && item.children.length > 0)
       getNameByPath(item.children, path)
-    }
   })
 }
 

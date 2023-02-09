@@ -127,10 +127,6 @@ li {
   @apply inline-block mx-2;
 }
 
-/* a {
-  @apply inline-block py-4 px-2;
-} */
-
 .router-link-exact-active {
   @apply inline-block px-2 py-4;
 }
