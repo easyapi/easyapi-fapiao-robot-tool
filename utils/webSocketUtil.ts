@@ -1,5 +1,6 @@
 import SockJS from 'sockjs-client/dist/sockjs.min.js'
 import Stomp from 'stompjs'
+import http from '~/api/request'
 
 let stompClient: any = null
 let taxNumber: any = ''
@@ -33,7 +34,7 @@ function subscribe() {
  * 连接
  */
 export function connect() {
-  const socketUrl = 'https://fapiao-robot-api.easyapi.com/easyapi-socket'
+  const socketUrl = `${http.baseUrl}/easyapi-socket`
 
   const socket = new SockJS(socketUrl)
   stompClient = Stomp.over(socket)

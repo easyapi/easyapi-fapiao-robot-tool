@@ -24,7 +24,7 @@ const formData = reactive({
   category: '',
   color: '',
   orderDate: '',
-  makeCallbackUrl: 'https://fapiao-robot-api.easyapi.com/callback/retry/make',
+  makeCallbackUrl: 'https://fapiao-api.easyapi.com/callback/retry/make',
   callbackUrl: '',
   secretKey: '',
 })

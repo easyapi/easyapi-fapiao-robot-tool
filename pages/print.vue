@@ -33,7 +33,7 @@ const formData = reactive({
   code: '',
   number: '',
   printCallbackUrl:
-    'https://fapiao-robot-api.easyapi.com/callback/51fapiao/print',
+    'https://fapiao-api.easyapi.com/callback/51fapiao/print',
   callbackUrl: '',
   secretKey: '',
 })

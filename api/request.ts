@@ -1,7 +1,7 @@
 import { ElMessage } from 'element-plus'
 
 const apiUrl = 'https://api.easyapi.com'
-const baseUrl = 'https://fapiao-robot-api.easyapi.com'
+const baseUrl = 'https://fapiao-api.easyapi.com'
 const accountUrl = 'https://account-api.easyapi.com'
 
 const get = async (url: string, params = {}): Promise<ApiResponse> => {
