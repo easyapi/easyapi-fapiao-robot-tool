@@ -1,6 +1,5 @@
 import SockJS from 'sockjs-client/dist/sockjs.min.js'
 import Stomp from 'stompjs'
-import http from '~/api/request'
 
 let stompClient: any = null
 let taxNumber: any = ''
@@ -34,7 +33,8 @@ function subscribe() {
  * 连接
  */
 export function connect() {
-  const socketUrl = `${http.baseUrl}/easyapi-socket`
+  const config = useRuntimeConfig()
+  const socketUrl = `${config.public.baseUrl}/easyapi-socket`
 
   const socket = new SockJS(socketUrl)
   stompClient = Stomp.over(socket)

@@ -6,7 +6,6 @@ import SockJS from 'sockjs-client/dist/sockjs.min.js'
 import Stomp from 'stompjs'
 import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
-import http from '~/api/request'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 
@@ -17,6 +16,7 @@ const route = useRoute()
 const ruleFormRef = ref<FormInstance>()
 
 const socketUrl = ref('')
+const config = useRuntimeConfig()
 
 let stompClient: any
 
@@ -89,7 +89,7 @@ function updateFormData() {
  * 订阅消息
  */
 function webSocket() {
-  socketUrl.value = `${http.baseUrl}/easyapi-socket`
+  socketUrl.value = `${config.public.baseUrl}/easyapi-socket`
   const socket = new SockJS(socketUrl.value)
   stompClient = Stomp.over(socket)
   stompClient.debug = null

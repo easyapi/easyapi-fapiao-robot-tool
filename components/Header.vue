@@ -11,7 +11,7 @@ const router = useRouter()
 const loginStatus = ref(false)
 
 const state = reactive({
-  timer: null,
+  timer: null as any,
   isMakeInvoice: false,
 })
 
@@ -56,8 +56,8 @@ function getRobotState() {
   if (state.timer)
     clearInterval(state.timer)
   state.timer = setInterval(() => {
-    const robotState = JSON.parse(localStorage.getItem('robotState'))
-    if (robotState && robotState.make == 1)
+    const robotState = JSON.parse(localStorage.getItem('robotState') as any)
+    if (robotState && robotState.make === 1)
       state.isMakeInvoice = true
     else
       state.isMakeInvoice = false
@@ -80,7 +80,7 @@ onMounted(() => {
         <div class="font-black inline text-xl cursor-pointer" @click="gotoHome">
           <img src="/logo-black.png" class="logo-img w-8 h-8" alt="" srcset="">
         </div>
-        <span class="ml-2 text-xl">EasyAPI发票机器人 接口测试工具</span>
+        <span class="ml-2 text-xl font-bold text-gray-700">EasyAPI发票机器人 接口测试工具</span>
       </div>
       <div class="flex items-center">
         <div class="login-group flex mx-2 lg:mx-4 custom-font-14 items-center leading-8">

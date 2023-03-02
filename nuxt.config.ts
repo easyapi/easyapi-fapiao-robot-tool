@@ -3,7 +3,6 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 const lifecycle = process.env.npm_lifecycle_event
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss',
@@ -39,6 +38,13 @@ export default defineNuxtConfig({
       rollupOptions: {
         output: {},
       },
+    },
+  },
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.NUXT_PUBLIC_BASE_URL,
+      serviceUrl: process.env.NUXT_PUBLIC_SERVICE_URL,
+      accountUrl: process.env.NUXT_PUBLIC_ACCOUNT_URL,
     },
   },
 })
