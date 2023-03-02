@@ -8,7 +8,7 @@ import { ElMessage } from 'element-plus'
  */
 const fetch = async (url: string, options?: any, headers?: any): Promise<ApiResponse> => {
   try {
-    const customHeaders = { Authorization: useCookie('robotToken').value, ...headers }
+    const customHeaders = { Authorization: `Bearer ${useCookie('robotToken').value}`, ...headers }
     const res = await $fetch<ApiResponse>(url,
       { ...options, headers: customHeaders },
     )
