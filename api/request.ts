@@ -28,14 +28,14 @@ export default new class http {
   }
 
   post(url: string, data?: any, headers?: any): Promise<any> {
-    return fetch(url, { method: 'post', data }, headers)
+    return fetch(url, { method: 'post', body: data }, headers)
   }
 
   put(url: string, data?: any, headers?: any): Promise<any> {
-    return fetch(url, { method: 'put', data }, headers)
+    return fetch(url, { method: 'put', body: data }, headers)
   }
 
   delete(url: string, data?: any, headers?: any): Promise<any> {
-    return fetch(url, { method: 'delete', data }, headers)
+    return fetch(url, { method: 'delete', body: data }, headers)
   }
 }()
