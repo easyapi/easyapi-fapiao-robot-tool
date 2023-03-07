@@ -8,7 +8,7 @@ import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 
 const token = useCookie('robotToken')
-const route = useRoute()
+const route = process.client ? useRoute() : {}
 const ruleFormRef = ref<FormInstance>()
 
 const formData = reactive({

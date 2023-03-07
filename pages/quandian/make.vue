@@ -11,7 +11,7 @@ import { quandianInvoiceCategoryList } from '~/utils/invoice-category'
 
 const token = useCookie('robotToken')
 
-const route = useRoute()
+const route = process.client ? useRoute() : {}
 
 const ruleFormRef = ref<FormInstance>()
 

@@ -1,17 +1,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ArrowRight } from '@element-plus/icons-vue'
-import { menuList } from '../utils/menu'
+import { menuList } from '~/utils/menu'
 
-const route = useRouter()
+const router = useRouter()
 const name = ref('')
-
-watch(
-  () => route.currentRoute.value.path,
-  (newPath) => {
-    getNameByPath(menuList, newPath)
-  },
-)
 
 const getNameByPath = (list: any, path: String) => {
   list.forEach((item: any) => {
@@ -24,8 +17,15 @@ const getNameByPath = (list: any, path: String) => {
   })
 }
 
+watch(
+  () => router.currentRoute.value.path,
+  (newPath) => {
+    getNameByPath(menuList, newPath)
+  },
+)
+
 onMounted(() => {
-  getNameByPath(menuList, route.currentRoute.value.path)
+  getNameByPath(menuList, router.currentRoute.value.path)
 })
 </script>
 

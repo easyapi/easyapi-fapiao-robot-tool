@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { menuList } from '../utils/menu'
 
-const route = useRoute()
+const route = process.client ? useRoute() : {}
 const router = useRouter()
 
 const selectMenu = ref()

@@ -11,7 +11,7 @@ import { invoiceColorList } from '~/utils/invoice-color'
 import { json } from 'stream/consumers'
 
 const token = useCookie('robotToken')
-const route = useRoute()
+const route = process.client ? useRoute() : {}
 
 const ruleFormRef = ref<FormInstance>()
 
