@@ -33,9 +33,7 @@ const formRules = reactive<FormRules>({
   code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
   number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
   email: [{ required: true, message: '邮箱不能为空', trigger: 'change' }],
-  callbackUrl: [
-    { required: true, message: '回调URL不能为空', trigger: 'change' },
-  ],
+  callbackUrl: [{ required: true, message: '回调URL不能为空', trigger: 'change' },],
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
 

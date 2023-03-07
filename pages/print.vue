@@ -32,8 +32,7 @@ const formData = reactive({
   outOrderNo: '',
   code: '',
   number: '',
-  printCallbackUrl:
-    'https://fapiao-api.easyapi.com/callback/51fapiao/print',
+  printCallbackUrl: 'https://fapiao-api.easyapi.com/callback/51fapiao/print',
   callbackUrl: '',
   secretKey: '',
 })
@@ -49,9 +48,7 @@ const callback = reactive({})
 const formRules = reactive<FormRules>({
   code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
   number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
-  callbackUrl: [
-    { required: true, message: '回调URL不能为空', trigger: 'change' },
-  ],
+  callbackUrl: [{ required: true, message: '回调URL不能为空', trigger: 'change' }],
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
 
@@ -91,29 +88,25 @@ function webSocket() {
 }
 
 function subscribe() {
-  stompClient.subscribe(
-    `/topic/${formData.taxNumber}/nuonuo/print`,
-    (message: any) => {
-      const target = JSON.parse(message.body)
-      invoiceDetail.category = target.category
-      invoiceDetail.code = target.code
-      invoiceDetail.number = target.number
-      invoiceDetail.href = `webprint:"0,${target.printEncryptData}"`
-      fullscreenLoading.value = false
-      visible.value = true
-    },
+  stompClient.subscribe(`/topic/${formData.taxNumber}/nuonuo/print`, (message: any) => {
+    const target = JSON.parse(message.body)
+    invoiceDetail.category = target.category
+    invoiceDetail.code = target.code
+    invoiceDetail.number = target.number
+    invoiceDetail.href = `webprint:"0,${target.printEncryptData}"`
+    fullscreenLoading.value = false
+    visible.value = true
+  },
   )
-  stompClient.subscribe(
-    `/topic/${formData.taxNumber}/51fapiao/print`,
-    (message: any) => {
-      const target = JSON.parse(message.body)
-      invoiceDetail.category = target.category
-      invoiceDetail.code = target.code
-      invoiceDetail.number = target.number
-      invoiceDetail.href = target.printEncryptData
-      fullscreenLoading.value = false
-      visible.value = true
-    },
+  stompClient.subscribe(`/topic/${formData.taxNumber}/51fapiao/print`, (message: any) => {
+    const target = JSON.parse(message.body)
+    invoiceDetail.category = target.category
+    invoiceDetail.code = target.code
+    invoiceDetail.number = target.number
+    invoiceDetail.href = target.printEncryptData
+    fullscreenLoading.value = false
+    visible.value = true
+  },
   )
 }
 

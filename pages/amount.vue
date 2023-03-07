@@ -26,12 +26,8 @@ const result = reactive({
 const callback = reactive({})
 
 const formRules = reactive<FormRules>({
-  taxNumber: [
-    { required: true, message: '企业税号不能为空', trigger: 'change' },
-  ],
-  callbackUrl: [
-    { required: true, message: '回调URL不能为空', trigger: 'change' },
-  ],
+  taxNumber: [{ required: true, message: '企业税号不能为空', trigger: 'change' }],
+  callbackUrl: [{ required: true, message: '回调URL不能为空', trigger: 'change' }],
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
 

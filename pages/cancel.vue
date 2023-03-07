@@ -33,9 +33,7 @@ const formRules = reactive<FormRules>({
   code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
   number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
   reason: [{ required: true, message: '红冲原因不能为空', trigger: 'change' }],
-  callbackUrl: [
-    { required: true, message: '回调URL不能为空', trigger: 'change' },
-  ],
+  callbackUrl: [{ required: true, message: '回调URL不能为空', trigger: 'change' }],
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
 
@@ -148,7 +146,10 @@ useHead({
             maxlength="8"
             @input="saveChange"
           />
-          <a href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text" target="_blank">如何获取机器人密钥</a>
+          <a
+            href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text"
+            target="_blank"
+          >如何获取机器人密钥</a>
         </el-form-item>
         <el-form-item>
           <client-only>
