@@ -1,5 +1,4 @@
 import http from '~/api/request'
-const config = useRuntimeConfig()
 
 export const test = {
   /**
@@ -7,7 +6,7 @@ export const test = {
    * @param data
    */
   redInvoice(data = {}): Promise<ApiResponse> {
-    return http.post(`${config.public.baseUrl}/tool/invoice/red`, data, {})
+    return http.post(`${useRuntimeConfig().public.baseUrl}/tool/invoice/red`, data, {})
   },
 
   /**
@@ -15,7 +14,7 @@ export const test = {
    * @param data
    */
   makeInvoice(data = {}): Promise<ApiResponse> {
-    return http.post(`${config.public.baseUrl}/tool/invoice/make`, data, {})
+    return http.post(`${useRuntimeConfig().public.baseUrl}/tool/invoice/make`, data, {})
   },
 
   /**
@@ -23,7 +22,7 @@ export const test = {
    * @param data
    */
   cancelInvoice(data = {}): Promise<ApiResponse> {
-    return http.post(`${config.public.baseUrl}/tool/invoice/cancel`, data, {})
+    return http.post(`${useRuntimeConfig().public.baseUrl}/tool/invoice/cancel`, data, {})
   },
 
   /**
@@ -31,7 +30,7 @@ export const test = {
    * @param data
    */
   printInvoice(data = {}): Promise<ApiResponse> {
-    return http.post(`${config.public.baseUrl}/tool/invoice/print`, data, {})
+    return http.post(`${useRuntimeConfig().public.baseUrl}/tool/invoice/print`, data, {})
   },
 
   /**
@@ -40,7 +39,7 @@ export const test = {
    * @returns
    */
   queryInvoice(params = {}): Promise<ApiResponse> {
-    return http.get(`${config.public.baseUrl}/tool/invoice/query`, params, {})
+    return http.get(`${useRuntimeConfig().public.baseUrl}/tool/invoice/query`, params, {})
   },
 
   /**
@@ -49,7 +48,7 @@ export const test = {
    * @returns
    */
   retryInvoice(data = {}): Promise<ApiResponse> {
-    return http.post(`${config.public.baseUrl}/tool/invoice/retry`, data, {})
+    return http.post(`${useRuntimeConfig().public.baseUrl}/tool/invoice/retry`, data, {})
   },
 
   /**
@@ -58,7 +57,7 @@ export const test = {
    * @returns
    */
   amountShop(params = {}): Promise<ApiResponse> {
-    return http.get(`${config.public.baseUrl}/tool/shop/amount`, params, {})
+    return http.get(`${useRuntimeConfig().public.baseUrl}/tool/shop/amount`, params, {})
   },
 
   /**
@@ -66,7 +65,7 @@ export const test = {
    * @param data
    */
   sendEmail(data = {}): Promise<ApiResponse> {
-    return http.post(`${config.public.baseUrl}/tool/invoice/email`, data, {})
+    return http.post(`${useRuntimeConfig().public.baseUrl}/tool/invoice/email`, data, {})
   },
 
   /**
@@ -75,7 +74,7 @@ export const test = {
    * @returns
    */
   stateShop(params = {}): Promise<ApiResponse> {
-    return http.get(`${config.public.baseUrl}/tool/shop/state`, params, {})
+    return http.get(`${useRuntimeConfig().public.baseUrl}/tool/shop/state`, params, {})
   },
 
   /**
@@ -84,6 +83,6 @@ export const test = {
    * @returns
    */
   robotShop(params = {}): Promise<ApiResponse> {
-    return http.get(`${config.public.baseUrl}/tool/shop/robot`, params, {})
+    return http.get(`${useRuntimeConfig().public.baseUrl}/tool/shop/robot`, params, {})
   },
 }
