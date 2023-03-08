@@ -8,7 +8,7 @@ import { getCacheData, setCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 import { invoiceCategoryList } from '~/utils/invoice-category'
-import { preferentialPolicyFlagList, specials, zeroRateFlagList } from '~/utils/invoice-item'
+import { preferentialPolicyFlagList, preferentialPolicyNameList, zeroRateFlagList } from '~/utils/invoice-item'
 
 const token = useCookie('robotToken')
 
@@ -582,7 +582,7 @@ useHead({
                   @change="saveChange"
                 >
                   <el-option
-                    v-for="item in specials"
+                    v-for="item in preferentialPolicyNameList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"

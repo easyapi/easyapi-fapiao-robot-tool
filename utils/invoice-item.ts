@@ -20,7 +20,7 @@ export const zeroRateFlagList = [
 /**
  * 优惠政策
  */
-export const specials = [
+export const preferentialPolicyNameList = [
   { value: '100%先征后退', label: '100%先征后退' },
   { value: '50%先征后退', label: '50%先征后退' },
   { value: '不征税', label: '不征税' },
