@@ -24,10 +24,10 @@ useHead({
               <a href="javascript:;">联系微信fanfanle获取</a>
             </div>
             <div class="mb-2 text-sm">
-              <span>版本号：</span><span>1.0.0</span>
+              <span>版本号：</span><span>1.0.2</span>
             </div>
             <div class="text-sm">
-              <span>更新时间：</span><span>2023.01.02</span>
+              <span>更新时间：</span><span>2023.03.25</span>
             </div>
           </div>
         </div>
