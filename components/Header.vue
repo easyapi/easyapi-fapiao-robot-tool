@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
 import { CircleCloseFilled, SuccessFilled } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 import { userStore } from '@/stores/user'
 import { connect, setTaxNumber } from '@/utils/webSocketUtil'
 import { getToken } from '~/utils/token'
-const robotUser = useCookie('robotUser')
+
 const store = userStore()
 const router = useRouter()
 const loginStatus = ref(false)
@@ -14,7 +15,7 @@ const state = reactive({
   isMakeInvoice: false,
 })
 
-if (typeof token.value !== 'undefined')
+if (getToken())
   loginStatus.value = true
 
 watch(

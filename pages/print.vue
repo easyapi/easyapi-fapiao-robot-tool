@@ -5,11 +5,14 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { Close, QuestionFilled } from '@element-plus/icons-vue'
 import SockJS from 'sockjs-client/dist/sockjs.min.js'
 import Stomp from 'stompjs'
+import { useRoute } from 'vue-router'
+import { useHead } from '@vueuse/head'
 import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 import { getToken } from '~/utils/token'
+import { useRuntimeConfig } from '#app/nuxt'
 
 const route = process.client ? useRoute() : {}
 const ruleFormRef = ref<FormInstance>()

@@ -1,12 +1,13 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { ArrowRight } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 import { menuList } from '~/utils/menu'
 
 const router = useRouter()
 const name = ref('')
 
-const getNameByPath = (list: any, path: String) => {
+function getNameByPath(list: any, path: String) {
   list.forEach((item: any) => {
     if (item.path === path) {
       name.value = item.name

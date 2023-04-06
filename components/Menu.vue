@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { menuList } from '../utils/menu'
+import { menuList } from '@/utils/menu'
 
 const route = process.client ? useRoute() : {}
 const router = useRouter()
@@ -19,7 +19,9 @@ function selectMenuItem(row: any) {
 <template>
   <div class="menu bg-white rounded">
     <el-scrollbar height="100%">
-      <div class="menu-title">接口调试</div>
+      <div class="menu-title">
+        接口调试
+      </div>
       <el-menu
         active-text-color="#409EFF"
         class="el-menu-vertical-demo"

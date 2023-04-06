@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
-import { ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { useHead } from '@vueuse/head'
 import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
