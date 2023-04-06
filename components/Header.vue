@@ -3,8 +3,7 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import { CircleCloseFilled, SuccessFilled } from '@element-plus/icons-vue'
 import { userStore } from '@/stores/user'
 import { connect, setTaxNumber } from '@/utils/webSocketUtil'
-
-const token = useCookie('robotToken')
+import { getToken } from '~/utils/token'
 const robotUser = useCookie('robotUser')
 const store = userStore()
 const router = useRouter()

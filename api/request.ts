@@ -1,4 +1,5 @@
 import { ElMessage } from 'element-plus'
+import { getToken } from '~/utils/token'
 
 /**
  * API请求封装
@@ -6,9 +7,10 @@ import { ElMessage } from 'element-plus'
  * @param options
  * @param headers
  */
-const fetch = async (url: string, options?: any, headers?: any): Promise<ApiResponse> => {
+async function fetch(url: string, options?: any, headers?: any): Promise<ApiResponse> {
   try {
-    const customHeaders = { Authorization: `Bearer ${useCookie('robotToken').value}`, ...headers }
+    const authenticationToken = getToken()
+    const customHeaders = { Authorization: `Bearer ${authenticationToken}`, ...headers }
     const res = await $fetch<ApiResponse>(url,
       { ...options, headers: customHeaders },
     )

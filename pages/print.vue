@@ -9,8 +9,8 @@ import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
+import { getToken } from '~/utils/token'
 
-const token = useCookie('robotToken')
 const route = process.client ? useRoute() : {}
 const ruleFormRef = ref<FormInstance>()
 const visible = ref(false)
@@ -52,12 +52,12 @@ const formRules = reactive<FormRules>({
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
 
-const disable = !!token.value
+const disable = !!getToken()
 
 /**
  * 发送
  */
-const onSubmit = async (formEl: FormInstance | undefined) => {
+async function onSubmit(formEl: FormInstance | undefined) {
   if (!formEl)
     return
   await formEl.validate((valid) => {

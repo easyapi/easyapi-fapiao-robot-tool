@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { userStore } from '~~/stores/user'
 
-const store = userStore()
-const token = useCookie('robotToken')
+const store = userStore()import { getToken } from '~/utils/token'
 
 const menu = ref([
   { path: '/user', name: '主页', icon: 'false' },

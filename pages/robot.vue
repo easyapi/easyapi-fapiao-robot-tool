@@ -8,8 +8,7 @@ import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 import http from '~/api/request'
 import Result from '@/components/Result.vue'
-import Callback from '@/components/Callback.vue'
-const token = useCookie('robotToken')
+import Callback from '@/components/Callback.vue'import { getToken } from '~/utils/token'
 
 const route = process.client ? useRoute() : {}
 
@@ -45,7 +44,7 @@ const formRules = reactive<FormRules>({
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
 
-const disable = !!token.value
+const disable = !!getToken()
 
 /**
  * 发送
