@@ -16,7 +16,7 @@ useHead({
             </div>
             <img
               class="inline-block mb-2"
-              src="../assets/svg/logo.svg"
+              src="https://qiniu.easyapi.com/fapiao/logo.svg"
               alt=""
             >
             <div class="mb-2 text-sm">
