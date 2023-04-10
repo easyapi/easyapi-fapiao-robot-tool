@@ -6,7 +6,7 @@ import { ElMessage } from 'element-plus'
  * @param options
  * @param headers
  */
-async function fetch = async (url: string, options?: any, headers?: any): Promise<ApiResponse> => {
+const fetch = async (url: string, options?: any, headers?: any): Promise<ApiResponse> => {
   const router = useRouter()
   try {
     const authenticationToken = getToken()
