@@ -3,20 +3,21 @@ import { onMounted, reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import type { integer } from 'vscode-languageserver-types'
+import { useRoute } from 'vue-router'
+import { useHead } from '@vueuse/head'
 import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 import { invoiceCategoryList } from '~/utils/invoice-category'
 import { preferentialPolicyFlagList, preferentialPolicyNameList, zeroRateFlagList } from '~/utils/invoice-item'
-
-const token = useCookie('robotToken')
+import { getToken } from '~/utils/token'
 
 const route = process.client ? useRoute() : {}
 
 const ruleFormRef = ref<FormInstance>()
 
-const disable = !!token.value
+const disable = !!getToken()
 
 const formData = reactive({
   category: '增值税电子普通发票',
@@ -214,7 +215,7 @@ function updateFormData() {
 /**
  * 发送
  */
-const onSubmit = async (formEl: FormInstance | undefined) => {
+async function onSubmit(formEl: FormInstance | undefined) {
   if (formData.category.indexOf('专用')) {
     // todo
   }

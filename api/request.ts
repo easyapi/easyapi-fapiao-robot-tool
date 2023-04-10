@@ -1,5 +1,4 @@
 import { ElMessage } from 'element-plus'
-import { getToken } from '~/utils/token'
 
 /**
  * API请求封装
@@ -7,7 +6,7 @@ import { getToken } from '~/utils/token'
  * @param options
  * @param headers
  */
-const fetch = async (url: string, options?: any, headers?: any): Promise<ApiResponse> => {
+async function fetch = async (url: string, options?: any, headers?: any): Promise<ApiResponse> => {
   const router = useRouter()
   try {
     const authenticationToken = getToken()
@@ -19,7 +18,6 @@ const fetch = async (url: string, options?: any, headers?: any): Promise<ApiResp
     const res = await $fetch<ApiResponse>(url,
       { ...options, headers: customHeaders },
     )
-    console.log(778899)
     return res
   } catch (error: any) {
     ElMessage({

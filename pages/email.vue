@@ -2,12 +2,14 @@
 import { onMounted, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
+import { useRoute } from 'vue-router'
+import { useHead } from '@vueuse/head'
 import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
+import { getToken } from '~/utils/token'
 
-const token = useCookie('robotToken')
 const route = process.client ? useRoute() : {}
 const ruleFormRef = ref<FormInstance>()
 
@@ -33,16 +35,16 @@ const formRules = reactive<FormRules>({
   code: [{ required: true, message: '发票代码不能为空', trigger: 'change' }],
   number: [{ required: true, message: '发票号码不能为空', trigger: 'change' }],
   email: [{ required: true, message: '邮箱不能为空', trigger: 'change' }],
-  callbackUrl: [{ required: true, message: '回调URL不能为空', trigger: 'change' },],
+  callbackUrl: [{ required: true, message: '回调URL不能为空', trigger: 'change' }],
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
 
-const disable = !!token.value
+const disable = !!getToken()
 
 /**
  * 发送
  */
-const onSubmit = async (formEl: FormInstance | undefined) => {
+async function onSubmit(formEl: FormInstance | undefined) {
   if (!formEl)
     return
 

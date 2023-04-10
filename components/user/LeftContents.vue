@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { userStore } from '~~/stores/user'
+import { removeToken } from '~/utils/token'
+import { navigateTo } from '#app/composables/router'
 
 const store = userStore()
-const token = useCookie('robotToken')
 
 const menu = ref([
   { path: '/user', name: '主页', icon: 'false' },
@@ -13,7 +15,7 @@ function logout() {
   store.$patch({
     isLogin: false,
   })
-  token.value = null
+  removeToken()
   navigateTo('/')
 }
 </script>

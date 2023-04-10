@@ -4,12 +4,13 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import SockJS from 'sockjs-client/dist/sockjs.min.js'
 import Stomp from 'stompjs'
+import { useRoute } from 'vue-router'
 import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 import http from '~/api/request'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
-const token = useCookie('robotToken')
+import { getToken } from '~/utils/token'
 
 const route = process.client ? useRoute() : {}
 
@@ -45,12 +46,12 @@ const formRules = reactive<FormRules>({
   secretKey: [{ required: true, message: '密钥不能为空', trigger: 'change' }],
 })
 
-const disable = !!token.value
+const disable = !!getToken()
 
 /**
  * 发送
  */
-const onSubmit = async (formEl: FormInstance | undefined) => {
+async function onSubmit(formEl: FormInstance | undefined) {
   if (!formEl)
     return
   await formEl.validate((valid) => {

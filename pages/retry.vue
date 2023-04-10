@@ -2,15 +2,16 @@
 import { onMounted, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
+import { useRoute } from 'vue-router'
+import { useHead } from '@vueuse/head'
 import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 import { invoiceCategoryList } from '~/utils/invoice-category'
 import { invoiceColorList } from '~/utils/invoice-color'
-import { json } from 'stream/consumers'
+import { getToken } from '~/utils/token'
 
-const token = useCookie('robotToken')
 const route = process.client ? useRoute() : {}
 
 const ruleFormRef = ref<FormInstance>()
@@ -35,7 +36,7 @@ const result = reactive({
   webSocket: '',
 })
 
-const disabledDate = (time: Date) => {
+function disabledDate(time: Date) {
   return time.getTime() > Date.now()
 }
 
@@ -79,16 +80,17 @@ const formRules = reactive<FormRules>({
   ],
 })
 
-const disable = !!token.value
+const disable = !!getToken()
 
 /**
  * 发送
  */
-const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return
+async function onSubmit(formEl: FormInstance | undefined) {
+  if (!formEl)
+    return
   await formEl.validate((valid) => {
     if (valid) {
-      let data = JSON.parse(JSON.stringify(formData))
+      const data = JSON.parse(JSON.stringify(formData))
       if (!data.is51FaPiao) {
         delete data.purchaserName
         delete data.price
@@ -269,9 +271,7 @@ useHead({
                 placeholder="回调URL"
                 @input="saveChange"
               />
-              <a href="https://hooks.upyun.com/" target="_blank"
-                >获取测试用回调URL</a
-              >
+              <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调URL</a>
             </el-form-item>
             <el-form-item label="机器人密钥：" prop="secretKey">
               <el-input
@@ -283,8 +283,7 @@ useHead({
               <a
                 href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text"
                 target="_blank"
-                >如何获取机器人密钥</a
-              >
+              >如何获取机器人密钥</a>
             </el-form-item>
             <el-form-item>
               <client-only>
@@ -314,7 +313,6 @@ useHead({
     </view>
   </div>
 </template>
-
 
 <style scoped>
 .form-info {

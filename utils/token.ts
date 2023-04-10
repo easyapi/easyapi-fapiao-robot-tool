@@ -1,6 +1,6 @@
 import { useCookies } from '@vueuse/integrations/useCookies'
 
-const key = 'fpManageToken'
+const key = 'robotToken'
 const cookies = useCookies()
 
 /**

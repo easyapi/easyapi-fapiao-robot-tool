@@ -9,7 +9,7 @@
     "preview": "nuxi preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "start": "cross-env NODE_ENV=production PORT=7001 nuxt start ",
+    "start": "cross-env NODE_ENV=production PORT=7001 nuxi start",
     "pm2": "pm2 delete easyapi-fapiao-robot-tool \n pm2 start npm --name 'easyapi-fapiao-robot-tool' -- run start"
   },
   "dependencies": {
