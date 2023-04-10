@@ -1,32 +1,23 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
 import { CircleCloseFilled, SuccessFilled } from '@element-plus/icons-vue'
-import { userStore } from '@/stores/user'
+import { useUser } from '@/stores/user'
 import { connect, setTaxNumber } from '@/utils/webSocketUtil'
+import { getToken } from '@/utils/token'
 
-const token = useCookie('robotToken')
-const robotUser = useCookie('robotUser')
-const store = userStore()
+const userStore = useUser()
 const router = useRouter()
-const loginStatus = ref(false)
+const cookieToken = getToken()
 
 const state = reactive({
   timer: null as any,
   isMakeInvoice: false,
+  loginStatus: '' as any,
+  userInfo: {
+    nickname: '' as any,
+    username: '' as any,
+  },
 })
-
-if (typeof token.value !== 'undefined')
-  loginStatus.value = true
-
-watch(
-  () => store.isLogin,
-  (newStatus, oldStatus) => {
-    loginStatus.value = newStatus
-  },
-  {
-    deep: true,
-  },
-)
 
 const dataList = ref([
   {
@@ -43,13 +34,18 @@ function gotoHome() {
   router.push('')
 }
 
-function logout() {
-  store.$patch({
-    showLogin: false,
-  })
-  token.value = null
-  router.push('')
-  location.reload()
+/**
+ * 登录
+ */
+function login() {
+  router.push('/login')
+}
+
+/**
+ * 退出
+ */
+function logout () {
+  userStore.logout(router)
 }
 
 function getRobotState() {
@@ -66,7 +62,31 @@ function getRobotState() {
   }, 5000)
 }
 
+
+/**
+ * 监听登陆状态
+ */
+watch(
+  () => userStore.isLogin,
+  () => {
+    state.loginStatus = userStore.isLogin
+    state.userInfo = {
+      nickname: userStore.nickname,
+      username: userStore.username,
+    }
+  }, {
+    deep: true,
+  },
+)
+
 onMounted(() => {
+  userStore.getUser()
+  state.loginStatus = !!cookieToken
+  state.userInfo = {
+    nickname: userStore.nickname,
+    username: userStore.username,
+  }
+
   setTaxNumber('91320211MA1WML8X6T')
   connect()
   getRobotState()
@@ -90,24 +110,42 @@ onMounted(() => {
             <span v-if="state.isMakeInvoice">可开发票</span>
             <span v-else>开票异常</span>
           </div>
-          <a
-            v-if="!loginStatus"
-            href="https://robot.easyapi.com/login?from=https://robot-tool.easyapi.com"
-            class="cursor-pointer select-none mx-1 px-3 md:px-5 text-white bg-blue-500 rounded-md"
-          >
-            登录
-          </a>
-          <el-popover v-else trigger="click">
-            <p class="chose-style" @click="logout()">
-              退出登录
-            </p>
-            <template #reference>
-              <div class="flex cursor-pointer">
-                <img v-show="loginStatus" class="w-8 h-8 mr-2" src="/img/header.png">
-                <!-- <span>{{ robotUser.username }}</span> -->
+          <div class="flex items-center">
+            <div class="login-group flex mx-2 lg:mx-4 custom-font-14 items-center leading-8">
+              <el-popover
+                v-if="state.loginStatus !== '' && state.loginStatus"
+                trigger="hover"
+                popper-class="login-popover"
+                @hide="blur"
+              >
+                <p class="chose-style" @click="logout">
+                  退出登录
+                </p>
+
+                <template #reference>
+                  <div class="user-box" @click="change">
+                    <img class="user-image" src="/img/photo.png">
+                    <div class="user-info">
+                      <div class="user-name">
+                        {{ state.userInfo.nickname }}
+                      </div>
+                      <div class="user-mobile">
+                        {{ state.userInfo.username }}
+                      </div>
+                    </div>
+                    <span id="text" />
+                  </div>
+                </template>
+              </el-popover>
+              <div
+                v-if="state.loginStatus !== '' && !state.loginStatus"
+                class="cursor-pointer select-none"
+                @click="login"
+              >
+                登录
               </div>
-            </template>
-          </el-popover>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -149,6 +187,41 @@ li {
 
 .chose-style:hover {
   @apply bg-gray-100;
+}
+
+.select-none {
+  background-color:#01a8b9;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  height: 30px;
+  margin-right: 20px;
+}
+
+.user-box {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  .user-image {
+    width: auto;
+    height: 40px;
+    margin-right: 10px;
+  }
+  .user-info {
+    .user-name {
+      font-size: 14px;
+      height: 1.5em;
+    }
+
+    .user-mobile {
+      font-size: 12px;
+      color: #999999;
+    }
+  }
 }
 </style>
 
