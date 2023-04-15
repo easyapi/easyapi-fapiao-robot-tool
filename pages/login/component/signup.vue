@@ -79,7 +79,7 @@ function getValidateCode() {
   })
 }
 
-const signup = async (formEl: FormInstance | undefined) => {
+async function signup(formEl: FormInstance | undefined) {
   if (!formEl)
     return
   await formEl.validate((valid) => {

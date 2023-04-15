@@ -42,7 +42,7 @@ function changeActiveName(data: any) {
   state.activeName = data
 }
 
-async function handleLogin (formEl: FormInstance | undefined) {
+async function handleLogin(formEl: FormInstance | undefined) {
   if (!formEl)
     return
   await formEl.validate((valid) => {
@@ -63,9 +63,8 @@ async function handleLogin (formEl: FormInstance | undefined) {
 }
 
 onMounted(() => {
-  if (route.query.from) {
+  if (route.query.from)
     state.from = route.query.from
-  }
 })
 </script>
 
