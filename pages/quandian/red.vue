@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
-import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage } from 'element-plus'
+import { onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useHead } from '@vueuse/head'
 import { test } from '@/api/test'
-import { getCacheData, setCacheData } from '@/utils/cacheData'
+import Callback from '@/components/Callback.vue'
 
 import Result from '@/components/Result.vue'
-import Callback from '@/components/Callback.vue'
+import { getCacheData, setCacheData } from '@/utils/cacheData'
 import { getToken } from '~/utils/token'
 
 const route = process.client ? useRoute() : {}

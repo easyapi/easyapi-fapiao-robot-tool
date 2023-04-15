@@ -7,7 +7,7 @@ import { getToken } from '@/utils/token'
 
 const userStore = useUser()
 const router = useRouter()
-const cookieToken = getToken()
+const authenticationToken = getToken()
 
 const state = reactive({
   timer: null as any,
@@ -44,7 +44,7 @@ function login() {
 /**
  * 退出
  */
-function logout () {
+function logout() {
   userStore.logout(router)
 }
 
@@ -53,15 +53,10 @@ function getRobotState() {
     clearInterval(state.timer)
   state.timer = setInterval(() => {
     const robotState = JSON.parse(localStorage.getItem('robotState') as any)
-    if (robotState && robotState.make === 1)
-      state.isMakeInvoice = true
-    else
-      state.isMakeInvoice = false
-
+    state.isMakeInvoice = !!(robotState && robotState.make === 1)
     localStorage.removeItem('robotState')
   }, 5000)
 }
-
 
 /**
  * 监听登陆状态
@@ -80,13 +75,14 @@ watch(
 )
 
 onMounted(() => {
-  userStore.getUser()
-  state.loginStatus = !!cookieToken
-  state.userInfo = {
-    nickname: userStore.nickname,
-    username: userStore.username,
+  if (authenticationToken) {
+    userStore.getUser()
+    state.loginStatus = !!authenticationToken
+    state.userInfo = {
+      nickname: userStore.nickname,
+      username: userStore.username,
+    }
   }
-
   setTaxNumber('91320211MA1WML8X6T')
   connect()
   getRobotState()

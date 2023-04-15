@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import type { integer } from 'vscode-languageserver-types'
+import { onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useHead } from '@vueuse/head'
-import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
+import { test } from '@/api/test'
 import { quandianInvoiceCategoryList } from '~/utils/invoice-category'
 import { getToken } from '~/utils/token'
 
