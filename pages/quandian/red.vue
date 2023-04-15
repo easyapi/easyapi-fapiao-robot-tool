@@ -3,7 +3,7 @@ import { onMounted, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { useRoute } from 'vue-router'
-import { useHead } from '@unhead/vue'
+import { useHead } from '@vueuse/head'
 import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
 
