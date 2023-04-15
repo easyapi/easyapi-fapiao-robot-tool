@@ -16,7 +16,7 @@ import { useRuntimeConfig } from '#app/nuxt'
 
 const route = process.client ? useRoute() : {}
 const ruleFormRef = ref<FormInstance>()
-const visible = ref(false)
+const dialogVisible = ref(false)
 const fullscreenLoading = ref(false)
 const socketUrl = ref('')
 const config = useRuntimeConfig()
@@ -98,7 +98,7 @@ function subscribe() {
     invoiceDetail.number = target.number
     invoiceDetail.href = `webprint:"0,${target.printEncryptData}"`
     fullscreenLoading.value = false
-    visible.value = true
+    dialogVisible.value = true
   },
   )
   stompClient.subscribe(`/topic/${formData.taxNumber}/51fapiao/print`, (message: any) => {
@@ -108,7 +108,7 @@ function subscribe() {
     invoiceDetail.number = target.number
     invoiceDetail.href = target.printEncryptData
     fullscreenLoading.value = false
-    visible.value = true
+    dialogVisible.value = true
   },
   )
 }
@@ -240,7 +240,7 @@ useHead({
     </div>
   </div>
 
-  <el-dialog v-model="visible" :show-close="false" width="500" append-to-body>
+  <el-dialog v-model="dialogVisible" :show-close="false" width="500" append-to-body>
     <template #header="{ close, titleId }">
       <div class="flex items-center justify-between border-b py-3 px-4">
         <div :id="titleId" class="text-sm font-semibold tracking-wide">
