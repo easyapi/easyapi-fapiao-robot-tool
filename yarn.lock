@@ -1208,7 +1208,7 @@
   resolved "https://registry.npmjs.org/@nuxt/devalue/-/devalue-2.0.0.tgz"
   integrity sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==
 
-"@nuxt/kit@3.4.1", "@nuxt/kit@^3.2.0", "@nuxt/kit@^3.4.1":
+"@nuxt/kit@3.4.1", "@nuxt/kit@^3.4.1":
   version "3.4.1"
   resolved "https://mirrors.cloud.tencent.com/npm/@nuxt/kit/-/kit-3.4.1.tgz#18608db1ec28c9cf216c41d86535882cf8e838ec"
   integrity sha512-VeH26umZW6Rf4F1QX9nTIuTBp6HeL/MgmKY3+FgQiLD07afgFTLUJZohVE5xU7hb66zCnYvwKxa3JpjXFJZrhQ==
@@ -2129,7 +2129,7 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.47.tgz#e597ef75086c6e896ff5478a6bfc0a7aa4bbd14c"
   integrity sha512-BHGyyGN3Q97EZx0taMQ+OLNuZcW3d37ZEVmEAyeoA9ERdGvm9Irc/0Fua8SNyOtV1w6BS4q25wbMzJujO9HIfQ==
 
-"@vueuse/core@10.0.2":
+"@vueuse/core@10.0.2", "@vueuse/core@^10.0.2":
   version "10.0.2"
   resolved "https://mirrors.cloud.tencent.com/npm/@vueuse/core/-/core-10.0.2.tgz#d2cd237e19bda278ae8d4f2e4a9e2e8c273bdcef"
   integrity sha512-/UGc2cXbxbeIFLDSJyHUjI9QZ4CJJkhiJe9TbKNPSofcWmYhhUgJ+7iw9njXTKu/Xc3Z6UeXVR9fosW1+cyrnQ==
@@ -2139,7 +2139,7 @@
     "@vueuse/shared" "10.0.2"
     vue-demi ">=0.14.0"
 
-"@vueuse/core@9.13.0", "@vueuse/core@^9.1.0":
+"@vueuse/core@^9.1.0":
   version "9.13.0"
   resolved "https://mirrors.cloud.tencent.com/npm/@vueuse/core/-/core-9.13.0.tgz#2f69e66d1905c1e4eebc249a01759cf88ea00cf4"
   integrity sha512-pujnclbeHWxxPRqXWmdkKV5OX4Wk4YeK7wusHqRwU0Q7EFusHoqNA/aPhB6KCh9hEqJkLAJo7bb0Lh9b+OIVzw==
@@ -2167,17 +2167,6 @@
   version "9.13.0"
   resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-9.13.0.tgz#bc25a6cdad1b1a93c36ce30191124da6520539ff"
   integrity sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==
-
-"@vueuse/nuxt@^9.13.0":
-  version "9.13.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/@vueuse/nuxt/-/nuxt-9.13.0.tgz#32bc95df0fb0e54aa60379ef009c6985e8f50be1"
-  integrity sha512-JunH/w6nFIwCyaZ0s+pfrYFMfBzGfhkwmFPz7ogHFmb71Ty/5HINrYOAOZCXpN44X6QH6FiJq/wuLLdvYzqFUw==
-  dependencies:
-    "@nuxt/kit" "^3.2.0"
-    "@vueuse/core" "9.13.0"
-    "@vueuse/metadata" "9.13.0"
-    local-pkg "^0.4.3"
-    vue-demi "*"
 
 "@vueuse/shared@10.0.2":
   version "10.0.2"
