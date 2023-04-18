@@ -1,25 +1,22 @@
 <script setup lang="ts">
-import type { FormInstance, FormRules } from 'element-plus'
-import { ElMessage } from 'element-plus'
 import { onMounted, reactive, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 import { useRoute } from 'vue-router'
 import { test } from '@/api/test'
-import Callback from '@/components/Callback.vue'
-
-import Result from '@/components/Result.vue'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
+import Result from '@/components/Result.vue'
+import Callback from '@/components/Callback.vue'
 import { getToken } from '~/utils/token'
 
 const route = process.client ? useRoute() : {}
-
 const ruleFormRef = ref<FormInstance>()
 
 const formData = reactive({
   taxNumber: '91310113091845702A',
   allElectronicInvoiceNumber: '',
   makeDate: '',
-  reason: '',
-  redSerialNo: '',
+  email: '',
   callbackUrl: '',
   secretKey: '',
 })
@@ -43,7 +40,7 @@ const formRules = reactive<FormRules>({
   makeDate: [
     { required: true, message: '开票时间不能为空', trigger: 'change' },
   ],
-  reason: [{ required: true, message: '红冲原因不能为空', trigger: 'change' }],
+  email: [{ required: true, message: '邮箱不能为空', trigger: 'change' }],
   callbackUrl: [
     { required: true, message: '回调URL不能为空', trigger: 'change' },
   ],
@@ -53,22 +50,14 @@ const formRules = reactive<FormRules>({
 const disable = !!getToken()
 
 /**
- * 更新formData
- */
-function updateFormData() {
-  const data = getCacheData(route.name as string)
-  Object.assign(formData, data)
-}
-
-/**
  * 发送
  */
 async function onSubmit(formEl: FormInstance | undefined) {
-  if (!formEl)
-    return
+  if (!formEl) return
+
   await formEl.validate((valid) => {
     if (valid) {
-      test.redInvoice(formData).then((res) => {
+      test.sendEmail(formData).then((res) => {
         if (res.code === 1) {
           Object.assign(result, res.content)
           ElMessage({
@@ -88,12 +77,20 @@ function saveChange() {
   setCacheData(route.name as string, formData)
 }
 
+/**
+ * 更新formData
+ */
+function updateFormData() {
+  const data = getCacheData(route.name as string)
+  Object.assign(formData, data)
+}
+
 onMounted(() => {
   updateFormData()
 })
 
 useHead({
-  title: '发票红冲 - EasyAPI发票机器人',
+  title: '重发邮件 - EasyAPI发票机器人',
 })
 </script>
 
@@ -134,23 +131,12 @@ useHead({
             />
           </client-only>
         </el-form-item>
-        <el-form-item label="红冲原因：" prop="reason">
+        <el-form-item label="接收邮箱：" prop="email">
           <el-input
-            v-model="formData.reason"
-            placeholder="红冲原因"
+            v-model="formData.email"
+            placeholder="接收邮箱"
             @input="saveChange"
           />
-        </el-form-item>
-        <el-form-item label="红字信息表编码：" prop="redSerialNo">
-          <el-input
-            v-model="formData.redSerialNo"
-            placeholder="红字信息表编码"
-            @input="saveChange"
-          />
-          <div class="tips">
-            红字信息表编码：专票红冲时需申请红字信息表，此字段专票红冲时必填
-            3202201506013858
-          </div>
         </el-form-item>
         <el-form-item label="回调URL：" prop="callbackUrl">
           <el-input
@@ -158,7 +144,9 @@ useHead({
             placeholder="回调URL"
             @input="saveChange"
           />
-          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调URL</a>
+          <a href="https://hooks.upyun.com/" target="_blank"
+            >获取测试用回调URL</a
+          >
         </el-form-item>
         <el-form-item label="机器人密钥：" prop="secretKey">
           <el-input
@@ -167,7 +155,11 @@ useHead({
             maxlength="8"
             @input="saveChange"
           />
-          <a href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text" target="_blank">如何获取机器人密钥</a>
+          <a
+            href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text"
+            target="_blank"
+            >如何获取机器人密钥</a
+          >
         </el-form-item>
         <el-form-item>
           <client-only>

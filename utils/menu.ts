@@ -66,7 +66,12 @@ export const menuList = [
       name: '全电发票红冲',
       path: '/quandian/red',
       meta: { title: '全电发票红冲', icon: '' },
-    }],
+    }, {
+      name: '全电发票重发邮箱',
+      path: '/quandian/email',
+      meta: { title: '全电发票重发邮箱', icon: '' },
+    }
+    ],
   }, {
     name: '机器人',
     children: [{
