@@ -1,7 +1,36 @@
-<script setup lang="ts">
+<script>
+import robot from '@/api/robot'
+
 useHead({
   title: '首页 - EasyAPI发票机器人',
   meta: [{ name: 'description', content: 'EasyAPI发票机器人测试工具' }],
+})
+
+export default defineComponent({
+  setup() {
+    const state = reactive({
+      latestRobot: {},
+    })
+
+    /**
+     * 获取机器人版本
+     */
+    const getRobotVersion = () => {
+      robot.getRobotVersion().then((res) => {
+        if (res.code === 1)
+          state.latestRobot = JSON.parse(res.content)
+      })
+    }
+
+    onMounted(() => {
+      getRobotVersion()
+    })
+
+    return {
+      ...toRefs(state),
+      getRobotVersion,
+    }
+  },
 })
 </script>
 
@@ -20,14 +49,14 @@ useHead({
               alt=""
             >
             <div class="mb-2 text-sm">
-              <span>下载地址：</span>
-              <a href="javascript:;">联系微信fanfanle获取</a>
-            </div>
-            <div class="mb-2 text-sm">
-              <span>版本号：</span><span>1.0.2</span>
+              <span>版本号：</span><span>{{ latestRobot.version }}</span>
             </div>
             <div class="text-sm">
-              <span>更新时间：</span><span>2023.03.25</span>
+              <span>更新时间：</span><span>{{ latestRobot.time }}</span>
+            </div>
+            <div class="mb-2 text-sm">
+              <span>下载地址：</span>
+              <a href="javascript:;">{{ latestRobot.url }}</a>
             </div>
           </div>
         </div>
