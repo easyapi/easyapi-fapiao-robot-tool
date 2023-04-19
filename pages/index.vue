@@ -56,7 +56,7 @@ export default defineComponent({
             </div>
             <div class="mb-2 text-sm">
               <span>下载地址：</span>
-              <a href="javascript:;">{{ latestRobot.url }}</a>
+              <a target="blank" :href="latestRobot.url">{{ latestRobot.url }}</a>
             </div>
           </div>
         </div>
