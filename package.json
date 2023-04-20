@@ -1,7 +1,6 @@
 {
   "name": "easyapi-fapiao-robot-tool",
   "version": "1.0.1",
-  "private": true,
   "description": "EasyAPI发票机器人接口测试工具",
   "scripts": {
     "build": "nuxi build --dotenv .env.production",
