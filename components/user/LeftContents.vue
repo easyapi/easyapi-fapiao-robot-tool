@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { userStore } from '~~/stores/user'
+import { useUser } from '@/stores/user'
 import { removeToken } from '~/utils/token'
 import { navigateTo } from '#app/composables/router'
 
-const store = userStore()
+const userStore = useUser()
 
 const menu = ref([
   { path: '/user', name: '主页', icon: 'false' },
@@ -12,7 +12,7 @@ const menu = ref([
   { path: '/user/order', name: '订单管理', icon: 'icon-favorites-fill' },
 ])
 function logout() {
-  store.$patch({
+  userStore.$patch({
     isLogin: false,
   })
   removeToken()

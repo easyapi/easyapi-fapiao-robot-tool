@@ -10,11 +10,12 @@ import { getToken } from '~/utils/token'
 async function fetch(url: string, options?: any, headers?: any): Promise<ApiResponse> {
   const router = useRouter()
   try {
+    const customHeaders = { ...headers }
     const authenticationToken = getToken()
     if (authenticationToken)
-      headers.Authorization = `Bearer ${authenticationToken}`
+      customHeaders.Authorization = `Bearer ${authenticationToken}`
     const res = await $fetch<ApiResponse>(url,
-      { ...options, headers },
+      { ...options, headers: customHeaders },
     )
     return res
   } catch (error: any) {
