@@ -2,38 +2,40 @@
   "name": "easyapi-fapiao-robot-tool",
   "version": "1.0.1",
   "private": true,
+  "description": "EasyAPI发票机器人接口测试工具",
   "scripts": {
-    "dev": "nuxi dev --dotenv .env.development",
     "build": "nuxi build --dotenv .env.production",
+    "dev": "nuxi dev --dotenv .env.development",
     "generate": "nuxi generate",
-    "preview": "nuxi preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "start": "cross-env NODE_ENV=production PORT=7001 nuxi start",
-    "pm2": "pm2 delete easyapi-fapiao-robot-tool \n pm2 start npm --name 'easyapi-fapiao-robot-tool' -- run start"
+    "pm2": "pm2 delete easyapi-fapiao-robot-tool \n pm2 start npm --name 'easyapi-fapiao-robot-tool' -- run start",
+    "preview": "nuxi preview",
+    "start": "cross-env NODE_ENV=production PORT=7001 nuxi start"
   },
   "dependencies": {
-    "nuxt": "^3.4.1",
+    "@vueuse/integrations": "^9.13.0",
+    "nuxt": "^3.4.2",
     "sockjs-client": "1.6.1",
     "stompjs": "2.3.3",
-    "universal-cookie": "^4.0.4",
-    "@vueuse/integrations": "^9.13.0"
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.5",
-    "@element-plus/nuxt": "^1.0.4",
     "@element-plus/icons-vue": "^2.1.0",
-    "@nuxt/kit": "^3.4.1",
+    "@element-plus/nuxt": "^1.0.4",
+    "@nuxt/kit": "^3.4.2",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/tailwindcss": "^6.6.6",
-    "@pinia/nuxt": "^0.4.8",
+    "@pinia/nuxt": "^0.4.9",
     "@tailwindcss/typography": "^0.5.9",
     "@types/lodash": "^4.14.194",
-    "@types/node": "^18.15.11",
-    "cross-env": "^7.0.3",
+    "@types/node": "^18.15.12",
     "consola": "^3.1.0",
+    "cross-env": "^7.0.3",
     "element-plus": "^2.3.3",
     "eslint": "^8.38.0",
+    "postcss-custom-properties": "^13.1.5",
     "typescript": "^5.0.4"
   }
 }
