@@ -13,28 +13,28 @@
     "start": "cross-env NODE_ENV=production PORT=7001 nuxi start"
   },
   "dependencies": {
-    "@vueuse/integrations": "^10.1.0",
-    "nuxt": "^3.4.2",
+    "@vueuse/integrations": "^10.1.2",
+    "nuxt": "^3.5.2",
     "sockjs-client": "1.6.1",
     "stompjs": "2.3.3",
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.38.5",
+    "@antfu/eslint-config": "^0.39.4",
     "@element-plus/icons-vue": "^2.1.0",
-    "@element-plus/nuxt": "^1.0.4",
-    "@nuxt/kit": "^3.4.2",
+    "@element-plus/nuxt": "^1.0.5",
+    "@nuxt/kit": "^3.5.2",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "@nuxtjs/tailwindcss": "^6.6.7",
-    "@pinia/nuxt": "^0.4.9",
+    "@nuxtjs/tailwindcss": "^6.7.0",
+    "@pinia/nuxt": "^0.4.11",
     "@tailwindcss/typography": "^0.5.9",
-    "@types/lodash": "^4.14.194",
-    "@types/node": "^18.16.2",
+    "@types/lodash": "^4.14.195",
+    "@types/node": "^20.2.5",
     "consola": "^3.1.0",
     "cross-env": "^7.0.3",
-    "element-plus": "^2.3.4",
-    "eslint": "^8.39.0",
-    "postcss-custom-properties": "^13.1.5",
+    "element-plus": "^2.3.5",
+    "eslint": "^8.41.0",
+    "postcss-custom-properties": "^13.2.0",
     "typescript": "^5.0.4"
   }
 }
