@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useHead } from '@unhead/vue';
 import { reactive, ref } from 'vue'
 import { Lock, Message, Phone, User } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
@@ -79,7 +80,7 @@ function getValidateCode() {
   })
 }
 
-const signup = async (formEl: FormInstance | undefined) => {
+async function signup(formEl: FormInstance | undefined) {
   if (!formEl)
     return
   await formEl.validate((valid) => {
@@ -118,7 +119,7 @@ function getUser() {
   })
 }
 
-useHead({ title: '注册-EasyAPI发票管理控制台' })
+useHead({ title: '注册-EasyAPI发票管理控制台' }),
 </script>
 
 <template>

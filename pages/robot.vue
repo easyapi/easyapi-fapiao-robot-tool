@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useHead } from '@unhead/vue';
 import { onMounted, reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
@@ -103,13 +104,13 @@ function subscribe() {
   )
 }
 
-onMounted(() => {
-  updateFormData()
-})
-
 useHead({
   title: '发票机器人状态 - EasyAPI发票机器人',
 })
+
+onMounted(() => {
+  updateFormData()
+}),
 </script>
 
 <template>

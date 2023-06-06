@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useHead } from "@unhead/vue";
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import type { integer } from 'vscode-languageserver-types'

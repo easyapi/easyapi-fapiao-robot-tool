@@ -2,7 +2,7 @@
 import robot from '@/api/robot'
 
 useHead({
-  title: '首页 - EasyAPI发票机器人',
+  title: 'EasyAPI发票机器人测试工具',
   meta: [{ name: 'description', content: 'EasyAPI发票机器人测试工具' }],
 })
 

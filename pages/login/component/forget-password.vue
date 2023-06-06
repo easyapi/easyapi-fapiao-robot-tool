@@ -77,7 +77,7 @@ function getValidateCode() {
   })
 }
 
-const submit = async (formEl: FormInstance | undefined) => {
+async function submit (formEl: FormInstance | undefined) {
   if (!formEl)
     return
   await formEl.validate((valid) => {
