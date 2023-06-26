@@ -111,7 +111,7 @@ onMounted(() => {
 
 useHead({
   title: '税盘状态 - EasyAPI发票机器人',
-}),
+})
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useHead } from '@unhead/vue';
+import { useHead } from '@unhead/vue'
 import { onMounted, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
@@ -84,7 +84,7 @@ onMounted(() => {
 
 useHead({
   title: '同步查询 - EasyAPI发票机器人',
-}),
+})
 </script>
 
 <template>

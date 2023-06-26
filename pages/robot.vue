@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useHead } from '@unhead/vue';
+import { useHead } from '@unhead/vue'
 import { onMounted, reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
@@ -110,7 +110,7 @@ useHead({
 
 onMounted(() => {
   updateFormData()
-}),
+})
 </script>
 
 <template>

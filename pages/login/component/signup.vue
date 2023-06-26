@@ -119,7 +119,7 @@ function getUser() {
   })
 }
 
-useHead({ title: '注册-EasyAPI发票管理控制台' }),
+useHead({ title: '注册-EasyAPI发票管理控制台' })
 </script>
 
 <template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useHead } from '@unhead/vue'
 import { onMounted, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
@@ -53,7 +54,8 @@ const disable = !!getToken()
  * 发送
  */
 async function onSubmit(formEl: FormInstance | undefined) {
-  if (!formEl) return
+  if (!formEl)
+    return
 
   await formEl.validate((valid) => {
     if (valid) {
@@ -144,9 +146,7 @@ useHead({
             placeholder="回调URL"
             @input="saveChange"
           />
-          <a href="https://hooks.upyun.com/" target="_blank"
-            >获取测试用回调URL</a
-          >
+          <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调URL</a>
         </el-form-item>
         <el-form-item label="机器人密钥：" prop="secretKey">
           <el-input
@@ -158,8 +158,7 @@ useHead({
           <a
             href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text"
             target="_blank"
-            >如何获取机器人密钥</a
-          >
+          >如何获取机器人密钥</a>
         </el-form-item>
         <el-form-item>
           <client-only>

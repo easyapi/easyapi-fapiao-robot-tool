@@ -132,7 +132,7 @@ onMounted(() => {
 
 useHead({
   title: '重试开票 - EasyAPI发票机器人',
-}),
+})
 </script>
 
 <template>
