@@ -87,7 +87,7 @@ onMounted(() => {
 })
 
 useHead({
-  title: '发票红冲 - EasyAPI发票机器人',
+  title: '发票红冲',
 })
 </script>
 

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useHead } from "@unhead/vue";
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import type { integer } from 'vscode-languageserver-types'
@@ -270,7 +271,7 @@ onMounted(() => {
 })
 
 useHead({
-  title: '开具全电发票 - EasyAPI发票机器人',
+  title: '开具全电发票',
 })
 </script>
 

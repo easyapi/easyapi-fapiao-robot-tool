@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useHead } from '@unhead/vue';
+import { useHead } from '@unhead/vue'
 import { reactive, ref } from 'vue'
 import { Lock, Message, Phone, User } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'

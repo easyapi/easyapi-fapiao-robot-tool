@@ -105,7 +105,7 @@ function subscribe() {
 }
 
 useHead({
-  title: '发票机器人状态 - EasyAPI发票机器人',
+  title: '发票机器人状态',
 })
 
 onMounted(() => {

@@ -82,7 +82,7 @@ onMounted(() => {
 })
 
 useHead({
-  title: '重发邮件 - EasyAPI发票机器人',
+  title: '重发邮件',
 })
 </script>
 

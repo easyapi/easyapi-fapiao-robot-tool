@@ -1,11 +1,6 @@
 <script>
 import robot from '@/api/robot'
 
-useHead({
-  title: 'EasyAPI发票机器人测试工具',
-  meta: [{ name: 'description', content: 'EasyAPI发票机器人测试工具' }],
-})
-
 export default defineComponent({
   setup() {
     const state = reactive({
@@ -24,6 +19,11 @@ export default defineComponent({
 
     onMounted(() => {
       getRobotVersion()
+    })
+
+    useHead({
+      title: '测试工具首页',
+      meta: [{ name: 'description', content: 'EasyAPI发票机器人测试工具' }],
     })
 
     return {
