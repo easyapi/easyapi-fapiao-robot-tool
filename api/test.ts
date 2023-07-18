@@ -18,6 +18,14 @@ export const test = {
   },
 
   /**
+   * 批量开具发票
+   * @param data
+   */
+  batchMakeInvoice(data = {}): Promise<ApiResponse> {
+    return http.post(`${useRuntimeConfig().public.baseUrl}/tool/invoice/batch-make`, data, {})
+  },
+
+  /**
    * 作废发票
    * @param data
    */

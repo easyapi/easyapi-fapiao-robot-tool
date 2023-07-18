@@ -55,6 +55,10 @@ export const menuList = [
       path: '/quandian/make',
       meta: { title: '开具全电发票', icon: '' },
     }, {
+      name: '批量开具全电发票',
+      path: '/quandian/batch-make',
+      meta: { title: '批量开具全电发票', icon: '' },
+    }, {
       name: '全电发票查询',
       path: '/quandian/query',
       meta: { title: '全电发票查询', icon: '' },
