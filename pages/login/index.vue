@@ -90,7 +90,7 @@ onMounted(() => {
             {{ state.activeName }}
           </div>
           <el-form
-            v-if="state.activeName === '账户登录'" ref="formRef" :model="form" class="loginForm"
+            v-if="state.activeName === '账户登录'" ref="formRef" :model="form" class="login-form"
             :rules="rules"
           >
             <el-form-item prop="username">
@@ -136,7 +136,7 @@ onMounted(() => {
 </template>
 
 <style>
-.loginForm .el-form-item__content {
+.login-form .el-form-item__content {
   line-height: 0;
 }
 
@@ -151,17 +151,17 @@ onMounted(() => {
   font-size: 16px;
 }
 
-.loginForm .el-input__wrapper {
+.login-form .el-input__wrapper {
   width: 300px;
   padding: 1px;
 }
 
-.loginForm .el-input__inner {
+.login-form .el-input__inner {
   padding-left: 30px;
   border-color: #dcdfe6;
 }
 
-.loginForm .el-input__inner:focus {
+.login-form .el-input__inner:focus {
   border-color: #dcdfe6;
 }
 
@@ -229,7 +229,7 @@ onMounted(() => {
   height: 100%;
 }
 
-.loginForm {
+.login-form {
   padding: 0 50px;
   margin-top: 20px;
 }

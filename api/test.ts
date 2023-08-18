@@ -69,6 +69,15 @@ export const test = {
   },
 
   /**
+   * 电子税务局发票授信额度
+   * @param params
+   * @returns
+   */
+  invoiceAmount(params = {}): Promise<ApiResponse> {
+    return http.get(`${useRuntimeConfig().public.baseUrl}/tool/invoice/amount`, params, {})
+  },
+
+  /**
    * 重发邮件
    * @param data
    */
