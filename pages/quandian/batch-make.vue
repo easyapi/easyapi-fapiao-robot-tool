@@ -37,7 +37,7 @@ const formRules = reactive<FormRules>({
   excel: [
     {
       required: true,
-      message: '请上传excel',
+      message: '请上传Excel',
       trigger: 'change',
     },
   ],
@@ -137,7 +137,7 @@ useHead({
         <el-form-item label="excel：" prop="excel">
           <el-input
             v-model="formData.excel"
-            placeholder="请输入excel地址"
+            placeholder="请输入Excel地址"
             @input="saveChange"
             @change="saveChange"
           >

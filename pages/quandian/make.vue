@@ -19,7 +19,7 @@ const ruleFormRef = ref<FormInstance>()
 const disable = !!getToken()
 
 const formData = reactive({
-  category: '全电电子普通发票',
+  category: '数电电子普通发票',
   outOrderNo: '',
   purchaserName: '深圳市腾讯计算机系统有限公司',
   purchaserTaxpayerNumber: '91440300708461136T',
@@ -271,7 +271,7 @@ onMounted(() => {
 })
 
 useHead({
-  title: '开具全电发票',
+  title: '开具数电发票',
 })
 </script>
 
@@ -422,7 +422,7 @@ useHead({
                 <el-form-item label="邮箱：" prop="email">
                   <el-input
                     v-model="formData.email"
-                    placeholder="用来接收全电发票发送邮件（免费）"
+                    placeholder="用来接收数电发票发送邮件（免费）"
                     @input="saveChange"
                   />
                 </el-form-item>

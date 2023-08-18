@@ -35,7 +35,7 @@ const callback = reactive({})
 
 const formRules = reactive<FormRules>({
   allElectronicInvoiceNumber: [
-    { required: true, message: '全电发票号码不能为空', trigger: 'change' },
+    { required: true, message: '数电发票号码不能为空', trigger: 'change' },
   ],
   makeDate: [
     { required: true, message: '开票时间不能为空', trigger: 'change' },
@@ -110,10 +110,10 @@ useHead({
             @input="saveChange"
           />
         </el-form-item>
-        <el-form-item label="全电发票号码：" prop="allElectronicInvoiceNumber">
+        <el-form-item label="数电发票号码：" prop="allElectronicInvoiceNumber">
           <el-input
             v-model="formData.allElectronicInvoiceNumber"
-            placeholder="全电发票号码长度为20位数字"
+            placeholder="数电发票号码长度为20位数字"
             maxlength="20"
             @input="saveChange"
           />

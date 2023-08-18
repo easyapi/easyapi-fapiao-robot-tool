@@ -49,31 +49,31 @@ export const menuList = [
     }],
   },
   {
-    name: '全电服务',
+    name: '数电服务',
     children: [{
-      name: '开具全电发票',
+      name: '开具数电发票',
       path: '/quandian/make',
-      meta: { title: '开具全电发票', icon: '' },
+      meta: { title: '开具数电发票', icon: '' },
     }, {
-      name: '批量开具全电发票',
+      name: '批量开具数电发票',
       path: '/quandian/batch-make',
-      meta: { title: '批量开具全电发票', icon: '' },
+      meta: { title: '批量开具数电发票', icon: '' },
     }, {
-      name: '全电发票查询',
+      name: '数电发票查询',
       path: '/quandian/query',
-      meta: { title: '全电发票查询', icon: '' },
+      meta: { title: '数电发票查询', icon: '' },
     }, {
-      name: '全电发票打印',
+      name: '数电发票打印',
       path: '/quandian/print',
-      meta: { title: '全电发票打印', icon: '' },
+      meta: { title: '数电发票打印', icon: '' },
     }, {
-      name: '全电发票红冲',
+      name: '数电发票红冲',
       path: '/quandian/red',
-      meta: { title: '全电发票红冲', icon: '' },
+      meta: { title: '数电发票红冲', icon: '' },
     }, {
-      name: '全电发票重发邮箱',
+      name: '数电发票重发邮箱',
       path: '/quandian/email',
-      meta: { title: '全电发票重发邮箱', icon: '' },
+      meta: { title: '数电发票重发邮箱', icon: '' },
     },
     ],
   }, {
