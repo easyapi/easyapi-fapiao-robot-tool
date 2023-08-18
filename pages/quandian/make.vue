@@ -10,13 +10,23 @@ import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 import { test } from '@/api/test'
 import { quandianInvoiceCategoryList } from '~/utils/invoice-category'
+import { businessList } from '@/utils/business'
 import { getToken } from '~/utils/token'
+import Business from "~/pages/business.vue";
+
 
 const route = process.client ? useRoute() : {}
 
 const ruleFormRef = ref<FormInstance>()
 
 const disable = !!getToken()
+
+
+const invoice = reactive({
+  specificBusinessCode: '',
+  specificBusiness: null,
+
+});
 
 const formData = reactive({
   category: '数电电子普通发票',
@@ -55,6 +65,7 @@ const formData = reactive({
       preferentialPolicyFlag: '',
       zeroRateFlag: '',
       preferentialPolicyName: '',
+      businessList:'',
     },
   ],
 })
@@ -279,6 +290,20 @@ useHead({
   <div class="page flex invoicing">
     <div class="form-info bg-white rounded">
       <el-scrollbar height="100%">
+        <div class="mt-6 ml-5">
+          <el-select
+            v-model="invoice.specificBusinessCode"
+            placeholder="请选择特定业务"
+            class="mr-2 business"
+          >
+            <el-option
+              v-for="item in businessList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </div>
         <div class="form-info_padding">
           <el-form ref="ruleFormRef" :model="formData" :rules="formRules">
             <div class="flex">
@@ -440,6 +465,12 @@ useHead({
               </div>
             </div>
           </el-form>
+          <!--特定业务-->
+          <Business
+            ref="businessChild"
+            v-model="invoice.specificBusiness"
+            :specific-business-code="invoice.specificBusinessCode"
+          />
           <el-table :data="formData.items">
             <el-table-column label="税收分类编码">
               <template #default="scope">
