@@ -1,10 +1,10 @@
 export const businessList = [
   { label: '普通开具', value: '' },
   { label: '建筑服务', value: '03' },
-  // { label: '货物运输服务', value: '04' },
-  // { label: '不动产销售', value: '05' },
+  { label: '货物运输服务', value: '04' },
+  { label: '不动产销售', value: '05' },
   { label: '不动产经营租赁服务', value: '06' },
-  // { label: '旅客运输服务', value: '09' },
+  { label: '旅客运输服务', value: '09' },
 ]
 export const unitOfAreaList = [
   { label: '平方千米', value: '平方千米' },
