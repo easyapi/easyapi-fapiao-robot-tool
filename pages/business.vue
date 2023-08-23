@@ -114,12 +114,12 @@ function changeVehicleType(row: any) {
             <el-input
               v-model="state.purchaseRate"
               placeholder="请输入详细地址"
-              class="ml-4"
+              class="ml-4 pr-8"
               style="width: 235px"
             />
           </div>
         </el-form-item>
-        <el-form-item label="租赁期起止：" class="w-1/2 pl-6" required>
+        <el-form-item label="租赁期起止：" class="w-1/2 pl-10" required>
           <div class="w-full flex">
             <el-date-picker
               v-model="state.specificBusiness"
@@ -129,6 +129,7 @@ function changeVehicleType(row: any) {
               end-placeholder="截至日期"
               value-format="YYYY-MM-DD"
               @change="changeBusinessDate"
+              class="w-full"
             />
           </div>
         </el-form-item>
@@ -136,15 +137,14 @@ function changeVehicleType(row: any) {
           <el-input
             v-model="state.purchaseRate"
             placeholder="请输入证书编号，若没有需填写&quot;无&quot;"
-            class=" mr-2"
-            style="width: 375px"
+            class=" mr-2 w-full"
           />
         </el-form-item>
-        <el-form-item label="面积单位：" class="w-1/2 pl-6" required>
+        <el-form-item label="面积单位：" class="w-1/2 pl-10" required>
             <el-select
               v-model="state.specificBusiness"
               placeholder="请选择"
-              style="width: 455px"
+              class="w-full"
             >
               <el-option
                 v-for="item in unitOfAreaList"
@@ -187,7 +187,7 @@ function changeVehicleType(row: any) {
               <el-input
                 v-model="state.specificBusiness.projectNumber"
                 placeholder="请输入土地增值税项目编号"
-                style="width: 400px"
+                class="w-full"
               />
           </el-form-item>
           <el-form-item label="建筑服务发生地：" class="w-1/2 pl-8" required>
@@ -199,7 +199,7 @@ function changeVehicleType(row: any) {
               <el-input
                 v-model="state.specificBusiness.serviceAddress"
                 placeholder="请输入详细地址"
-                class="ml-4"
+                class="ml-4 w-full"
               />
             </div>
           </el-form-item>
@@ -207,8 +207,7 @@ function changeVehicleType(row: any) {
             <el-input
               v-model="state.specificBusiness.projectName"
               placeholder="请输入建筑项目名称"
-              class=" ml-6"
-              style="width: 405px"
+              class=" ml-6 w-full"
             />
           </el-form-item>
           <el-form-item label="跨地（市）标志：" class="w-1/2 pl-8" required>
@@ -216,7 +215,7 @@ function changeVehicleType(row: any) {
               <el-select
                 v-model="state.specificBusiness.intercityFlag"
                 placeholder="请选择"
-                style="width: 390px"
+                class="w-full"
               >
                 <el-option label="是" :value="true" />
                 <el-option label="否" :value="false" />
@@ -244,8 +243,7 @@ function changeVehicleType(row: any) {
             <el-input
               v-model="state.specificBusiness.propertyContractNumber"
               placeholder="请输入不动产单元代码/网签合同备案编号"
-              class=" mr-2"
-              style="width: 310px"
+              class=" mr-2 w-full"
             />
           </el-form-item>
           <el-form-item label="不动产地址：" class="w-1/2 pl-8" required>
@@ -258,7 +256,7 @@ function changeVehicleType(row: any) {
                 v-model="state.specificBusiness.address"
                 placeholder="请输入详细地址"
                 class="ml-4"
-                style="width: 380px"
+                style="width: 370px"
               />
             </div>
           </el-form-item>
@@ -266,15 +264,14 @@ function changeVehicleType(row: any) {
             <el-input
               v-model="state.specificBusiness.propertyNumber"
               placeholder="请输入证书编号，若没有需填写&quot;无&quot;"
-              class=" mr-2"
-              style="width: 380px"
+              class=" mr-2 w-full"
             />
           </el-form-item>
           <el-form-item label="面积单位：" class="w-1/2 pl-8" required>
             <el-select
               v-model="state.specificBusiness.unit"
               placeholder="请选择"
-              style="width: 470px"
+              class="w-full"
             >
               <el-option
                 v-for="item in unitOfAreaList"
@@ -300,22 +297,21 @@ function changeVehicleType(row: any) {
             <el-input
               v-model="state.specificBusiness.projectNumber"
               placeholder="请输入土地增值税项目编号"
-              style="width: 390px"
+              class="w-full"
             />
           </el-form-item>
           <el-form-item label="核定计税价格：" class="w-1/2">
             <el-input
               v-model="state.specificBusiness.price"
               placeholder="请输入核定计税价格"
-              style="width: 450px"
+              class="w-full"
             />
           </el-form-item>
           <el-form-item label="实际成交含税金额：" class="w-1/2 pl-8">
             <el-input
               v-model="state.specificBusiness.taxAmount"
               placeholder="请输入实际成交含税金额"
-              style="width: 400px"
-              class="ml-1"
+              class="ml-1 w-full"
             />
           </el-form-item>
         </el-form>
