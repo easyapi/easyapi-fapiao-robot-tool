@@ -6,7 +6,6 @@ import { useRoute } from 'vue-router'
 
 import { test } from '@/api/test'
 import { getCacheData, setCacheData } from '@/utils/cacheData'
-import qiniu from '@/api/qiniu'
 import Result from '@/components/Result.vue'
 import Callback from '@/components/Callback.vue'
 import { getToken } from '~/utils/token'
@@ -16,13 +15,8 @@ const ruleFormRef = ref<FormInstance>()
 
 const formData = reactive({
   taxNumber: '91310113091845702A',
-  excel: '',
   callbackUrl: '',
   secretKey: '',
-})
-
-const state = reactive({
-  qnToken: '',
 })
 
 const result = reactive({
@@ -34,13 +28,6 @@ const result = reactive({
 const callback = reactive({})
 
 const formRules = reactive<FormRules>({
-  excel: [
-    {
-      required: true,
-      message: '请上传Excel',
-      trigger: 'change',
-    },
-  ],
   callbackUrl: [
     { required: true, message: '回调URL不能为空', trigger: 'change' },
   ],
@@ -50,37 +37,13 @@ const formRules = reactive<FormRules>({
 const disable = !!getToken()
 
 /**
- * 获取七牛token
- */
-const getQiNiuToken = () => {
-  qiniu.getToken().then((res) => {
-    if (res.code === 1) state.qnToken = res.content.upToken
-  })
-}
-
-/**
- * 上传
- */
-const getTokenAndKey = () => {
-  getQiNiuToken()
-}
-
-/**
- * 上传成功
- */
-const handleAvatarSuccess = (res: any, file: any) => {
-  formData.excel = `https://qiniu.easyapi.com/${res.key}`
-  saveChange()
-}
-
-/**
  * 发送
  */
 async function onSubmit(formEl: FormInstance | undefined) {
   if (!formEl) return
   await formEl.validate((valid) => {
     if (valid) {
-      test.batchMakeInvoice(formData).then((res) => {
+      test.invoiceAmount(formData).then((res) => {
         if (res.code === 1) {
           Object.assign(result, res.content)
           ElMessage({
@@ -113,7 +76,7 @@ onMounted(() => {
 })
 
 useHead({
-  title: '批量开具数电发票',
+  title: '数电发票授信额度',
 })
 </script>
 
@@ -133,30 +96,6 @@ useHead({
             maxlength="18"
             @input="saveChange"
           />
-        </el-form-item>
-        <el-form-item label="excel：" prop="excel">
-          <el-input
-            v-model="formData.excel"
-            placeholder="请输入Excel地址"
-            @input="saveChange"
-            @change="saveChange"
-          >
-            <template #append>
-              <el-upload
-                action="https://upload.qiniup.com/"
-                :data="{
-                  token: state.qnToken,
-                  key: `excel/${new Date().getTime()}.xlsx`,
-                }"
-                :on-success="handleAvatarSuccess"
-                :show-file-list="false"
-              >
-                <el-button type="primary" @click="getTokenAndKey">
-                  上传
-                </el-button>
-              </el-upload>
-            </template>
-          </el-input>
         </el-form-item>
         <el-form-item label="回调URL：" prop="callbackUrl">
           <el-input

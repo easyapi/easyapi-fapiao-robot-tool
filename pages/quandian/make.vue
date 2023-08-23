@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useHead } from "@unhead/vue";
+import { useHead } from '@unhead/vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import type { integer } from 'vscode-languageserver-types'
@@ -12,21 +12,13 @@ import { test } from '@/api/test'
 import { quandianInvoiceCategoryList } from '~/utils/invoice-category'
 import { businessList } from '@/utils/business'
 import { getToken } from '~/utils/token'
-import Business from "~/pages/business.vue";
-
+import Business from '~/pages/business.vue'
 
 const route = process.client ? useRoute() : {}
 
 const ruleFormRef = ref<FormInstance>()
 
 const disable = !!getToken()
-
-
-const invoice = reactive({
-  specificBusinessCode: '',
-  specificBusiness: null,
-
-});
 
 const formData = reactive({
   category: '数电电子普通发票',
@@ -65,9 +57,11 @@ const formData = reactive({
       preferentialPolicyFlag: '',
       zeroRateFlag: '',
       preferentialPolicyName: '',
-      businessList:'',
+      businessList: '',
     },
   ],
+  specificBusinessCode: '',
+  specificBusiness: null,
 })
 
 const result = reactive({
@@ -134,14 +128,14 @@ function changeNumber(index: integer) {
   }
   if (formData.items[index].price) {
     // 计算小计（保留2位小数）
-    formData.items[index].sum
-      = Number(formData.items[index].number) * Number(formData.items[index].price)
+    formData.items[index].sum =
+      Number(formData.items[index].number) * Number(formData.items[index].price)
     return
   }
   if (formData.items[index].sum) {
     // 并且数量有值，计算单价（保留8为小数）
-    formData.items[index].price
-      = Number(formData.items[index].sum) / Number(formData.items[index].number)
+    formData.items[index].price =
+      Number(formData.items[index].sum) / Number(formData.items[index].number)
   }
   setCacheData(route.name as string, formData)
 }
@@ -156,14 +150,14 @@ function changePrice(index: integer) {
   }
   if (formData.items[index].number) {
     // 计算小计（保留2位小数）
-    formData.items[index].sum
-      = Number(formData.items[index].number) * Number(formData.items[index].price)
+    formData.items[index].sum =
+      Number(formData.items[index].number) * Number(formData.items[index].price)
     return
   }
   if (formData.items[index].sum) {
     // 计算数量
-    formData.items[index].number
-      = Number(formData.items[index].sum) / Number(formData.items[index].price)
+    formData.items[index].number =
+      Number(formData.items[index].sum) / Number(formData.items[index].price)
   }
   setCacheData(route.name as string, formData)
 }
@@ -178,12 +172,11 @@ function changeSum(index: integer) {
   }
   if (formData.items[index].number) {
     // 并且数量有值，计算单价（保留8为小数）
-    formData.items[index].price
-      = Number(formData.items[index].sum) / Number(formData.items[index].number)
+    formData.items[index].price =
+      Number(formData.items[index].sum) / Number(formData.items[index].number)
     return
   }
-  if (formData.items[index].price)
-    formData.items[index].number = 1
+  if (formData.items[index].price) formData.items[index].number = 1
 
   setCacheData(route.name as string, formData)
 }
@@ -243,23 +236,22 @@ async function onSubmit(formEl: FormInstance | undefined) {
   if (formData.category.indexOf('专用')) {
     // todo
   }
-  if (!formEl)
-    return
+  if (!formEl) return
 
   await formEl.validate((valid) => {
     if (valid) {
       formData.items.forEach((item, index) => {
         if (
-          item.no === ''
-          && item.name === ''
-          && item.model === ''
-          && item.unit === ''
-          && item.number === ''
-          && item.price === ''
-          && item.sum === ''
-          && item.preferentialPolicyFlag === ''
-          && item.zeroRateFlag === ''
-          && item.preferentialPolicyName === ''
+          item.no === '' &&
+          item.name === '' &&
+          item.model === '' &&
+          item.unit === '' &&
+          item.number === '' &&
+          item.price === '' &&
+          item.sum === '' &&
+          item.preferentialPolicyFlag === '' &&
+          item.zeroRateFlag === '' &&
+          item.preferentialPolicyName === ''
         )
           formData.items.splice(index, 1)
       })
@@ -292,7 +284,7 @@ useHead({
       <el-scrollbar height="100%">
         <div class="mt-6 ml-5">
           <el-select
-            v-model="invoice.specificBusinessCode"
+            v-model="formData.specificBusinessCode"
             placeholder="请选择特定业务"
             class="mr-2 business"
           >
@@ -308,9 +300,7 @@ useHead({
           <el-form ref="ruleFormRef" :model="formData" :rules="formRules">
             <div class="flex">
               <div class="w-1/2 border px-4 pt-4 mr-4">
-                <div class="text-black text-xl font-bold mb-4">
-                  购买方信息
-                </div>
+                <div class="text-black text-xl font-bold mb-4">购买方信息</div>
                 <el-form-item label="购方名称：" prop="purchaserName">
                   <el-input
                     v-model="formData.purchaserName"
@@ -356,9 +346,7 @@ useHead({
                 </el-form-item>
               </div>
               <div class="w-1/2 border px-4 pt-4">
-                <div class="text-black text-xl font-bold mb-4">
-                  销售方信息
-                </div>
+                <div class="text-black text-xl font-bold mb-4">销售方信息</div>
                 <el-form-item label="销方名称：" prop="sellerName">
                   <el-input v-model="formData.sellerName" @input="saveChange" />
                 </el-form-item>
@@ -440,7 +428,8 @@ useHead({
                   <a
                     href="https://bangqu.easyapi.com/project/28385/document/31743/api/265137/text"
                     target="_blank"
-                  >如何获取机器人密钥</a>
+                    >如何获取机器人密钥</a
+                  >
                 </el-form-item>
               </div>
               <div class="w-1/2 px-4 pt-4">
@@ -460,16 +449,17 @@ useHead({
                     placeholder="回传开票结果"
                     @input="saveChange"
                   />
-                  <a href="https://hooks.upyun.com/" target="_blank">获取测试用回调URL</a>
+                  <a href="https://hooks.upyun.com/" target="_blank"
+                    >获取测试用回调URL</a
+                  >
                 </el-form-item>
               </div>
             </div>
           </el-form>
           <!--特定业务-->
           <Business
-            ref="businessChild"
-            v-model="invoice.specificBusiness"
-            :specific-business-code="invoice.specificBusinessCode"
+            v-model="formData.specificBusiness"
+            :specific-business-code="formData.specificBusinessCode"
           />
           <el-table :data="formData.items">
             <el-table-column label="税收分类编码">
@@ -482,7 +472,8 @@ useHead({
                 <a
                   href="https://fapiao.easyapi.com/taxcode.html"
                   target="_blank"
-                >查找税收分类编码</a>
+                  >查找税收分类编码</a
+                >
               </template>
             </el-table-column>
             <el-table-column label="商品名称">

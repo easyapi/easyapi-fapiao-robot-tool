@@ -2,14 +2,12 @@
 import { onMounted, reactive, ref } from 'vue'
 import { Lock, User } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
-import { useCookies } from '@vueuse/integrations/useCookies'
 import Signup from './component/signup.vue'
 import ForgetPassword from './component/forget-password.vue'
 import { user } from '@/api/user'
 import { useUser } from '@/stores/user'
 import { setToken } from '~/utils/token'
 
-const cookies = useCookies()
 const route = useRoute()
 const router = useRouter()
 const userStore = useUser()

@@ -75,6 +75,11 @@ export const menuList = [
       path: '/quandian/email',
       meta: { title: '数电发票重发邮箱', icon: '' },
     },
+    {
+      name: '数电发票授信额度',
+      path: '/quandian/amount',
+      meta: { title: '数电发票授信额度', icon: '' },
+    },
     ],
   }, {
     name: '机器人',
