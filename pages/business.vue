@@ -106,7 +106,7 @@ function changeVehicleType(row: any) {
         label-position="left"
         >
         <el-form-item label="不动产地址：" class="w-1/2" required>
-          <div class="flex">
+          <div class=" w-full flex">
             <el-cascader
               v-model="state.purchaseRate"
               :options="state.areaList"
@@ -114,8 +114,7 @@ function changeVehicleType(row: any) {
             <el-input
               v-model="state.purchaseRate"
               placeholder="请输入详细地址"
-              class="ml-4 pr-8"
-              style="width: 235px"
+              class="ml-4"
             />
           </div>
         </el-form-item>
@@ -137,7 +136,7 @@ function changeVehicleType(row: any) {
           <el-input
             v-model="state.purchaseRate"
             placeholder="请输入证书编号，若没有需填写&quot;无&quot;"
-            class=" mr-2 w-full"
+            class="w-full"
           />
         </el-form-item>
         <el-form-item label="面积单位：" class="w-1/2 pl-10" required>
@@ -155,11 +154,11 @@ function changeVehicleType(row: any) {
             </el-select>
         </el-form-item>
         <el-form-item label="跨地（市）标志：" class="w-1/2" required>
-          <div class="flex">
+          <div class="w-full flex">
             <el-select
               v-model="state.specificBusiness"
               placeholder="请选择"
-              style="width: 423px"
+              class="w-full"
             >
               <el-option label="是" :value="true" />
               <el-option label="否" :value="false" />
@@ -191,7 +190,7 @@ function changeVehicleType(row: any) {
               />
           </el-form-item>
           <el-form-item label="建筑服务发生地：" class="w-1/2 pl-8" required>
-            <div class="flex">
+            <div class=" w-full flex">
               <el-cascader
                 v-model="state.specificBusiness.serviceArea"
                 :options="state.areaList"
@@ -199,7 +198,7 @@ function changeVehicleType(row: any) {
               <el-input
                 v-model="state.specificBusiness.serviceAddress"
                 placeholder="请输入详细地址"
-                class="ml-4 w-full"
+                class="ml-4"
               />
             </div>
           </el-form-item>
@@ -211,7 +210,7 @@ function changeVehicleType(row: any) {
             />
           </el-form-item>
           <el-form-item label="跨地（市）标志：" class="w-1/2 pl-8" required>
-            <div class="flex">
+            <div class="w-full flex">
               <el-select
                 v-model="state.specificBusiness.intercityFlag"
                 placeholder="请选择"
@@ -247,7 +246,7 @@ function changeVehicleType(row: any) {
             />
           </el-form-item>
           <el-form-item label="不动产地址：" class="w-1/2 pl-8" required>
-            <div class="flex">
+            <div class=" w-full flex">
               <el-cascader
                 v-model="state.specificBusiness.area"
                 :options="state.areaList"
@@ -256,7 +255,7 @@ function changeVehicleType(row: any) {
                 v-model="state.specificBusiness.address"
                 placeholder="请输入详细地址"
                 class="ml-4"
-                style="width: 370px"
+
               />
             </div>
           </el-form-item>
@@ -282,11 +281,11 @@ function changeVehicleType(row: any) {
             </el-select>
           </el-form-item>
           <el-form-item label="跨地（市）标志：" class="w-1/2" required>
-            <div class="flex">
+            <div class="w-full flex">
               <el-select
                 v-model="state.specificBusiness.intercityFlag"
                 placeholder="请选择"
-                style="width: 425px"
+                class="w-full"
               >
                 <el-option label="是" :value="true" />
                 <el-option label="否" :value="false" />
